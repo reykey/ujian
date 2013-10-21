@@ -13,6 +13,8 @@
                     
                     <p>1. Bla balksaoksak</p>
                   </li>
+
+                   
                   <li>
                     <span class="number label label-success">1</span>
                     <div class="question">
@@ -22,9 +24,12 @@
                   </li>
 
                   <li>
-                    <h4>Aturan Main :</h4>
-                    <p></p>
+                    <td class="action">
+                          <?php echo anchor('ujian/index/', lang('ujian:back'), array('class'=>'button')); ?></td>
+                    <td class="action">
+                          <?php echo anchor('ujian/groupSoal/'.$id, lang('ujian:mulai'), array('class'=>'button')); ?></td>
                   </li>
+
                 </ul>
               </div>
             </div>

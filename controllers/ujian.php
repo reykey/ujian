@@ -33,47 +33,23 @@ class Ujian extends Public_Controller
 
         $data['pengguna'] = $this->streams->entries->get_entries($params);
 
-        //$this->template->build('index',$data);
-        //$data['nilai_lempar']=$this->streams->entries->get_entries($params);
-
-
-        // $extra = array();
-        // $extra['buttons'] = array(
-        //     array(
-        //         'label' => lang('ujian:mulai'),
-        //         'url' => 'admin/ujian/prepare_v'
-        //     )
-            
-        // );
 
         $this->template->build('index',$data);
         
 
     }
 
-     public function prepare()
+     public function prepare($paket_id = false)
     {
-        $extra = array();
-        $extra['buttons'] = array(
-            array(
-                'label' => lang('ujian:back'),
-                'url' => 'admin/ujian/group/-entry_id-'
-            ),
-            array(
-                'label' => lang('ujian:mulai'),
-                'url' => 'admin/ujian/edit/-entry_id-',
-                'confirm' => true
-            )
-            
-        );
-
-        $this->template->build('prepare_v');
+        $items['id'] = $paket_id;
+        $this->template->build('prepare_v',$items);
 
     }    
 
     public function groupSoal($paket_id = false)
     {
         $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
+        $groups = $this->streams->entries->get_entries($paket_id,'paket','streams');
 
         $params = array(
                 'stream'        => 'group_soal',
@@ -84,14 +60,15 @@ class Ujian extends Public_Controller
                 'where'         => "paket_id = $paket_id"
                 );
 
+        foreach ($groups as $group) {
+             $temp = $this->streams->entries->get_entries($group,'group_soal','streams');
+             $group['soal'] = $temp;    
+        }
+        return $groups;
+       
         $items['group'] = $this->streams->entries->get_entries($params);
 
         $this->template->build('tryout', $items);
-
-        /*$extra = array();
-        //$extra['title'] = 'lang:ujian:paket';
-        
-        $this->streams->cp->entries_table('paket', 'streams', 5, 'ujian/index', true, $extra);*/
 
     }
 

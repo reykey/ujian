@@ -1,7 +1,7 @@
 <!-- tampilan modul soal mulai dari sini -->
           <div class="content">
-            <?php dump($dapat); foreach($paket['entries'] as $item):?>
-                    <?php $this->groupSoal($item['id']); ?>
+            <?php dump($dapat); foreach($paket as $item):?>
+                    <?php $this->groupSoal($item->id); ?>
             <h2><?php echo lang('ujian:paket'); ?> - <?php echo $item['judul'] ; ?></h2>
           
             <?php foreach($data['pengguna'] as $item):?>
