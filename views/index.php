@@ -17,15 +17,26 @@
                   </li>
                   <li>
 
-                    <?php if(($pengguna)<= : ?>
-
-                    <?php dump($pengguna);?>
+                    <?php //dump($pengguna);?>
                     <?php //dump($nilai);?>
 
                     <?php $i=1; foreach( $pengguna['entries'] as $item ): ?>
-                    <td><span class="number label label-success"><?php echo $i; ?></span></td>
-                    <td><?php echo $item['paket_id']['tanggal_buka']; ?></td>
+                      <?php
+                        $tglSekarang = date('Y-m-d H:i:s');
+                        $tglMulai = date('Y-m-d H:i:s', $item['paket_id']['tanggal_buka']);
+                        $tglSelesai = date('Y-m-d H:i:s',$item['paket_id']['tanggal_tutup']);
+                        if($tglSekarang >= $tglMulai && $tglSekarang <= $tglSelesai):
+                      ?>
 
+                        <td><span class="number label label-success"><?php echo $i; ?></span></td>
+                        <td><?php echo $item['paket_id']['tanggal_buka']; ?></td>
+                        <td class="action">
+                          <?php echo anchor('ujian/prepare_v/'.$item["id"], lang('ujian:mulai'), array('class'=>'button')); ?></td>
+                      <?php elseif ($tglSekarang <= $tglMulai): ?>
+                        <td>belum mulai</td>
+                      <?php elseif ($tglSekarang >= $tglSelesai): ?>
+                        <td>Expired</td>
+                      <?php endif; ?>
                     <?php $i++; endforeach; ?>
 
                     
