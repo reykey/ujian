@@ -27,7 +27,7 @@
                     <td class="action">
                           <?php echo anchor('ujian/index/', lang('ujian:back'), array('class'=>'button')); ?></td>
                     <td class="action">
-                          <?php echo anchor('ujian/groupSoal/'.$id, lang('ujian:mulai'), array('class'=>'button')); ?></td>
+                          <?php echo anchor('ujian/getMulai/'.$id, lang('ujian:mulai'), array('class'=>'button')); ?></td>
                   </li>
 
                 </ul>

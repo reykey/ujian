@@ -1,4 +1,4 @@
-<section class="title">
+jj<section class="title">
     <h4><?php echo lang('ujian:group'); ?> - <?php echo $group->judul ; ?> </h4>
 </section>
 

@@ -31,7 +31,7 @@
                         <td><span class="number label label-success"><?php echo $i; ?></span></td>
                         <td><?php echo $item['paket_id']['tanggal_buka']; ?></td>
                         <td class="action">
-                          <?php echo anchor('ujian/prepare/'.$item["id"], lang('ujian:mulai'), array('class'=>'button')); ?></td>
+                          <?php echo anchor('ujian/prepare/'.$item["paket_id"]['id'], lang('ujian:mulai'), array('class'=>'button')); ?></td>
                       <?php elseif ($tglSekarang <= $tglMulai): ?>
                         <td>belum mulai</td>
                       <?php elseif ($tglSekarang >= $tglSelesai): ?>

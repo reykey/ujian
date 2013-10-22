@@ -142,7 +142,7 @@ class Admin extends Admin_Controller
 
     public function tambah_soal($paket_id = false, $group_id = false){
         $extra = array (
-            'return' => 'admin/ujian/soal/'.$group_id,
+            'return' => 'admin/ujian/soal/'.$paket_id.'/'.$group_id,
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:new_soal'),

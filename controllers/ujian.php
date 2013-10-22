@@ -12,6 +12,8 @@ class Ujian extends Public_Controller
         $this->lang->load('ujian');
         $this->load->driver('Streams');
         $this->load->model('soal_m');
+        $this->template->append_js('module::jquery-1.9.1.min.js');
+        $this->template->append_js('module::jquery.countdown.js');
 
     }
 
@@ -46,37 +48,62 @@ class Ujian extends Public_Controller
 
     }    
 
+    public function getMulai($paket_id = false){
+
+        $jam_mulai = new DateTime('now');
+ 
+        $this->soal_m->getMulai(date("Y-m-d H:i:s", $jam_mulai->getTimestamp()), $this->current_user->id, $paket_id);
+        $this->session->set_userdata('jam_mulai', $jam_mulai->getTimestamp());
+        dump($jam_mulai->getTimestamp());
+        dump($this->session->userdata('jam_mulai'));
+        redirect('ujian/groupSoal/'.$paket_id);
+        
+    }
+    // public function mulai($paket_id = false){
+    //     $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
+
+    // }
+
     public function groupSoal($paket_id = false)
     {
         $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
-        $groups = $this->streams->entries->get_entries($paket_id,'paket','streams');
+        // dump($items['paketSoal']);
 
         $params = array(
                 'stream'        => 'group_soal',
                 'namespace'     => 'streams',
-                'paginate'      => 'yes',
-                'limit'         => 10,
-                'page_segment'  => 4,
                 'where'         => "paket_id = $paket_id"
                 );
+        $groups = $this->streams->entries->get_entries($params);
+        // dump($groups);
 
-        foreach ($groups as $group) {
-             $temp = $this->streams->entries->get_entries($group,'group_soal','streams');
-             $group['soal'] = $temp;    
+        if($groups['total'] > 0){
+            foreach ($groups['entries'] as &$group) {
+                $paramsoal = array(
+                    'stream'        => 'soal',
+                    'namespace'     => 'streams',
+                    'where'         => "default_to_soal.group_id = {$group['id']}"
+                    );
+                $soal = $this->streams->entries->get_entries($paramsoal);
+
+                $group['soal'] = $soal['entries'];
+            }
+
         }
-        return $groups;
-       
-        $items['group'] = $this->streams->entries->get_entries($params);
+        // dump($groups);
+        $items['group'] = $groups['entries'];    
 
         $this->template->build('tryout', $items);
 
     }
 
+    
+
     public function soal(){
         // $dapat=$this->soal_m->test();
         // $this->template->build('tryout',$dapat);
-        $dapat=$this->soal_m->test();
-        $this->template->build('tryout',$dapat);
+        // $dapat=$this->soal_m->test();
+        // $this->template->build('tryout',$dapat);
 
     }
 

@@ -1,19 +1,71 @@
+
 <!-- tampilan modul soal mulai dari sini -->
+<?php
+//session_start();
+// if(isset($_SESSION["mulai_waktu"])){
+//   $telah_berlalu = time() - $_SESSION["mulai_waktu"];
+//   }
+// else {
+//   $_SESSION["mulai_waktu"] = time();
+//   $telah_berlalu = 0;
+//   } 
+?>
+<!-- <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery.countdown.js"></script> -->
+<div id="tempat_timer">
+<span id="timer">00 : 00 : 00</span>
+</div>
+
+<?php //dump($paketSoal);?>
+<?php 
+  $sess = $this->session->userdata('jam_mulai');
+  $jam_mulai = $sess;
+  $jam_sekarang = new DateTime('now');
+
+  $selisih = $jam_sekarang->getTimestamp() - $jam_mulai;
+  echo $jam_mulai."<br>".$jam_sekarang->getTimestamp()."<br>".$selisih; 
+?>
+<script type="text/javascript">
+function waktuHabis(){
+  alert("Waktu pengerjaan habis. Silakan pulang......");
+  }   
+function hampirHabis(periods){
+  if($.countdown.periodsToSeconds(periods) == 60){
+    $(this).css({color:"red"});
+    }
+  }
+$(function(){
+  var waktu = <?php echo $paketSoal->alokasi_waktu - $selisih; ?>; // 3 menit
+  //var sisa_waktu = waktu - 30;
+  var longWayOff = waktu;
+  $("#timer").countdown({
+    until: longWayOff,
+    compact:true,
+    onExpiry:waktuHabis,
+    onTick: hampirHabis
+    }); 
+  })
+</script>
+<style>
+#tempat_timer{
+  margin:0 auto;
+  text-align:center;
+  }
+#timer{
+  border-radius:7px;
+  border:2px solid gray;
+  padding:7px;
+  font-size:2em;
+  font-weight:bolder;
+  }
+</style>          
+
+
           <div class="content">
-            <?php dump($dapat); foreach($paket as $item):?>
-                    <?php $this->groupSoal($item->id); ?>
-            <h2><?php echo lang('ujian:paket'); ?> - <?php echo $item['judul'] ; ?></h2>
-          
-            <?php foreach($data['pengguna'] as $item):?>
-                    <?php $this->data($item['index']); ?>
-                    <h2><?php //echo lang('ujian:paket'); ?> - <?php //echo $item['judul'] ; ?></h2>
-                    <?php endforeach;?>
-            
-          <?php endforeach;?>
+            <?php //dump($group); ?>
+            <h2><?php echo lang('ujian:paket'); ?> - <?php echo 'judul' ; ?></h2>
+
           </div>
-
-
-
           
           <div class="content bg-white">
             <div class="row-fluid">
@@ -22,43 +74,37 @@
                 <!-- ini mulai soal ditampilkan -->
                 <ul class="quiz">
                   <li class="instruction">
-                    <h4>Sinonim</h4>
-                    <?php dump($paketSoal); foreach($group['entries'] as $item):?>
-                    <h4><?php echo lang('ujian:group'); ?> - <?php echo $item['judul'] ; ?></h4>
-                    <?php endforeach;?>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, dolore repellat animi culpa dicta ut veritatis accusantium nulla corrupti mollitia aut optio ratione incidunt voluptate reiciendis voluptas maiores aspernatur suscipit.</p>
-                  </li>
-                  <li>
-                    <span class="number label label-success">1</span>
-                    <div class="question">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, aperiam, molestias, fuga ex voluptates illo enim dignissimos animi ipsa molestiae perspiciatis reprehenderit exercitationem facilis officiis modi impedit sequi amet explicabo?
-                    </div>
-                    <ul class="choice">
-                      <li><input type="radio" name="a"> Lorem ipsum</li>
-                      <li><input type="radio" name="b"> Dolor sit</li>
-                      <li><input type="radio" name="c"> Amet pisan</li>
-                      <li><input type="radio" name="d"> Consectetur</li>
-                    </ul>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, dolore repellat animi culpa dicta ut veritatis accusantium nulla corrupti mollitia aut optio ratione incidunt voluptate reiciendis voluptas maiores aspernatur suscipit.</p>
                   </li>
 
+                  <?php foreach($group as $item):?>
+                      <?php //dump($item['soal']); ?>
+                      <h4><?php echo lang('ujian:group'); ?> - <?php echo $item['judul'] ; ?></h4>
+
+                   <?php $i=1; foreach($item['soal'] as $soallist):?>  
                   <li>
-                    <span class="number label label-success">2</span>
+                    <span class="number label label-success"><?php echo $i; ?></span>
                     <div class="question">
-                      <img src="img/art/ad1.jpg" alt=""><br>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti praesentium culpa molestias voluptatum ratione blanditiis error adipisci neque. Odio sapiente quos minima quam hic explicabo dolor ea quae vero a.
+                     
+                      <?php echo $soallist['pertanyaan']; ?>
+
                     </div>
                     <ul class="choice">
-                      <li><input type="radio" name="a"> Amet pisan</li>
-                      <li><input type="radio" name="b"> Dolor sit</li>
-                      <li><input type="radio" name="c"> Lorem ipsum</li>
-                      <li><input type="radio" name="d"> Consectetur</li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_a'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_b'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_c'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_d'];?></li>
                     </ul>
+                    <?php $i++; endforeach; ?>
                   </li>
+
+                  <?php endforeach;?>
+                   
                 </ul>
 
                 <!-- pagination halaman soal -->
                 <div class="pagination pagination-centered">
-                  <ul>
+                  <!-- <ul>
                     <li><a href="#">Prev</a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -66,7 +112,7 @@
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
                     <li><a href="#">Next</a></li>
-                  </ul>
+                  </ul> -->
                 </div>
 
               </div>

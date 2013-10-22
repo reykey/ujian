@@ -30,4 +30,21 @@
 	    					->where('user_id',$id_user and 'status_pengerjaan',"belum")
 	    					->get()->result();
 	    }
+
+	    function getMulai($jam_mulai, $user_id, $paket_id){
+	    	$data = array(
+	    		'jam_mulai'=>$jam_mulai
+	    	); 
+	    	$this->db->where('user_id',$user_id);
+	    	$this->db->where('paket_id',$paket_id);
+	    	$this->db->update('so_to_user',$data);
+	    	return $this->db->affected_rows();
+	    }
+
+	    function getSelesai(){
+	    	$data = array(
+	    		'jam_selesai'=>$jam_selesai); 
+	    	$waktu = $this->db->insert('so_to_user',$data);
+	    }
     }
+
