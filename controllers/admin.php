@@ -48,10 +48,8 @@ class Admin extends Admin_Controller
             ),
             array(
                 'label' => lang('ujian:edit'),
-                'url' => 'admin/ujian/edit/-entry_id-',
-                'confirm' => true
+                'url' => 'admin/ujian/edit/-entry_id-'
             ),
-
             array(
                 'label' => lang('global:delete'),
                 'url' => 'admin/ujian/delete/-entry_id-',
@@ -94,7 +92,7 @@ class Admin extends Admin_Controller
                 'paginate'      => 'yes',
                 'limit'         => 10,
                 'page_segment'  => 4,
-                'where'         => "default_to_soal.group_id = $group_id"
+                'where'         => SITE_REF."_to_soal.group_id = $group_id"
                 );
 
             $data['entries'] = $this->streams->entries->get_entries($params);

@@ -2,10 +2,11 @@
 
 $lang['ujian:view']                        = 'View Question & Answer';
 $lang['ujian:input']                       = 'Input Question & Answer';
-$lang['ujian:edit']                        = 'Edit Question & Answer';
+$lang['ujian:edit']                        = 'Edit';
 $lang['ujian:ujian']                        = 'Ujian';
 $lang['ujian:paket']                        = 'Paket Soal';
-$lang['ujian:atur']                        = 'Atur Soal';
+$lang['ujian:atur_grup']                        = 'Atur&nbsp;Grup&nbsp;Soal';
+$lang['ujian:atur_soal']                        = 'Atur&nbsp;Soal';
 //$lang['ujian:new']                        = 'Tambah Paket';
 $lang['ujian:submit_success']				= 'Input Sukses';
 $lang['ujian:submit_failure']				= 'Input Gagal';

@@ -17,29 +17,21 @@
             </thead>
             <tfoot>
                 <tr>
-                    <td colspan="7">
+                    <td colspan="3">
                         <div class="inner"><?php $this->load->view('admin/partials/pagination'); ?></div>
                     </td>
                 </tr>
             </tfoot>
             <tbody>
-                <?php //dump($entries); ?>
                 <?php $i=1; foreach( $entries['entries'] as $item ): ?>
+                <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $item['judul']; ?></td>
-                    
+                    <td><?php echo $item['judul']; ?></td>                    
                     <td class="actions">
-                        <?php echo anchor('admin/ujian/soal/'.$item["paket_id"]["id"].'/'.$item["id"], lang('ujian:lihatSoal'), array('class'=>'button', 'title'=>lang('ujian:lihatSoal'))); ?>
-                    </td>
-
-                    <td class="actions">
+                        <?php echo anchor('admin/ujian/soal/'.$item["paket_id"]["id"].'/'.$item["id"], lang('ujian:atur_soal'), array('class'=>'button', 'title'=>lang('ujian:lihatSoal'))); ?>
                         <?php echo anchor('admin/ujian/edit_group/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
+                        <?php echo anchor('admin/ujian/delete_group/'.$item["id"], lang('global:delete'), array('class'=>'button confirm', 'title'=>lang('ujian:deleted'))); ?>
                     </td>
-
-                    <td class="actions">
-                        <?php echo anchor('admin/ujian/delete_group/'.$item["id"], lang('ujian:deleted'), array('class'=>'button confirm', 'title'=>lang('ujian:deleted'))); ?>
-                    </td>
-
                 </tr>
                 <?php $i++; endforeach; ?>
             </tbody>

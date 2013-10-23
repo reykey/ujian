@@ -1,4 +1,4 @@
-jj<section class="title">
+<section class="title">
     <h4><?php echo lang('ujian:group'); ?> - <?php echo $group->judul ; ?> </h4>
 </section>
 
@@ -18,7 +18,7 @@ jj<section class="title">
             </thead>
             <tfoot>
                 <tr>
-                    <td colspan="7">
+                    <td colspan="4">
                         <div class="inner"><?php $this->load->view('admin/partials/pagination'); ?></div>
                     </td>
                 </tr>
@@ -29,14 +29,11 @@ jj<section class="title">
                 
                     <td><?php echo $i; ?></td>
                     <td><?php echo $item["pertanyaan"]; ?></td>
-                    <td><?php echo $item["jawaban"]; ?></td>
-
-                     <td class="actions">
-                        <?php echo anchor('admin/ujian/edit_soal/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
-                    </td>
+                    <td><?php echo $item["jawaban"]['value']; ?></td>
 
                     <td class="actions">
-                        <?php echo anchor('admin/ujian/delete_soal/'.$item["id"], lang('ujian:deleted'), array('class'=>'button', 'title'=>lang('ujian:deleted'))); ?>
+                        <?php echo anchor('admin/ujian/edit_soal/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
+                        <?php echo anchor('admin/ujian/delete_soal/'.$item["id"], lang('global:delete'), array('class'=>'button', 'title'=>lang('ujian:deleted'))); ?>
                     </td>
                     
                 </tr>
