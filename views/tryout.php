@@ -144,10 +144,13 @@ $(function(){
 
                 $.ajax({
                   //Alamat url harap disesuaikan dengan lokasi script pada komputer anda
-                  url      : "<?php echo site_url('ujian/simpan_jawaban/'); ?>",
+                  url      : "<?php echo site_url('ujian/simpan_jawaban'); ?>",
                   type     : 'POST',
                   data     : {jawaban:$(this).val(), soal:$(this).attr('name'), paket:$('.paketSoal').attr('id')}
-                });
+                }).done(function(msg){
+                  console.log(msg);
+                  return true;
+                })
               });
           });
 

@@ -98,25 +98,29 @@ class Ujian extends Public_Controller
     }
 
     function simpan_jawaban(){
-        $data = array(
+        if('$_POST'){
+            $data = array(
                 'jawaban' => $this->input->post('jawaban'),
-                'soal_id' => substr($this->input->post('soal'), 7),
+                'soal_id' => substr($this->input->post('soal'), 8),
                 'user_id' => $this->current_user->id,
                 'paket_id' => $this->input->post('paket')
-        );
+                );
+            //
 
-        $exist = $this->streams->entries->get_entries(
-                array('streams' => 'jawaban',
-                        'namespace' => 'streams',
-                        'where' => '`soal_id` = {$data[soal_id]} AND `user_id` = {$data[user_id]}'
-                )
+            $exist = $this->streams->entries->get_entries(
+                array('stream' => 'jawaban',
+                    'namespace' => 'streams',
+                    'where' => "`soal_id` = {$data['soal_id']} AND `user_id` = {$data['user_id']}"
+                    )
 
-        );
-
-        if($exist['total']>0)
-            $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ));
-        else
-            $this->streams->entries->insert_entry($data,'jawaban','streams');
+                );
+            //print_r($data);
+            if($exist['total']>0){
+                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ));
+                else
+                    $this->streams->entries->insert_entry($data,'jawaban','streams');
+            }
+        }
     }
 
 
