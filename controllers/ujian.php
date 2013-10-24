@@ -97,7 +97,50 @@ class Ujian extends Public_Controller
 
     }
 
+    function simpan_soal(){
+        $data = array(
+                'jawaban' => $this->input->post('jawaban'),
+                'soal_id' => substr($this->input->post('soal'), 7),
+                'user_id' => $this->current_user->id,
+                'paket_id' => $this->input->post('paket')
+        );
+
+        $exist = $this->streams->entries->get_entries(
+                array('steams' => 'jawaban',
+                        'namespace' => 'streams',
+                        'where' => ''soal_id' = {$data['soal_id']} AND 'user_id' = {$data['user_id']}' 
+                );
+
+        )
+
+        if($exist['total']>0)
+            $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ));
+        else
+            $this->streams->entries->insert_entry($data,'jawaban','streams');
+    }
+
+
     
+    public function selesai($paket_id = false){
+        $items['id'] = $paket_id;
+
+        $jam_selesai = new DateTime('now');
+
+        $this->soal_m->getSelesai(date("Y-m-d H:i:s", $jam_selesai->getTimestamp()), $this->current_user->id, $paket_id);
+        $this->session->set_userdata('jam_selesai', $jam_selesai->getTimestamp()); 
+
+        $params = array(
+                'stream' => 'jawaban',
+                'namespace' => 'streams',
+                'where' => "" 
+                );
+
+        $this->soal_m->selesai($this->current_user->id, $paket_id);
+    }
+
+    public function hasil(){
+
+    }
 
     public function soal(){
         // $dapat=$this->soal_m->test();

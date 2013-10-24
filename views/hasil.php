@@ -1,6 +1,6 @@
 <!-- tampilan modul soal mulai dari sini -->
           <div class="content">
-            <h2>Try Out Online STAN</h2>
+            <h2>Hasil Try Out Online</h2>
           </div>
           
           <div class="content bg-white">

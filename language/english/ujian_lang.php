@@ -21,6 +21,8 @@ $lang['ujian:new_paket']				= 'Tambah Paket';
 $lang['ujian:deleted']				= 'Berhasil dihapus';
 $lang['ujian:back']				= 'Kembali';
 $lang['ujian:mulai']				= 'Mulai';
+$lang['ujian:selesai']				= 'Selesai';
+
 
 
 

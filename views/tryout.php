@@ -63,7 +63,7 @@ $(function(){
 
           <div class="content">
             <?php //dump($group); ?>
-            <h2><?php echo lang('ujian:paket'); ?> - <?php echo 'judul' ; ?></h2>
+            <h2 class="paketsoal" id="<?php echo $paketSoal->id; ?>"><?php echo lang('ujian:paket'); ?> - <?php echo 'judul' ; ?></h2>
 
           </div>
           
@@ -115,7 +115,63 @@ $(function(){
                   </ul> -->
                 </div>
 
+                 <div class="">
+                  <ul>
+                    <li>
+                    <td class="action">
+                          <?php echo anchor('ujian/selesai/'.$paket_id, lang('ujian:selesai'), array('class'=>'button')); ?></td>
+                  </li>
+                  </ul>
+                </div>
+
               </div>
             </div>
           </div>
           <!-- tampilan modul soal berakhir disini -->
+
+          <script>
+          jQuery(function($){
+            function errorPlacement(error, element){
+              element.before(error);
+            }
+
+            // function kirim_form(){
+            //   $('#pesan_kirim').html('Loading ...');
+            //   $('#pesan_kirim').slideDown('slow');
+
+              var paket_id = $('#paket_id').val();
+              var user_id = $('#user_id').val();
+              var soal_id = $('#soal_id').val();
+              //var jawaban = $('#jawaban').val();
+              var jawaban = $('input[name=jawaban]:checked').val();
+              $.ajax({
+                  //Alamat url harap disesuaikan dengan lokasi script pada komputer anda
+                  url      : "<?php echo site_url('ujian/selesai'); ?>",
+                  type     : 'POST',
+                  //dataType : 'html',
+                  data     : jawaban:$(this).val(), soal: $(this).attr('name'),
+                  success  : function(respons){
+                    $('#pesan_kirim').html(respons);
+                  },
+                })
+            }
+
+            // ketika akan finishing
+            // onFinishing: function (event, currentIndex){ 
+            //     // 1. cek kelengkapan data
+
+
+            //     // 2. kirim data via ajax
+            //     $.ajax({
+            //         url: "<?php echo site_url('ujian/selesai'); ?>",
+            //         type: 'POST',
+            //         data: 'jawaban='+jawaban+'&soal_id='+soal_id+'&user_id='+user_id+'&paket_id='+paket_id
+            //     }).done(function() {
+            //         // script kalo data sudah berhasil disimpan
+
+            //         return true;
+            //     });
+
+            } 
+        
+    </script>

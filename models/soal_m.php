@@ -41,10 +41,24 @@
 	    	return $this->db->affected_rows();
 	    }
 
-	    function getSelesai(){
+	    function getSelesai($jam_selesai, $user_id, $paket_id){
 	    	$data = array(
-	    		'jam_selesai'=>$jam_selesai); 
-	    	$waktu = $this->db->insert('so_to_user',$data);
+	    		'jam_selesai'=>$jam_selesai
+	    	);
+
+	    	$this->db->where('user_id',$user_id);
+	    	$this->db->where('paket_id',$paket_id);
+	    	$this->db->update('so_to_user',$data);
+	    }
+
+	    function Selesai($user_id, $soal_id){
+	    	$data = array(
+	    		'user_id' => $user_id,
+	    		'paket_id' => $paket_id,
+	    		'soal_id' => $soal_id,
+	    		'jawaban' => $jawaban
+	    		 );
+	    	$this->db->insert('to_jawaban',$jawaban);
 	    }
     }
 
