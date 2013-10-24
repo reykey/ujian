@@ -131,47 +131,26 @@ $(function(){
 
           <script>
           jQuery(function($){
-            function errorPlacement(error, element){
-              element.before(error);
-            }
+            // function errorPlacement(error, element){
+            //   element.before(error);
+            // }
+              // var paket_id = $('#paket_id').val();
+              // var user_id = $('#user_id').val();
+              // var soal_id = $('#soal_id').val();
+              // //var jawaban = $('#jawaban').val();
+              // var jawaban = $('input[name=jawaban]:checked').val();
+              
+              $('input[type=radio]').click(function(){
 
-            // function kirim_form(){
-            //   $('#pesan_kirim').html('Loading ...');
-            //   $('#pesan_kirim').slideDown('slow');
-
-              var paket_id = $('#paket_id').val();
-              var user_id = $('#user_id').val();
-              var soal_id = $('#soal_id').val();
-              //var jawaban = $('#jawaban').val();
-              var jawaban = $('input[name=jawaban]:checked').val();
-              $.ajax({
+                $.ajax({
                   //Alamat url harap disesuaikan dengan lokasi script pada komputer anda
-                  url      : "<?php echo site_url('ujian/selesai'); ?>",
+                  url      : "<?php echo site_url('ujian/simpan_jawaban/'); ?>",
                   type     : 'POST',
-                  //dataType : 'html',
-                  data     : jawaban:$(this).val(), soal: $(this).attr('name'),
-                  success  : function(respons){
-                    $('#pesan_kirim').html(respons);
-                  },
-                })
-            }
+                  data     : {jawaban:$(this).val(), soal:$(this).attr('name'), paket:$('.paketSoal').attr('id')}
+                });
+              });
+          });
 
-            // ketika akan finishing
-            // onFinishing: function (event, currentIndex){ 
-            //     // 1. cek kelengkapan data
-
-
-            //     // 2. kirim data via ajax
-            //     $.ajax({
-            //         url: "<?php echo site_url('ujian/selesai'); ?>",
-            //         type: 'POST',
-            //         data: 'jawaban='+jawaban+'&soal_id='+soal_id+'&user_id='+user_id+'&paket_id='+paket_id
-            //     }).done(function() {
-            //         // script kalo data sudah berhasil disimpan
-
-            //         return true;
-            //     });
-
-            } 
+           </script> 
         
-    </script>
+   

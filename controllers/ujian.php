@@ -97,7 +97,7 @@ class Ujian extends Public_Controller
 
     }
 
-    function simpan_soal(){
+    function simpan_jawaban(){
         $data = array(
                 'jawaban' => $this->input->post('jawaban'),
                 'soal_id' => substr($this->input->post('soal'), 7),
@@ -106,12 +106,12 @@ class Ujian extends Public_Controller
         );
 
         $exist = $this->streams->entries->get_entries(
-                array('steams' => 'jawaban',
+                array('streams' => 'jawaban',
                         'namespace' => 'streams',
-                        'where' => ''soal_id' = {$data['soal_id']} AND 'user_id' = {$data['user_id']}' 
-                );
+                        'where' => '`soal_id` = {$data[soal_id]} AND `user_id` = {$data[user_id]}'
+                )
 
-        )
+        );
 
         if($exist['total']>0)
             $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ));
