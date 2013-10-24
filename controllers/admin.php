@@ -251,20 +251,20 @@ class Admin extends Admin_Controller
                 redirect('admin/stream_schema/import');
             } else {
                 $file =  $this->upload->data();
-                $csv = file_get_contents($file['full_path']);
+                $csv = explode("\n", trim(file_get_contents($file['full_path'])));
 
                 // konversi ke array
-                $array_csv = explode("\n", trim($csv));
-                foreach ($array_csv as &$row) {
-                    $row = str_getcsv(trim($row));
+                $array_csv = array();
+                foreach ($csv as $row) {
+                    $array_csv[] = str_getcsv(trim($row));
                 }
 
-                dump($array_csv);
+                // dump($array_csv);
 
                 // simpan ke database
                 $group_id = 0; // siapkan var buat nyimpen id grup
                 foreach ($array_csv as $row){
-                    dump($row);
+                    // dump($row);
                     if(trim($row[0]) != ''){ // kalo bukan baris kosong, maka kerjakan
 
                         // kalo ini baris grup soal, maka kerjakan
@@ -300,7 +300,6 @@ class Admin extends Admin_Controller
                         }
                     }
                 }
-
 
                 // selesai
 
