@@ -116,10 +116,11 @@ class Ujian extends Public_Controller
                 );
             //print_r($data);
             if($exist['total']>0){
-                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ));
-                else
+                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'to_jawaban','streams');
+                }else{
                     $this->streams->entries->insert_entry($data,'jawaban','streams');
-            }
+                }
+            
         }
     }
 

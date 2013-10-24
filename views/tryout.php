@@ -90,10 +90,10 @@ $(function(){
 
                     </div>
                     <ul class="choice">
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_a'];?></li>
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_b'];?></li>
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_c'];?></li>
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>"><?php echo $soallist['pilihan_d'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_a"><?php echo $soallist['pilihan_a'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_b"><?php echo $soallist['pilihan_b'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_c"><?php echo $soallist['pilihan_c'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_d"><?php echo $soallist['pilihan_d'];?></li>
                     </ul>
                     <?php $i++; endforeach; ?>
                   </li>
@@ -146,7 +146,7 @@ $(function(){
                   //Alamat url harap disesuaikan dengan lokasi script pada komputer anda
                   url      : "<?php echo site_url('ujian/simpan_jawaban'); ?>",
                   type     : 'POST',
-                  data     : {jawaban:$(this).val(), soal:$(this).attr('name'), paket:$('.paketSoal').attr('id')}
+                  data     : {jawaban:$(this).attr('rel'), soal:$(this).attr('name'), paket:$('h2.paketsoal').attr('id')}
                 }).done(function(msg){
                   console.log(msg);
                   return true;
