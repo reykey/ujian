@@ -24,6 +24,7 @@ $lang['ujian:deleted']				= 'Berhasil dihapus';
 $lang['ujian:back']				= 'Kembali';
 $lang['ujian:mulai']				= 'Mulai';
 $lang['ujian:selesai']				= 'Selesai';
+$lang['ujian:import_success']	= 'Import soal selesai';
 
 
 

@@ -303,8 +303,8 @@ class Admin extends Admin_Controller
 
                 // selesai
 
-                $this->session->set_flashdata('success', lang('stream_schema:import_success'));
-                // redirect('admin/stream_schema');
+                $this->session->set_flashdata('success', lang('ujian:import_success'));
+                redirect('admin/ujian/group/'.$paket_id);
             }
         }
         
