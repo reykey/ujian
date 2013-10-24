@@ -2,7 +2,7 @@
           <div class="content">
             <h2>Try Out Online STAN</h2>
           </div>
-          
+
           <div class="content bg-white">
             <div class="row-fluid">
               <div class="span12">

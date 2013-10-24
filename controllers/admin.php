@@ -20,12 +20,22 @@ class Admin extends Admin_Controller
     // This will set the active section tab
     protected $section = 'paket';
 
+
     public function __construct()
     {
         parent::__construct();
 
         $this->lang->load('ujian');
         $this->load->driver('Streams');
+    
+        // Set the validation rules
+        $this->item_validation_rules = array(
+            array(
+                'field' => 'file',
+                'label' => 'CSV File',
+                'rules' => 'trim',
+            )
+        );
     }
 
     /**
@@ -43,7 +53,7 @@ class Admin extends Admin_Controller
         $extra['title'] = 'lang:ujian:paket';
         $extra['buttons'] = array(
             array(
-                'label' => lang('ujian:atur'),
+                'label' => lang('ujian:atur_grup'),
                 'url' => 'admin/ujian/group/-entry_id-'
             ),
             array(
@@ -63,7 +73,6 @@ class Admin extends Admin_Controller
     public function group($paket_id = false){
 
         $data['paket'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
-        
 
         $params = array(
                 'stream'        => 'group_soal',
@@ -75,6 +84,8 @@ class Admin extends Admin_Controller
                 );
 
         $data['entries'] = $this->streams->entries->get_entries($params);
+
+        $data['paket_id'] = $paket_id;
 
         // $group['datagroup'] = $this->load->view('admin/group_v', array('entries'=>$entries), true);
 
@@ -97,6 +108,9 @@ class Admin extends Admin_Controller
 
             $data['entries'] = $this->streams->entries->get_entries($params);
 
+            $data['paket_id'] = $paket_id;
+            $data['group_id'] = $group_id;
+
         // $group['datagroup'] = $this->load->view('admin/group_v', array('entries'=>$entries), true);
 
             $this->template->build('admin/soal_v', $data);
@@ -107,11 +121,7 @@ class Admin extends Admin_Controller
 
     public function tambah_paket(){
         $extra = array (
-            //'return' => 'admin/paket',
-            //'success_message' => lang('faq:submit_success'),
-            //'failure_message' => lang('faq:submit_failure'),
-            //'title' => 'lang:ujian:atur'
-            'return' => 'admin/ujian/',
+            'return' => 'admin/ujian/index',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => 'lang:ujian:new_paket',
@@ -210,7 +220,7 @@ class Admin extends Admin_Controller
         $this->streams->entries->delete_entry($id, 'group_soal', 'streams');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
  
-        redirect('admin/ujian/group/');
+        redirect(getenv('HTTP_REFERER'));
     }
 
     public function delete_soal($id = 0)
@@ -218,7 +228,96 @@ class Admin extends Admin_Controller
         $this->streams->entries->delete_entry($id, 'soal', 'streams');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
  
-        redirect('admin/ujian/soal/');
+        redirect(getenv('HTTP_REFERER'));
+    }
+
+    public function import($paket_id = false)
+    {
+        $soal = new StdClass();
+        
+        $this->form_validation->set_rules($this->item_validation_rules);
+
+        // check if the form validation passed
+        if($this->form_validation->run())
+        {
+            $this->load->model('soal_m');
+
+            $config['upload_path'] = './'.UPLOAD_PATH.'soal';
+            $config['allowed_types'] = 'csv';
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('file')){
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('admin/stream_schema/import');
+            } else {
+                $file =  $this->upload->data();
+                $csv = file_get_contents($file['full_path']);
+
+                // konversi ke array
+                $array_csv = explode("\n", trim($csv));
+                foreach ($array_csv as &$row) {
+                    $row = str_getcsv(trim($row));
+                }
+
+                dump($array_csv);
+
+                // simpan ke database
+                $group_id = 0; // siapkan var buat nyimpen id grup
+                foreach ($array_csv as $row){
+                    dump($row);
+                    if(trim($row[0]) != ''){ // kalo bukan baris kosong, maka kerjakan
+
+                        // kalo ini baris grup soal, maka kerjakan
+                        if($row[0] != '#'){
+                            // cek apakah grup soal ini sudah ada
+                            // kalo belum, isikan
+                            $grup = $this->soal_m->get_group(array('judul'=>trim($row[0])));
+                            if($grup)
+                                $group_id = $grup['id'];
+                            else
+                                $group_id = $this->streams->entries->insert_entry(
+                                    array('judul' => $row[0], 'instruksi' => $row[1], 'paket_id' => $paket_id),
+                                    'group_soal',
+                                    'streams'
+                                );
+                        }
+                        // kalo ini baris soal, kerjakan
+                        else {
+                            $this->streams->entries->insert_entry(
+                                    array(
+                                        'group_id' => $group_id, 
+                                        'pertanyaan' => $row[1], 
+                                        'pilihan_a' => $row[2],
+                                        'pilihan_b' => $row[3],
+                                        'pilihan_c' => $row[4],
+                                        'pilihan_d' => $row[5],
+                                        'jawaban' => strtoupper($row[6]),
+                                        'paket_id' => $paket_id
+                                    ),
+                                    'soal',
+                                    'streams'
+                                );
+                        }
+                    }
+                }
+
+
+                // selesai
+
+                $this->session->set_flashdata('success', lang('stream_schema:import_success'));
+                // redirect('admin/stream_schema');
+            }
+        }
+        
+        $soal->data = new StdClass();
+        foreach ($this->item_validation_rules AS $rule)
+        {
+            $soal->data->{$rule['field']} = $this->input->post($rule['field']);
+        }
+        
+        // Build the view using sample/views/admin/form.php
+        $this->template->title($this->module_details['name'], lang('stream_schema:import'))
+                        ->build('admin/import', $soal->data);
     }
 
 }

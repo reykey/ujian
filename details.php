@@ -37,6 +37,11 @@ class Module_Ujian extends Module
                             'name' => 'ujian:new_group',
                             'uri' => 'admin/ujian/tambah_group/'.$this->uri->segment(4),
                             'class' => 'add'
+                        ),
+                'import' => array(
+                            'name' => 'ujian:import',
+                            'uri' => 'admin/ujian/import/'.$this->uri->segment(4),
+                            'class' => 'add'
                         )
             );
         }
@@ -136,7 +141,10 @@ class Module_Ujian extends Module
             )
         ));*/
 
-        return true;
+        if(is_dir($this->upload_path.'soal') OR @mkdir($this->upload_path.'soal',0777,TRUE))
+        {
+            return TRUE;
+        }
     }
 
     /**

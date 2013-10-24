@@ -11,6 +11,7 @@ $lang['ujian:atur_soal']                        = 'Atur&nbsp;Soal';
 $lang['ujian:submit_success']				= 'Input Sukses';
 $lang['ujian:submit_failure']				= 'Input Gagal';
 $lang['ujian:group']				= 'Group Soal';
+$lang['ujian:import']				= 'Import Soal';
 //$lang['ujian:paket']				= 'Group Paket';
 
 $lang['ujian:namag']				= 'Nama Group Soal';

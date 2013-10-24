@@ -60,5 +60,13 @@
 	    		 );
 	    	$this->db->insert('to_jawaban',$jawaban);
 	    }
+
+	    function get_group($where)
+	    {
+	    	return $this->db->from('to_group_soal')
+	    		->where($where)
+	    		->get()->row_array();
+
+	    }
     }
 

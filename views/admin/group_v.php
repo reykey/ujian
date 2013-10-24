@@ -1,5 +1,5 @@
 <section class="title">
-    <h4><?php echo lang('ujian:paket'); ?> - <?php echo $paket->judul ; ?> </h4>
+    <h4><?php echo anchor('admin/ujian', lang('ujian:paket')); ?> - <?php echo $paket->judul ; ?> </h4>
 </section>
 
 <section class="item">
