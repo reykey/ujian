@@ -89,11 +89,11 @@ $(function(){
                       <?php echo $soallist['pertanyaan']; ?>
 
                     </div>
-                    <ul class="choice">
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_a"><?php echo $soallist['pilihan_a'];?></li>
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_b"><?php echo $soallist['pilihan_b'];?></li>
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_c"><?php echo $soallist['pilihan_c'];?></li>
-                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" rel="pilihan_d"><?php echo $soallist['pilihan_d'];?></li>
+                    <ul class="choice" id="soal_<?php echo $soallist['id']; ?>">
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="A" rel="pilihan_a"><?php echo $soallist['pilihan_a'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="B" rel="pilihan_b"><?php echo $soallist['pilihan_b'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="C" rel="pilihan_c"><?php echo $soallist['pilihan_c'];?></li>
+                        <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="D" rel="pilihan_d"><?php echo $soallist['pilihan_d'];?></li>
                     </ul>
                     <?php $i++; endforeach; ?>
                   </li>
@@ -131,15 +131,13 @@ $(function(){
 
           <script>
           jQuery(function($){
-            // function errorPlacement(error, element){
-            //   element.before(error);
-            // }
-              // var paket_id = $('#paket_id').val();
-              // var user_id = $('#user_id').val();
-              // var soal_id = $('#soal_id').val();
-              // //var jawaban = $('#jawaban').val();
-              // var jawaban = $('input[name=jawaban]:checked').val();
               
+              var jawaban = <?php echo json_encode($jawaban['entries']); ?>;
+              console.log(jawaban);
+              for(var j = 0; j < jawaban.length; j++){
+                $('#soal_'+jawaban[j].soal_id.id).find('input.'+jawaban[j].jawaban.key).prop('checked', true);
+              }
+
               $('input[type=radio]').click(function(){
 
                 $.ajax({
@@ -147,10 +145,12 @@ $(function(){
                   url      : "<?php echo site_url('ujian/simpan_jawaban'); ?>",
                   type     : 'POST',
                   data     : {jawaban:$(this).attr('rel'), soal:$(this).attr('name'), paket:$('h2.paketsoal').attr('id')}
-                }).done(function(msg){
+                  }).done(function(msg){
                   console.log(msg);
                   return true;
                 })
+
+
               });
           });
 

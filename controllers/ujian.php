@@ -90,17 +90,29 @@ class Ujian extends Public_Controller
             }
 
         }
-        // dump($groups);
+        
+        $user_id = $this->current_user->id;
+        $params = array('stream' => 'jawaban',
+                        'namespace' => 'streams',
+                        'where' => "default_to_jawaban.paket_id = $paket_id AND default_to_jawaban.user_id = $user_id");
+
+        
+        $items['jawaban'] = $this->streams->entries->get_entries($params);
+        //dump($jawaban);
+        
+        
         $items['group'] = $groups['entries'];    
 
         $this->template->build('tryout', $items);
+
+
 
     }
 
     function simpan_jawaban(){
         if('$_POST'){
             $data = array(
-                'jawaban' => $this->input->post('jawaban'),
+                'jawaban' => strtoupper(substr($this->input->post('jawaban'), 8)),
                 'soal_id' => substr($this->input->post('soal'), 8),
                 'user_id' => $this->current_user->id,
                 'paket_id' => $this->input->post('paket')
