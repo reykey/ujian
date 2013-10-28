@@ -67,16 +67,16 @@ class Admin extends Admin_Controller
             )
             
         );
-        $this->streams->cp->entries_table('paket', 'streams', 5, 'admin/ujian/index', true, $extra);
+        $this->streams->cp->entries_table('paket', 'paket', 5, 'admin/ujian/index', true, $extra);
     }
 
     public function group($paket_id = false){
 
-        $data['paket'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
+        $data['paket'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
 
         $params = array(
                 'stream'        => 'group_soal',
-                'namespace'     => 'streams',
+                'namespace'     => 'group_soal',
                 'paginate'      => 'yes',
                 'limit'         => 10,
                 'page_segment'  => 4,
@@ -95,11 +95,11 @@ class Admin extends Admin_Controller
 
     public function soal($paket_id = false, $group_id = false){
         
-        $data['group'] = $this->streams->entries->get_entry($group_id, 'group_soal', 'streams');
+        $data['group'] = $this->streams->entries->get_entry($group_id, 'group_soal', 'group_soal');
 
             $params = array(
                 'stream'        => 'soal',
-                'namespace'     => 'streams',
+                'namespace'     => 'soal',
                 'paginate'      => 'yes',
                 'limit'         => 10,
                 'page_segment'  => 4,
@@ -129,7 +129,7 @@ class Admin extends Admin_Controller
 
         //$this->streams->cp->entry_form('faqs', 'faq', 'new', null, true, $extra);
 
-        $this->streams->cp->entry_form('paket', 'streams', 'new', true, $extra);
+        $this->streams->cp->entry_form('paket', 'paket', 'new', true, $extra);
     
     }
 
@@ -145,7 +145,7 @@ class Admin extends Admin_Controller
 
         $default = array('paket_id' => $paket_id);
 
-        $this->streams->cp->entry_form('group_soal', 'streams', 'new', null, true, $extra, array(), false, $hidden, $default);
+        $this->streams->cp->entry_form('group_soal', 'group_soal', 'new', null, true, $extra, array(), false, $hidden, $default);
     }
 
     public function tambah_soal($paket_id = false, $group_id = false){
@@ -158,7 +158,7 @@ class Admin extends Admin_Controller
         $hidden = array('group_id', 'paket_id');
         $default = array('group_id' => $group_id, 'paket_id' => $paket_id );
 
-        $this->streams->cp->entry_form('soal', 'streams', 'new', null, true, $extra, array(),false, $hidden, $default);
+        $this->streams->cp->entry_form('soal', 'soal', 'new', null, true, $extra, array(),false, $hidden, $default);
 
     }
 
@@ -171,7 +171,7 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('paket', 'streams', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('paket', 'paket', 'edit', $id, true, $extra);
     }
 
     public function edit_group($id = 0)
@@ -183,7 +183,7 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('group_soal', 'streams', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('group_soal', 'group_soal', 'edit', $id, true, $extra);
     }
 
     public function edit_soal($id = 0)
@@ -195,21 +195,21 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('soal', 'streams', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('soal', 'soal', 'edit', $id, true, $extra);
     }
 
 
     public function delete($id = 0)
     {
-        $this->streams->entries->delete_entry($id, 'paket', 'streams');
+        $this->streams->entries->delete_entry($id, 'paket', 'paket');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
         
         if($this->uri->segment(3) == $group_id ) {
-            $this->streams->entries->delete_entry($id, 'group_soal', 'streams');
+            $this->streams->entries->delete_entry($id, 'group_soal', 'group_soal');
         }
 
         if($this->uri->segment(4) == $soal_id ) {
-            $this->streams->entries->delete_entry($id, 'soal', 'streams');
+            $this->streams->entries->delete_entry($id, 'soal', 'soal');
         }
 
         redirect('admin/ujian/');
@@ -217,7 +217,7 @@ class Admin extends Admin_Controller
 
     public function delete_group($id = 0)
     {
-        $this->streams->entries->delete_entry($id, 'group_soal', 'streams');
+        $this->streams->entries->delete_entry($id, 'group_soal', 'group_soal');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
  
         redirect(getenv('HTTP_REFERER'));
@@ -225,7 +225,7 @@ class Admin extends Admin_Controller
 
     public function delete_soal($id = 0)
     {
-        $this->streams->entries->delete_entry($id, 'soal', 'streams');
+        $this->streams->entries->delete_entry($id, 'soal', 'soal');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
  
         redirect(getenv('HTTP_REFERER'));
@@ -278,7 +278,7 @@ class Admin extends Admin_Controller
                                 $group_id = $this->streams->entries->insert_entry(
                                     array('judul' => $row[0], 'instruksi' => $row[1], 'paket_id' => $paket_id),
                                     'group_soal',
-                                    'streams'
+                                    'group_soal'
                                 );
                         }
                         // kalo ini baris soal, kerjakan
@@ -295,7 +295,7 @@ class Admin extends Admin_Controller
                                         'paket_id' => $paket_id
                                     ),
                                     'soal',
-                                    'streams'
+                                    'soal'
                                 );
                         }
                     }
