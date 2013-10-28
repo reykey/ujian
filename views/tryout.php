@@ -119,7 +119,7 @@ $(function(){
                   <ul>
                     <li>
                     <td class="action">
-                          <?php echo anchor('ujian/selesai/'.$paket_id, lang('ujian:selesai'), array('class'=>'button')); ?></td>
+                          <?php echo anchor('ujian/getSelesai/'.$id, lang('ujian:selesai'), array('class'=>'button')); ?></td>
                   </li>
                   </ul>
                 </div>

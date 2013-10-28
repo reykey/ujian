@@ -101,9 +101,11 @@ class Ujian extends Public_Controller
         //dump($jawaban);
         
         
-        $items['group'] = $groups['entries'];    
+        $items['group'] = $groups['entries'];
 
-        $this->template->build('tryout', $items);
+        $this->template
+            ->set('id', $paket_id)
+            ->build('tryout', $items);
 
 
 
@@ -138,25 +140,50 @@ class Ujian extends Public_Controller
 
 
     
-    public function selesai($paket_id = false){
-        $items['id'] = $paket_id;
+    public function getSelesai($paket_id = false){
+        //$items['id'] = $paket_id;
 
         $jam_selesai = new DateTime('now');
 
         $this->soal_m->getSelesai(date("Y-m-d H:i:s", $jam_selesai->getTimestamp()), $this->current_user->id, $paket_id);
         $this->session->set_userdata('jam_selesai', $jam_selesai->getTimestamp()); 
 
-        $params = array(
-                'stream' => 'jawaban',
-                'namespace' => 'streams',
-                'where' => "" 
-                );
+        dump($jam_selesai->getTimestamp());
+        dump($this->session->userdata('jam_selesai'));
 
-        $this->soal_m->selesai($this->current_user->id, $paket_id);
+        redirect('ujian/hasil/'.$paket_id);
+        // $params = array(
+        //         'stream' => 'jawaban',
+        //         'namespace' => 'streams',
+        //         'where' => "" 
+        //         );
+
+        // $this->soal_m->selesai($this->current_user->id, $paket_id);
     }
 
-    public function hasil(){
+    public function hasil($paket_id = false){
+        $total_benar = 0;
 
+        foreach ($soalsoal as &$soal) {
+            if($soal->jawaban->user == $soal->jawaban){
+                $total_benar++;
+                $soal->status_benar = 1;
+            }else{
+                $soal->status_benar = 0;
+            }
+        }
+        
+        // $params = array(
+        //         'stream' => 'jawaban',
+        //         'namespace' => 'streams',
+        //         'where' => "default_to_jawaban.soal_id = default_to_soal.soal_id"
+        //         );
+
+
+
+        $this->soal_m->selesai($this->current_user->id, $paket_id);
+
+        $this->template->build('hasil',$items);
     }
 
     public function soal(){
