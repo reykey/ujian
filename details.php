@@ -62,6 +62,17 @@ class Module_Ujian extends Module
         return $info;
     }
 
+    public function admin_menu(&$menu)
+    {
+
+        // Create our main menu
+        add_admin_menu_place('Tryout Online', 2);
+
+        // Assign common items
+        $menu['Tryout Online']['Tryout Order']  = 'admin/so';
+        $menu['Tryout Online']['Tryout']        = 'admin/ujian';
+    }
+
     /**
      * Install
      *
@@ -77,7 +88,7 @@ class Module_Ujian extends Module
 
         /* PAKET STREAM */
         // Create stream
-        $extra = array('title_column' => 'judul', 'view_options' => array("id","judul","tanggal_buka","status_paket"), 'sorting' => 'title', 'menu_path' => 'nav_content / Paket', 'is_hidden' => 'no');
+        $extra = array('title_column' => 'judul', 'view_options' => array("id","judul","tanggal_buka","status_paket"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Paket', 'paket', $namespace, 'to_', 'Berisi tentang paket - paket soal TO', $extra) ) return FALSE; 
 
         // Get stream data
@@ -104,7 +115,7 @@ class Module_Ujian extends Module
 
         // GROUP SOAL STREAM
         // Create stream
-        $extra = array('title_column' => 'paket_id', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => 'nav_content / Grup', 'is_hidden' => 'no');
+        $extra = array('title_column' => 'paket_id', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Group Soal', 'group_soal', $namespace, 'to_', 'Mengkelompokan soal sesuai paket soal', $extra) ) return FALSE; 
 
         // Get stream data
@@ -127,7 +138,7 @@ class Module_Ujian extends Module
 
         // SOAL STREAM
         // Create stream
-        $extra = array('title_column' => 'pertanyaan', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => 'nav_content / Soal', 'is_hidden' => 'no');
+        $extra = array('title_column' => 'pertanyaan', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Soal', 'soal', $namespace, 'to_', 'Berisi tentang isi soal dari TO', $extra) ) return FALSE; 
 
         // Get stream data
@@ -155,7 +166,7 @@ class Module_Ujian extends Module
 
         // JAWABAN STREAM
         // Create stream
-        $extra = array('title_column' => '', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => 'nav_content / Jawaban', 'is_hidden' => 'no');
+        $extra = array('title_column' => '', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Jawaban', 'jawaban', $namespace, 'to_', 'Berisi tentang jawaban dari TO', $extra) ) return FALSE; 
 
         // Get stream data
