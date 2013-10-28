@@ -51,35 +51,16 @@ class Soal_m extends MY_Model{
 		$this->db->update('so_to_user',$data);
 	}
 
-<<<<<<< HEAD
-	    function selesai($user_id, $paket_id){
-	    	
-	    	return $this->db->select('to_jawaban.jawaban as jawaban_user, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
-	    			->from('to_soal')
-	    			->join('to_jawaban','to_jawaban.soal_id=to_soal.id')
-	    			->where('to_jawaban.user_id',$user_id)
-	    			->where('to_jawaban.paket_id',$paket_id)
-	    			->get()
-	    			->result();
-	    }
-=======
-	function selesai($user_id, $soal_id){
-		$this->db->select("to_jawaban.jawaban as jawaban_user, to_soal.jawaban, to_jawaban.soal_id")
+	function selesai($user_id, $paket_id){
+		
+		return $this->db->select('to_jawaban.jawaban as jawaban_user, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
 		->from('to_soal')
-		->join('to_jawaban','to_jawaban.soal_id=soal_id')
+		->join('to_jawaban','to_jawaban.soal_id=to_soal.id')
 		->where('to_jawaban.user_id',$user_id)
+		->where('to_jawaban.paket_id',$paket_id)
 		->get()
 		->result();
-
-	    	// $data = array(
-	    	// 	'user_id' => $user_id,
-	    	// 	'paket_id' => $paket_id,
-	    	// 	'soal_id' => $soal_id,
-	    	// 	'jawaban' => $jawaban
-	    	// 	 );
-	    	// $this->db->insert('to_jawaban',$jawaban);
 	}
->>>>>>> bf2d03ea8a8bdbcb3901ab73ee0bd44aad481d35
 
 	function get_group($where)
 	{
