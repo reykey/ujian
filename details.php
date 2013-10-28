@@ -27,7 +27,11 @@ class Module_Ujian extends Module
                             'class' => 'add'
                         )
                     )
-                )
+                ),
+                'to_user' => array(
+                    'name' => 'Try Out Order',
+                    'uri' => 'admin/ujian/to_user',
+                ),
             )
         );
 
