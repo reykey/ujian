@@ -101,7 +101,7 @@ class Module_Ujian extends Module
         $fields[] = array('name'=>'Deskripsi', 'slug'=>'deskripsi', 'type'=>'textarea', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Deskripsi dari Paket Try Out', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"text"));
         $fields[] = array('name'=>'Tanggal buka', 'slug'=>'tanggal_buka', 'type'=>'datetime', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("use_time"=>"yes", "start_date"=>"", "end_date"=>"", "storage"=>"datetime", "input_type"=>"datepicker"));
         $fields[] = array('name'=>'Tanggal Tutup', 'slug'=>'tanggal_tutup', 'type'=>'datetime', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Untuk toleransi batas waktu pengerjaan Tryout', 'extra'=>array("use_time"=>"yes", "start_date"=>"", "end_date"=>"", "storage"=>"datetime", "input_type"=>"datepicker"));
-        $fields[] = array('name'=>'Status Paket', 'slug'=>'status_paket', 'type'=>'choice', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Pilih off jika belum cukup untuk divalidasi, pilih On jika sudah divalidasi', 'extra'=>array("choice_data"=>"on => On\r\noff => Off", "choice_type"=>"radio", "default_value"=>"off", "min_choices"=>"", "max_choices"=>""));
+        $fields[] = array('name'=>'Status Paket', 'slug'=>'status_paket', 'type'=>'choice', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Pilih off jika belum cukup untuk divalidasi, pilih On jika sudah divalidasi', 'extra'=>array("choice_data"=>"on : On\noff : Off", "choice_type"=>"radio", "default_value"=>"off", "min_choices"=>"", "max_choices"=>""));
         $fields[] = array('name'=>'Produk Id', 'slug'=>'produk_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Berisi produk Id dari tabel Order', 'extra'=>array("choose_stream"=>"31", "link_uri"=>null));
         $fields[] = array('name'=>'Alokasi Waktu', 'slug'=>'alokasi_waktu', 'type'=>'integer', 'required' => 'no', 'unique' => 'no', 'instructions' => 'Untuk mengalokasikan waktu pengerjaan Tryout', 'extra'=>array("max_length"=>"", "default_value"=>"90"));
 
@@ -155,7 +155,7 @@ class Module_Ujian extends Module
         $fields[] = array('name'=>'Pilihan B', 'slug'=>'pilihan_b', 'type'=>'text', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Inputkan pilihan B', 'extra'=>array("max_length"=>"50", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan C', 'slug'=>'pilihan_c', 'type'=>'text', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Inputkan pilihan C', 'extra'=>array("max_length"=>"50", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan D', 'slug'=>'pilihan_d', 'type'=>'text', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Inputkan pilihan D', 'extra'=>array("max_length"=>"50", "default_value"=>""));
-        $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Inputkan jawaban benar dari pertanyaan', 'extra'=>array("choice_data"=>"A => A\r\nB => B\r\nC => C\r\nD => D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
+        $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Inputkan jawaban benar dari pertanyaan', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("choose_stream"=>"27", "link_uri"=>null));
 
         // Combine
@@ -181,7 +181,7 @@ class Module_Ujian extends Module
         $fields[] = array('name'=>'user', 'slug'=>'user_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Untuk mengetahui siapa yang mengakses tryout online', 'extra'=>array("choose_stream"=>"3", "link_uri"=>null));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("choose_stream"=>"27", "link_uri"=>null));
         $fields[] = array('name'=>'Soal Id', 'slug'=>'soal_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => 'Isi Soal ID agar sesuai dengan stream soal', 'extra'=>array("choose_stream"=>"9", "link_uri"=>null));
-        $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => 'no', 'unique' => 'no', 'instructions' => 'Mengisi jawaban yang diinputkan oleh user', 'extra'=>array("choice_data"=>"A => A\r\nB => B\r\nC => C\r\nD => D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
+        $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => 'no', 'unique' => 'no', 'instructions' => 'Mengisi jawaban yang diinputkan oleh user', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
 
         // Combine
         foreach ($fields AS &$field) { $field = array_merge($template, $field); }
@@ -204,7 +204,7 @@ class Module_Ujian extends Module
         $template = array('namespace' => $namespace, 'assign' => 'to_user');
 
         $fields[] = array('name'=>'user', 'slug'=>'user_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("choose_stream"=>"3", "link_uri"=>null));
-        $fields[] = array('name'=>'Status Pengerjaan', 'slug'=>'status_pengerjaan', 'type'=>'choice', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("choice_data"=>"sudah => Sudah dikerjakan\r\nbelum => Belum dikerjakan\r\nexpired => Expired", "choice_type"=>"dropdown", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
+        $fields[] = array('name'=>'Status Pengerjaan', 'slug'=>'status_pengerjaan', 'type'=>'choice', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("choice_data"=>"sudah : Sudah dikerjakan\nbelum : Belum dikerjakan\nexpired : Expired", "choice_type"=>"dropdown", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
         $fields[] = array('name'=>'nilai', 'slug'=>'nilai', 'type'=>'decimal', 'required' => 'no', 'unique' => 'no', 'instructions' => '', 'extra'=>array("decimal_places"=>"", "default_value"=>"", "min_value"=>"", "max_value"=>""));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => 'yes', 'unique' => 'no', 'instructions' => '', 'extra'=>array("choose_stream"=>"27", "link_uri"=>null));
         $fields[] = array('name'=>'Jam Mulai', 'slug'=>'jam_mulai', 'type'=>'datetime', 'required' => 'no', 'unique' => 'no', 'instructions' => '', 'extra'=>array("use_time"=>"yes", "start_date"=>"", "end_date"=>"", "storage"=>"datetime", "input_type"=>"datepicker"));
