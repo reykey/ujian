@@ -26,7 +26,7 @@ class Admin_to_user extends Admin_Controller {
 	public function index() {
 		$params = array(
 				'stream'		=> 'to_user',
-				'namespace'		=> 'streams',
+				'namespace'		=> 'to_user',
 				'paginate' 		=> 'yes',
 				'limit'			=> 10,
 				'page_segment' 	=> 4
@@ -57,7 +57,7 @@ class Admin_to_user extends Admin_Controller {
 		// print_r($this->input->post('status'));
 		$params = array(
 				'stream'		=> 'to_user',
-				'namespace'		=> 'streams',
+				'namespace'		=> 'to_user',
 				'paginate' 		=> 'yes',
 				'limit'			=> 10,
 				'page_segment' 	=> 4,

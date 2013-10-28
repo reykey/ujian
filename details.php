@@ -29,7 +29,7 @@ class Module_Ujian extends Module
                     )
                 ),
                 'to_user' => array(
-                    'name' => 'Try Out Order',
+                    'name' => 'Peserta Tryout',
                     'uri' => 'admin/ujian/to_user',
                 ),
             )
@@ -69,8 +69,8 @@ class Module_Ujian extends Module
         add_admin_menu_place('Tryout Online', 2);
 
         // Assign common items
-        $menu['Tryout Online']['Tryout Order']  = 'admin/so';
-        $menu['Tryout Online']['Tryout']        = 'admin/ujian';
+        $menu['Tryout Online']['Order'] = 'admin/so';
+        $menu['Tryout Online']['Tryout']= 'admin/ujian';
     }
 
     /**
@@ -82,11 +82,10 @@ class Module_Ujian extends Module
     public function install()
     {
         $this->load->driver('Streams');
-        // you might want to change the namespace 
-        // to prevent collision with existing streams or fields
-        $namespace = 'streams';
+       
 
         /* PAKET STREAM */
+        $namespace = 'paket';
         // Create stream
         $extra = array('title_column' => 'judul', 'view_options' => array("id","judul","tanggal_buka","status_paket"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Paket', 'paket', $namespace, 'to_', 'Berisi tentang paket - paket soal TO', $extra) ) return FALSE; 
@@ -114,6 +113,7 @@ class Module_Ujian extends Module
 
 
         // GROUP SOAL STREAM
+        $namespace = 'group_soal';
         // Create stream
         $extra = array('title_column' => 'paket_id', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Group Soal', 'group_soal', $namespace, 'to_', 'Mengkelompokan soal sesuai paket soal', $extra) ) return FALSE; 
@@ -137,6 +137,7 @@ class Module_Ujian extends Module
 
 
         // SOAL STREAM
+        $namespace = 'soal';
         // Create stream
         $extra = array('title_column' => 'pertanyaan', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Soal', 'soal', $namespace, 'to_', 'Berisi tentang isi soal dari TO', $extra) ) return FALSE; 
@@ -165,6 +166,7 @@ class Module_Ujian extends Module
 
 
         // JAWABAN STREAM
+        $namespace = 'jawaban';
         // Create stream
         $extra = array('title_column' => '', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Jawaban', 'jawaban', $namespace, 'to_', 'Berisi tentang jawaban dari TO', $extra) ) return FALSE; 
@@ -189,6 +191,7 @@ class Module_Ujian extends Module
 
 
         // TO USER STREAM
+        $namespace = 'to_user';
         // Create stream
         $extra = array('title_column' => '', 'view_options' => array("id","user_id","status_pengerjaan","nilai","paket_id"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Try Out User', 'to_user', $namespace, 'so_', 'Tryout User', $extra) ) return FALSE; 
@@ -229,11 +232,9 @@ class Module_Ujian extends Module
     public function uninstall()
     {
         $this->load->driver('Streams');
-        // you might want to change the namespace 
-        // to prevent collision with existing streams or fields
-        $namespace = 'streams';
 
         // PAKET STREAM
+        $namespace = 'paket';
         $this->streams->streams->delete_stream('paket', $namespace);
 
         $this->streams->fields->delete_field('judul', $namespace);
@@ -245,6 +246,7 @@ class Module_Ujian extends Module
         $this->streams->fields->delete_field('alokasi_waktu', $namespace);
 
         // GROUP SOAL STREAM
+        $namespace = 'group_soal';
         $this->streams->streams->delete_stream('group_soal', $namespace);
 
         $this->streams->fields->delete_field('paket_id', $namespace);
@@ -252,6 +254,7 @@ class Module_Ujian extends Module
         $this->streams->fields->delete_field('judul', $namespace);
 
         // SOAL STREAM
+        $namespace = 'soal';
         $this->streams->streams->delete_stream('soal', $namespace);
 
         $this->streams->fields->delete_field('group_id', $namespace);
@@ -264,6 +267,7 @@ class Module_Ujian extends Module
         $this->streams->fields->delete_field('paket_id', $namespace);
 
         // JAWABAN STREAM
+        $namespace = 'jawaban';
         $this->streams->streams->delete_stream('jawaban', $namespace);
 
         $this->streams->fields->delete_field('user_id', $namespace);
@@ -272,6 +276,7 @@ class Module_Ujian extends Module
         $this->streams->fields->delete_field('jawaban', $namespace);
 
         // TO USER STREAM
+        $namespace = 'to_user';
         $this->streams->streams->delete_stream('to_user', $namespace);
 
         $this->streams->fields->delete_field('user_id', $namespace);

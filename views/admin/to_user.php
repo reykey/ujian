@@ -35,7 +35,7 @@
             if(oldstatus != status || oldpaket != paket){
                 $('#stream-table').css('opacity', '.5');
                 $.ajax({
-                    url: BASE_URL + 'so/admin_orderto/table/',
+                    url: BASE_URL + 'admin/ujian/to_user/table/',
                     type: 'POST',
                     data: {status: status, paket: paket}
                 }).done(function(res){

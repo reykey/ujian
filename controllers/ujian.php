@@ -22,7 +22,7 @@ class Ujian extends Public_Controller
     {
         $params = array(
                 'stream'        => 'to_user',
-                'namespace'     => 'streams',
+                'namespace'     => 'to_user',
                 'paginate'      => 'yes',
                 'limit'         => 10,
                 'page_segment'  => 4
@@ -66,12 +66,12 @@ class Ujian extends Public_Controller
 
     public function groupSoal($paket_id = false)
     {
-        $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
+        $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
         // dump($items['paketSoal']);
 
         $params = array(
                 'stream'        => 'group_soal',
-                'namespace'     => 'streams',
+                'namespace'     => 'group_soal',
                 'where'         => "paket_id = $paket_id"
                 );
         $groups = $this->streams->entries->get_entries($params);
@@ -81,7 +81,7 @@ class Ujian extends Public_Controller
             foreach ($groups['entries'] as &$group) {
                 $paramsoal = array(
                     'stream'        => 'soal',
-                    'namespace'     => 'streams',
+                    'namespace'     => 'soal',
                     'where'         => "default_to_soal.group_id = {$group['id']}"
                     );
                 $soal = $this->streams->entries->get_entries($paramsoal);
@@ -93,7 +93,7 @@ class Ujian extends Public_Controller
         
         $user_id = $this->current_user->id;
         $params = array('stream' => 'jawaban',
-                        'namespace' => 'streams',
+                        'namespace' => 'jawaban',
                         'where' => "default_to_jawaban.paket_id = $paket_id AND default_to_jawaban.user_id = $user_id");
 
         
@@ -123,7 +123,7 @@ class Ujian extends Public_Controller
 
             $exist = $this->streams->entries->get_entries(
                 array('stream' => 'jawaban',
-                    'namespace' => 'streams',
+                    'namespace' => 'jawaban',
                     'where' => "`soal_id` = {$data['soal_id']} AND `user_id` = {$data['user_id']}"
                     )
 
@@ -132,7 +132,7 @@ class Ujian extends Public_Controller
             if($exist['total']>0){
                 $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'jawaban','streams');
                 }else{
-                    $this->streams->entries->insert_entry($data,'jawaban','streams');
+                    $this->streams->entries->insert_entry($data,'jawaban','jawaban');
                 }
             
         }
