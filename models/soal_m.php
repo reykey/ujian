@@ -51,21 +51,15 @@
 	    	$this->db->update('so_to_user',$data);
 	    }
 
-	    function selesai($user_id, $soal_id){
-	    	$this->db->select("to_jawaban.jawaban as jawaban_user, to_soal.jawaban, to_jawaban.soal_id")
+	    function selesai($user_id, $paket_id){
+	    	
+	    	return $this->db->select('to_jawaban.jawaban as jawaban_user, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
 	    			->from('to_soal')
-	    			->join('to_jawaban','to_jawaban.soal_id=soal_id')
+	    			->join('to_jawaban','to_jawaban.soal_id=to_soal.id')
 	    			->where('to_jawaban.user_id',$user_id)
+	    			->where('to_jawaban.paket_id',$paket_id)
 	    			->get()
 	    			->result();
-
-	    	// $data = array(
-	    	// 	'user_id' => $user_id,
-	    	// 	'paket_id' => $paket_id,
-	    	// 	'soal_id' => $soal_id,
-	    	// 	'jawaban' => $jawaban
-	    	// 	 );
-	    	// $this->db->insert('to_jawaban',$jawaban);
 	    }
 
 	    function get_group($where)

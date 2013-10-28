@@ -11,14 +11,15 @@
                 <ul class="quiz">
                   <li class="instruction">
                     
-                    <p>Bacalah dengan seksama</p>
+                    <p>Hasil</p>
                   </li>
 
                    
                   <li>
                     <span class="number label label-success">1</span>
                     <div class="question">
-                      <?php echo $soal; ?>
+                      
+                      <?php echo $nilai_benar;//echo $soal['stat']; ?>
                     </div>
 
 

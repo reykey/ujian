@@ -163,27 +163,36 @@ class Ujian extends Public_Controller
 
     public function hasil($paket_id = false){
         $total_benar = 0;
+        //dump($paket_id);
+        $userId = $this->current_user->id;
+        //dump($paket_id);
+        $soalsoal = $this->soal_m->selesai($userId, $paket_id);
+        //dump($soalsoal);
+        // dump($total_benar);
+        foreach ($soalsoal as $soal) {
+            if($soal->jawaban_user == $soal->jawaban){
+                $total_benar +=1;
+                dump($total_benar);
+                // $soal->status_benar = 1;
+                // $data['status_benar'] = $soal->status_benar;
+                $data['total_benar'] = $total_benar;
 
-        foreach ($soalsoal as &$soal) {
-            if($soal->jawaban->user == $soal->jawaban){
-                $total_benar++;
-                $soal->status_benar = 1;
-            }else{
-                $soal->status_benar = 0;
+
             }
         }
         
-        // $params = array(
-        //         'stream' => 'jawaban',
-        //         'namespace' => 'streams',
-        //         'where' => "default_to_jawaban.soal_id = default_to_soal.soal_id"
-        //         );
+        
+        $nilai['nilai_benar'] = $total_benar * 4;
+        //dump($nilai_benar);
+        $this->template->build('hasil',$nilai);
+
+        
+        
 
 
 
-        $this->soal_m->selesai($this->current_user->id, $paket_id);
+        //$this->soal_m->selesai($this->current_user->id, $paket_id);
 
-        $this->template->build('hasil',$items);
     }
 
     public function soal(){
