@@ -26,6 +26,14 @@ $lang['ujian:mulai']				= 'Mulai';
 $lang['ujian:selesai']				= 'Selesai';
 $lang['ujian:import_success']	= 'Import soal selesai';
 
+$lang['to:name']	= 'Nama';
+$lang['to:status_pengerjaan']	= 'Status Pengerjaan';
+$lang['to:nilai']	= 'Nilai';
+$lang['to:paket']	= 'Paket';
+$lang['to:jam_mulai']	= 'Jam Mulai';
+$lang['to:jam_selesai']	= 'Jam Selesai';
+
+
 
 
 

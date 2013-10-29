@@ -3,12 +3,12 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th><?php echo lang('simple_order:name'); ?></th>
-					<th><?php echo lang('simple_order:status_pengerjaan'); ?></th>
-					<th><?php echo lang('simple_order:nilai'); ?></th>
-					<th><?php echo lang('simple_order:paket'); ?></th>
-					<th><?php echo lang('simple_order:jam_mulai'); ?></th>
-					<th><?php echo lang('simple_order:jam_selesai'); ?></th>
+					<th><?php echo lang('to:name'); ?></th>
+					<th><?php echo lang('to:status_pengerjaan'); ?></th>
+					<th><?php echo lang('to:nilai'); ?></th>
+					<th><?php echo lang('to:paket'); ?></th>
+					<th><?php echo lang('to:jam_mulai'); ?></th>
+					<th><?php echo lang('to:jam_selesai'); ?></th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -23,7 +23,7 @@
 				<?php if(!empty($entries["entries"])): $i=1; foreach( $entries["entries"] as $item ): ?>
 				<tr id="item_<?php echo $item["id"]; ?>">
 					<td><?php echo $i; ?></td>
-					<td><?php echo $item["created_by"]["display_name"]; ?></td>
+					<td><?php echo $item["user_id"]['first_name'].' '.$item["user_id"]['last_name']; ?></td>
 					<td><?php echo $item["status_pengerjaan"]["value"]; ?></td>
 					<td><?php echo $item["nilai"]; ?></td>
 					<td><?php echo $item["paket_id"]["judul"]; ?></td>
