@@ -21,7 +21,10 @@
                       
                       <?php //echo $nilai_benar;//echo $soal['stat']; ?>
                       <?php //echo $nilai_salah;//echo $soal['stat']; ?>
-                      <p><?php echo $total;?></p>
+                      <p>Benar : <?php echo $total_benar;?></p>
+                      <p>Salah : <?php echo $total_salah;?></p>
+                      <p>Kosong : <?php echo $total_kosong;?></p>
+                      <p>Nilai Total : <?php echo $total;?></p>
                     </div>
 
 

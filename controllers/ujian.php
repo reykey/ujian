@@ -164,6 +164,7 @@ class Ujian extends Public_Controller
     public function hasil($paket_id = false){
         $total_benar = 0;
         $total_salah = 0;
+        $total_kosong = 0;
         //dump($paket_id);
         $userId = $this->current_user->id;
         //dump($paket_id);
@@ -177,14 +178,19 @@ class Ujian extends Public_Controller
                 //$soal->status_benar = 1;
                 // $data['status_benar'] = $soal->status_benar;
                 $data['total_benar'] = $total_benar;
-            }else{
+            }elseif($soal->jawaban_user != $soal->jawaban){
                 $total_salah +=1;
                 //$soal->status_benar = 0;
                 $data['total_salah'] = $total_salah;
+            }else{
+                $total_kosong +=1;
+                $data['total_kosong'] = $total_kosong;
             }
         }
         
-        
+        $nilai['total_benar'] = $total_benar;
+        $nilai['total_salah'] = $total_salah;
+        $nilai['total_kosong'] = $total_kosong;
         // $nilai['nilai_benar'] = $total_benar * 4;
         // $nilai['nilai_salah'] = $total_salah * (-1);
         $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
