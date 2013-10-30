@@ -28,6 +28,17 @@ class Module_Ujian extends Module
                         )
                     )
                 ),
+                'categories' => array(
+                    'name' => 'ujian:categories',
+                    'uri' => 'admin/ujian/categories',
+                    'shortcuts' => array(
+                        'create' => array(
+                            'name' => 'ujian:new_category',
+                            'uri' => 'admin/ujian/categories/create',
+                            'class' => 'add'
+                        )
+                    )
+                ),
                 'to_user' => array(
                     'name' => 'Peserta Tryout',
                     'uri' => 'admin/ujian/to_user',
@@ -115,6 +126,28 @@ class Module_Ujian extends Module
         $this->streams->fields->add_fields($fields);
 
 
+        // CATEGORIES STREAM
+        $namespace = 'categories';
+        // Create stream
+        $extra = array('title_column' => 'category', 'view_options' => array("category"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
+        if( !$this->streams->streams->add_stream('Categories', 'categories', $namespace, 'to_', '', $extra) ) return FALSE; 
+
+        // Get stream data
+        $categories = $this->streams->streams->get_stream('categories', $namespace);
+
+        // Add fields
+        $fields   = array();
+        $template = array('namespace' => $namespace, 'assign' => 'categories');
+
+        $fields[] = array('name'=>'Category', 'slug'=>'category', 'type'=>'text', 'required' => true, 'unique' => true, 'instructions' => 'Kategori grup tryout', 'extra'=>null);
+
+        // Combine
+        foreach ($fields AS &$field) { $field = array_merge($template, $field); }
+
+        // Add fields to stream
+        $this->streams->fields->add_fields($fields);
+
+
         // GROUP SOAL STREAM
         $namespace = 'group_soal';
         // Create stream
@@ -129,6 +162,7 @@ class Module_Ujian extends Module
         $template = array('namespace' => $namespace, 'assign' => 'group_soal');
 
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'diambil dari tabel paket', 'extra'=>array("choose_stream"=>$paket->id, "link_uri"=>null));
+        $fields[] = array('name'=>'Kategori', 'slug'=>'category', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'kategori grup soal', 'extra'=>array("choose_stream"=>$categories->id, "link_uri"=>null));
         $fields[] = array('name'=>'Instruksi', 'slug'=>'instruksi', 'type'=>'textarea', 'required' => true, 'unique' => false, 'instructions' => 'Instruksi dari grup soal', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"text"));
         $fields[] = array('name'=>'Judul', 'slug'=>'judul', 'type'=>'text', 'required' => false, 'unique' => false, 'instructions' => 'Judul dari Soal', 'extra'=>array("max_length"=>"50", "default_value"=>""));
 
@@ -248,11 +282,17 @@ class Module_Ujian extends Module
         $this->streams->fields->delete_field('produk_id', $namespace);
         $this->streams->fields->delete_field('alokasi_waktu', $namespace);
 
+        // CATEGORIES STREAM
+        $namespace = 'categories';
+        $this->streams->streams->delete_stream('categories', $namespace);
+        $this->streams->fields->delete_field('category', $namespace);
+
         // GROUP SOAL STREAM
         $namespace = 'group_soal';
         $this->streams->streams->delete_stream('group_soal', $namespace);
 
         $this->streams->fields->delete_field('paket_id', $namespace);
+        $this->streams->fields->delete_field('category', $namespace);
         $this->streams->fields->delete_field('instruksi', $namespace);
         $this->streams->fields->delete_field('judul', $namespace);
 

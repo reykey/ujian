@@ -33,6 +33,9 @@ $lang['to:paket']	= 'Paket';
 $lang['to:jam_mulai']	= 'Jam Mulai';
 $lang['to:jam_selesai']	= 'Jam Selesai';
 
+$lang['ujian:categories']	= 'Kategori';
+$lang['ujian:category']	= 'Kategori';
+$lang['ujian:new_category']	= 'Tambah Kategori';
 
 
 
