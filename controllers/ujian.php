@@ -21,8 +21,8 @@ class Ujian extends Public_Controller
     public function index()
     {
         $params = array(
-                'stream'        => 'to_user',
-                'namespace'     => 'to_user',
+                'stream'        => 'paket',
+                'namespace'     => 'paket',
                 'paginate'      => 'yes',
                 'limit'         => 10,
                 'page_segment'  => 4
@@ -163,26 +163,32 @@ class Ujian extends Public_Controller
 
     public function hasil($paket_id = false){
         $total_benar = 0;
+        $total_salah = 0;
         //dump($paket_id);
         $userId = $this->current_user->id;
         //dump($paket_id);
         $soalsoal = $this->soal_m->selesai($userId, $paket_id);
         //dump($soalsoal);
         // dump($total_benar);
-        foreach ($soalsoal as $soal) {
+        foreach ($soalsoal as &$soal) {
             if($soal->jawaban_user == $soal->jawaban){
                 $total_benar +=1;
-                dump($total_benar);
-                // $soal->status_benar = 1;
+                //dump($total_benar);
+                //$soal->status_benar = 1;
                 // $data['status_benar'] = $soal->status_benar;
                 $data['total_benar'] = $total_benar;
-
-
+            }else{
+                $total_salah +=1;
+                //$soal->status_benar = 0;
+                $data['total_salah'] = $total_salah;
             }
         }
         
         
-        $nilai['nilai_benar'] = $total_benar * 4;
+        // $nilai['nilai_benar'] = $total_benar * 4;
+        // $nilai['nilai_salah'] = $total_salah * (-1);
+        $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
+        //$nilai['nilai_kosong'] = 
         //dump($nilai_benar);
         $this->template->build('hasil',$nilai);
 

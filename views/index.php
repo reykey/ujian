@@ -1,4 +1,4 @@
-<!-- tampilan modul soal mulai dari sini -->
+<!--tampilan modul soal mulai dari sini -->
           <div class="content">
             <h2>Try Out Online STAN</h2>
           </div>
@@ -23,33 +23,35 @@
                     <?php $i=1; foreach( $pengguna['entries'] as $item ): ?>
                       <?php
                         $tglSekarang = date('Y-m-d H:i:s');
-                        $tglMulai = date('Y-m-d H:i:s', $item['paket_id']['tanggal_buka']);
-                        $tglSelesai = date('Y-m-d H:i:s',$item['paket_id']['tanggal_tutup']);
+                        $tglMulai = date('Y-m-d H:i:s', $item['tanggal_buka']);
+                        $tglSelesai = date('Y-m-d H:i:s',$item['tanggal_tutup']);
                         if($tglSekarang >= $tglMulai && $tglSekarang <= $tglSelesai):
                       ?>
+                       <?php //dump($item);?>
 
-                        <td><span class="number label label-success"><?php echo $i; ?></span></td>
-                        <td><?php echo $item['paket_id']['tanggal_buka']; ?></td>
-                        <td class="action">
-                          <?php echo anchor('ujian/prepare/'.$item["paket_id"]['id'], lang('ujian:mulai'), array('class'=>'button')); ?></td>
+
+                      <td><span class="number label label-success"><?php echo $i; ?></span></td>
+                      <td><?php //echo $item['paket_id']['tanggal_buka']; ?></td>
+                      <td class="action">
+                      <?php echo anchor('ujian/prepare/'.$item['id'], lang('ujian:mulai'), array('class'=>'button')); ?></td>
                       <?php elseif ($tglSekarang <= $tglMulai): ?>
-                        <td>belum mulai</td>
+                      <td>belum mulai</td>
                       <?php elseif ($tglSekarang >= $tglSelesai): ?>
-                        <td>Expired</td>
+                      <td>Expired</td>
                       <?php endif; ?>
                     <?php $i++; endforeach; ?>
 
                     
-                    <div class="question">
+                    <!-- <div class="question">
                       Mulai
-                    </div>
+                    </div> -->
                     
                   </li>
 
-                  <li>
+                 <!--  <li>
                     <h4>Aturan Main :</h4>
                     <p></p>
-                  </li>
+                  </li> -->
                 </ul>
 
                 <?php else: ?>
@@ -59,4 +61,4 @@
               </div>
             </div>
           </div>
-          <!-- tampilan modul soal berakhir disini -->
+          <!-- tampilan modul soal berakhir disini
