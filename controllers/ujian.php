@@ -21,8 +21,8 @@ class Ujian extends Public_Controller
     public function index()
     {
         $params = array(
-                'stream'        => 'paket',
-                'namespace'     => 'paket',
+                'stream'        => 'to_user',
+                'namespace'     => 'to_user',
                 'paginate'      => 'yes',
                 'limit'         => 10,
                 'page_segment'  => 4

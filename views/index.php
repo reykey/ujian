@@ -23,8 +23,8 @@
                     <?php $i=1; foreach( $pengguna['entries'] as $item ): ?>
                       <?php
                         $tglSekarang = date('Y-m-d H:i:s');
-                        $tglMulai = date('Y-m-d H:i:s', $item['tanggal_buka']);
-                        $tglSelesai = date('Y-m-d H:i:s',$item['tanggal_tutup']);
+                        $tglMulai = date('Y-m-d H:i:s', $item['paket_id']['tanggal_buka']);
+                        $tglSelesai = date('Y-m-d H:i:s',$item['paket_id']['tanggal_tutup']);
                         if($tglSekarang >= $tglMulai && $tglSekarang <= $tglSelesai):
                       ?>
                        <?php //dump($item);?>
