@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Module_Ujian extends Module
+class Module_Tryout extends Module
 {
     public $version = '1.0.0';
 
@@ -8,10 +8,10 @@ class Module_Ujian extends Module
     {
         $info = array(
             'name' => array(
-                'en' => 'Ujian'
+                'en' => 'Tryout'
             ),
             'description' => array(
-                'en' => 'Modul ujian berisi soal dan jawaban TO'
+                'en' => 'Modul tryout berisi soal dan jawaban tryout'
             ),
             'frontend' => true,
             'backend' => true,
@@ -19,29 +19,29 @@ class Module_Ujian extends Module
             'sections' => array(
                 'paket' => array(
                     'name' => 'ujian:paket',
-                    'uri' => 'admin/ujian',
+                    'uri' => 'admin/tryout',
                     'shortcuts' => array(
                         'create' => array(
                             'name' => 'ujian:new_paket',
-                            'uri' => 'admin/ujian/tambah_paket',
+                            'uri' => 'admin/tryout/tambah_paket',
                             'class' => 'add'
                         )
                     )
                 ),
                 'categories' => array(
                     'name' => 'ujian:categories',
-                    'uri' => 'admin/ujian/categories',
+                    'uri' => 'admin/tryout/categories',
                     'shortcuts' => array(
                         'create' => array(
                             'name' => 'ujian:new_category',
-                            'uri' => 'admin/ujian/categories/create',
+                            'uri' => 'admin/tryout/categories/create',
                             'class' => 'add'
                         )
                     )
                 ),
                 'to_user' => array(
                     'name' => 'Peserta Tryout',
-                    'uri' => 'admin/ujian/to_user',
+                    'uri' => 'admin/tryout/to_user',
                 ),
             )
         );
@@ -50,12 +50,12 @@ class Module_Ujian extends Module
             $info['sections']['paket']['shortcuts'] = array(
                 'create' => array(
                             'name' => 'ujian:new_group',
-                            'uri' => 'admin/ujian/tambah_group/'.$this->uri->segment(4),
+                            'uri' => 'admin/tryout/tambah_group/'.$this->uri->segment(4),
                             'class' => 'add'
                         ),
                 'import' => array(
                             'name' => 'ujian:import',
-                            'uri' => 'admin/ujian/import/'.$this->uri->segment(4),
+                            'uri' => 'admin/tryout/import/'.$this->uri->segment(4),
                             'class' => 'add'
                         )
             );
@@ -64,7 +64,7 @@ class Module_Ujian extends Module
             $info['sections']['paket']['shortcuts'] = array(
                 'create' => array(
                             'name' => 'ujian:new_soal',
-                            'uri' => 'admin/ujian/tambah_soal/'.$this->uri->segment(4).'/'.$this->uri->segment(5),
+                            'uri' => 'admin/tryout/tambah_soal/'.$this->uri->segment(4).'/'.$this->uri->segment(5),
                             'class' => 'add'
                         )
             );
@@ -80,8 +80,8 @@ class Module_Ujian extends Module
         add_admin_menu_place('Tryout Online', 2);
 
         // Assign common items
-        $menu['Tryout Online']['Order'] = 'admin/so';
-        $menu['Tryout Online']['Tryout']= 'admin/ujian';
+        $menu['Tryout Online']['Order'] = 'admin/order';
+        $menu['Tryout Online']['Tryout']= 'admin/tryout';
     }
 
     /**
@@ -193,6 +193,7 @@ class Module_Ujian extends Module
         $fields[] = array('name'=>'Pilihan C', 'slug'=>'pilihan_c', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan C', 'extra'=>array("max_length"=>"50", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan D', 'slug'=>'pilihan_d', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan D', 'extra'=>array("max_length"=>"50", "default_value"=>""));
         $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan jawaban benar dari pertanyaan', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
+        $fields[] = array('name'=>'Pembahasan', 'slug'=>'pembahasan', 'type'=>'textarea', 'required' => false, 'unique' => false, 'instructions' => 'Pembahasan jawaban soal', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"html"));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choose_stream"=>$paket->id, "link_uri"=>null));
 
         // Combine

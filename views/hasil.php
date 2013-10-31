@@ -32,7 +32,7 @@
 
                   <li>
                     <td class="action">
-                          <?php //echo anchor('ujian/selesai/', lang('ujian:back'), array('class'=>'button')); ?></td>
+                          <?php //echo anchor('tryout/selesai/', lang('ujian:back'), array('class'=>'button')); ?></td>
                   </li>
 
                 </ul>

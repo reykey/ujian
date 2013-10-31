@@ -119,7 +119,7 @@ $(function(){
                   <ul>
                     <li>
                     <td class="action">
-                          <?php echo anchor('ujian/getSelesai/'.$id, lang('ujian:selesai'), array('class'=>'button')); ?></td>
+                          <?php echo anchor('tryout/getSelesai/'.$id, lang('ujian:selesai'), array('class'=>'button')); ?></td>
                   </li>
                   </ul>
                 </div>
@@ -142,7 +142,7 @@ $(function(){
 
                 $.ajax({
                   //Alamat url harap disesuaikan dengan lokasi script pada komputer anda
-                  url      : "<?php echo site_url('ujian/simpan_jawaban'); ?>",
+                  url      : "<?php echo site_url('tryout/simpan_jawaban'); ?>",
                   type     : 'POST',
                   data     : {jawaban:$(this).attr('rel'), soal:$(this).attr('name'), paket:$('h2.paketsoal').attr('id')}
                   }).done(function(msg){

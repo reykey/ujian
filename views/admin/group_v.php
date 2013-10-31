@@ -1,5 +1,5 @@
 <section class="title">
-    <h4><?php echo anchor('admin/ujian', lang('ujian:paket')); ?> - <?php echo $paket->judul ; ?> </h4>
+    <h4><?php echo anchor('admin/tryout', lang('ujian:paket')); ?> - <?php echo $paket->judul ; ?> </h4>
 </section>
 
 <section class="item">
@@ -28,9 +28,9 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $item['judul']; ?></td>                    
                     <td class="actions">
-                        <?php echo anchor('admin/ujian/soal/'.$item["paket_id"]["id"].'/'.$item["id"], lang('ujian:atur_soal'), array('class'=>'button', 'title'=>lang('ujian:lihatSoal'))); ?>
-                        <?php echo anchor('admin/ujian/edit_group/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
-                        <?php echo anchor('admin/ujian/delete_group/'.$item["id"], lang('global:delete'), array('class'=>'button confirm', 'title'=>lang('ujian:deleted'))); ?>
+                        <?php echo anchor('admin/tryout/soal/'.$item["paket_id"]["id"].'/'.$item["id"], lang('ujian:atur_soal'), array('class'=>'button', 'title'=>lang('ujian:lihatSoal'))); ?>
+                        <?php echo anchor('admin/tryout/edit_group/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
+                        <?php echo anchor('admin/tryout/delete_group/'.$item["id"], lang('global:delete'), array('class'=>'button confirm', 'title'=>lang('ujian:deleted'))); ?>
                     </td>
                 </tr>
                 <?php $i++; endforeach; ?>

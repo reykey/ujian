@@ -54,20 +54,20 @@ class Admin extends Admin_Controller
         $extra['buttons'] = array(
             array(
                 'label' => lang('ujian:atur_grup'),
-                'url' => 'admin/ujian/group/-entry_id-'
+                'url' => 'admin/tryout/group/-entry_id-'
             ),
             array(
                 'label' => lang('ujian:edit'),
-                'url' => 'admin/ujian/edit/-entry_id-'
+                'url' => 'admin/tryout/edit/-entry_id-'
             ),
             array(
                 'label' => lang('global:delete'),
-                'url' => 'admin/ujian/delete/-entry_id-',
+                'url' => 'admin/tryout/delete/-entry_id-',
                 'confirm' => true
             )
             
         );
-        $this->streams->cp->entries_table('paket', 'paket', 5, 'admin/ujian/index', true, $extra);
+        $this->streams->cp->entries_table('paket', 'paket', 5, 'admin/tryout/index', true, $extra);
     }
 
     public function group($paket_id = false){
@@ -121,7 +121,7 @@ class Admin extends Admin_Controller
 
     public function tambah_paket(){
         $extra = array (
-            'return' => 'admin/ujian/index',
+            'return' => 'admin/tryout/index',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => 'lang:ujian:new_paket',
@@ -135,7 +135,7 @@ class Admin extends Admin_Controller
 
     public function tambah_group($paket_id = false){
         $extra = array(
-            'return' => 'admin/ujian/group/'.$paket_id,
+            'return' => 'admin/tryout/group/'.$paket_id,
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:new_group'),
@@ -150,7 +150,7 @@ class Admin extends Admin_Controller
 
     public function tambah_soal($paket_id = false, $group_id = false){
         $extra = array (
-            'return' => 'admin/ujian/soal/'.$paket_id.'/'.$group_id,
+            'return' => 'admin/tryout/soal/'.$paket_id.'/'.$group_id,
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:new_soal'),
@@ -165,7 +165,7 @@ class Admin extends Admin_Controller
     public function edit($id = 0)
     {
         $extra = array(
-            'return' => 'admin/ujian',
+            'return' => 'admin/tryout',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:edit'),
@@ -177,7 +177,7 @@ class Admin extends Admin_Controller
     public function edit_group($id = 0)
     {
         $extra = array(
-            'return' => 'admin/ujian/group',
+            'return' => 'admin/tryout/group',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:edit'),
@@ -189,7 +189,7 @@ class Admin extends Admin_Controller
     public function edit_soal($id = 0)
     {
         $extra = array(
-            'return' => 'admin/ujian/soal',
+            'return' => 'admin/tryout/soal',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:edit'),
@@ -212,7 +212,7 @@ class Admin extends Admin_Controller
             $this->streams->entries->delete_entry($id, 'soal', 'soal');
         }
 
-        redirect('admin/ujian/');
+        redirect('admin/tryout/');
     }
 
     public function delete_group($id = 0)
@@ -304,7 +304,7 @@ class Admin extends Admin_Controller
                 // selesai
 
                 $this->session->set_flashdata('success', lang('ujian:import_success'));
-                redirect('admin/ujian/group/'.$paket_id);
+                redirect('admin/tryout/group/'.$paket_id);
             }
         }
         

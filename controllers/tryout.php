@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ujian extends Public_Controller
+class Tryout extends Public_Controller
 {
     // This will set the active section tab
     public $section = 'ujian';
@@ -56,7 +56,7 @@ class Ujian extends Public_Controller
         $this->session->set_userdata('jam_mulai', $jam_mulai->getTimestamp());
         dump($jam_mulai->getTimestamp());
         dump($this->session->userdata('jam_mulai'));
-        redirect('ujian/groupSoal/'.$paket_id);
+        redirect('tryout/groupSoal/'.$paket_id);
         
     }
     // public function mulai($paket_id = false){
@@ -151,7 +151,7 @@ class Ujian extends Public_Controller
         dump($jam_selesai->getTimestamp());
         dump($this->session->userdata('jam_selesai'));
 
-        redirect('ujian/hasil/'.$paket_id);
+        redirect('tryout/hasil/'.$paket_id);
         // $params = array(
         //         'stream' => 'jawaban',
         //         'namespace' => 'streams',

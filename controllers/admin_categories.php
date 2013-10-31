@@ -20,16 +20,16 @@ class Admin_categories extends Admin_Controller
         $extra['buttons'] = array(
             array(
                 'label' => lang('global:edit'),
-                'url' => 'admin/ujian/categories/edit/-entry_id-'
+                'url' => 'admin/tryout/categories/edit/-entry_id-'
             ),
             array(
                 'label' => lang('global:delete'),
-                'url' => 'admin/ujian/categories/delete/-entry_id-',
+                'url' => 'admin/tryout/categories/delete/-entry_id-',
                 'confirm' => true
             )
         );
 
-        $this->streams->cp->entries_table('categories', 'categories', 3, 'admin/ujian/categories/index', true, $extra);
+        $this->streams->cp->entries_table('categories', 'categories', 3, 'admin/tryout/categories/index', true, $extra);
     }
 
     public function create()
@@ -37,7 +37,7 @@ class Admin_categories extends Admin_Controller
 		$extra['title'] = lang('ujian:new');
 
         $extra = array(
-            'return' => 'admin/ujian/categories/index',
+            'return' => 'admin/tryout/categories/index',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:categories:new')
@@ -51,7 +51,7 @@ class Admin_categories extends Admin_Controller
         $this->template->title(lang('ujian:edit'));
 
         $extra = array(
-            'return' => 'admin/ujian/categories/index',
+            'return' => 'admin/tryout/categories/index',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:edit')
@@ -64,7 +64,7 @@ class Admin_categories extends Admin_Controller
     {
         $this->streams->entries->delete_entry($id, 'categories', 'categories');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
-        redirect('admin/ujian/categories/index');
+        redirect('admin/tryout/categories/index');
     }
 
 }
