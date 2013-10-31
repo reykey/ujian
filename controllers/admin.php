@@ -50,7 +50,7 @@ class Admin extends Admin_Controller
     public function index()
     {
         $extra = array();
-        $extra['title'] = 'lang:ujian:paket';
+        $extra['title'] = lang('ujian:paket');
         $extra['buttons'] = array(
             array(
                 'label' => lang('ujian:atur_grup'),
@@ -121,10 +121,10 @@ class Admin extends Admin_Controller
 
     public function tambah_paket(){
         $extra = array (
-            'return' => 'admin/tryout/index',
+            'return' => 'admin/tryout',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
-            'title' => 'lang:ujian:new_paket',
+            'title' => lang('ujian:new_paket'),
          );
 
         //$this->streams->cp->entry_form('faqs', 'faq', 'new', null, true, $extra);

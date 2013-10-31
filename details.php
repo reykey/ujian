@@ -105,7 +105,7 @@ class Module_Tryout extends Module
         $paket = $this->streams->streams->get_stream('paket', $namespace);
 
         // Get produk stream data
-        $produk = $this->streams->streams->get_stream('product', 'product');
+        $produk = $this->streams->streams->get_stream('product', 'streams');
 
         // Add fields
         $fields   = array();
