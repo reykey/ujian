@@ -33,7 +33,8 @@ class Admin_to_user extends Admin_Controller {
 				);
 		$entries = $this->streams->entries->get_entries($params);
 
-		$order['paket'] = $this->soal_m->get_paket();
+		$order['paket'] = array('all' => 'Semua Paket');
+		$order['paket'] += $this->soal_m->get_paket();
 
 		$order['datax'] = $this->load->view('admin/to_user_table', array('entries'=>$entries), true);
 

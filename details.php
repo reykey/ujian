@@ -308,6 +308,7 @@ class Module_Tryout extends Module
         $this->streams->fields->delete_field('pilihan_c', $namespace);
         $this->streams->fields->delete_field('pilihan_d', $namespace);
         $this->streams->fields->delete_field('jawaban', $namespace);
+        $this->streams->fields->delete_field('pebahasan', $namespace);
         $this->streams->fields->delete_field('paket_id', $namespace);
 
         // JAWABAN STREAM
