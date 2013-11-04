@@ -70,6 +70,14 @@ class Soal_m extends MY_Model{
 
 	}
 
+	function get_category($where)
+	{
+		return $this->db->from('to_categories')
+			->where($where)
+			->get()->row_array();
+
+	}
+
 	public function get_paket()
 	{
 
