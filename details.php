@@ -93,7 +93,9 @@ class Module_Tryout extends Module
     public function install()
     {
         $this->load->driver('Streams');
-       
+
+        // Get user profile stream
+        $profile = $this->streams->streams->get_stream('profiles', 'users');       
 
         /* PAKET STREAM */
         $namespace = 'paket';
@@ -151,7 +153,7 @@ class Module_Tryout extends Module
         // GROUP SOAL STREAM
         $namespace = 'group_soal';
         // Create stream
-        $extra = array('title_column' => 'paket_id', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
+        $extra = array('title_column' => 'paket_id', 'view_options' => array("judul", "category"), 'sorting' => 'custom', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Group Soal', 'group_soal', $namespace, 'to_', 'Mengkelompokan soal sesuai paket soal', $extra) ) return FALSE; 
 
         // Get stream data
@@ -176,7 +178,7 @@ class Module_Tryout extends Module
         // SOAL STREAM
         $namespace = 'soal';
         // Create stream
-        $extra = array('title_column' => 'pertanyaan', 'view_options' => array("id","created"), 'sorting' => 'title', 'menu_path' => '', 'is_hidden' => 'no');
+        $extra = array('title_column' => 'pertanyaan', 'view_options' => array("pertanyaan","jawaban"), 'sorting' => 'custom', 'menu_path' => '', 'is_hidden' => 'no');
         if( !$this->streams->streams->add_stream('Soal', 'soal', $namespace, 'to_', 'Berisi tentang isi soal dari TO', $extra) ) return FALSE; 
 
         // Get stream data
@@ -188,10 +190,10 @@ class Module_Tryout extends Module
 
         $fields[] = array('name'=>'Group Id', 'slug'=>'group_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'Diambil dari tabel group soal', 'extra'=>array("choose_stream" => $group_soal->id, "link_uri"=>null));
         $fields[] = array('name'=>'Pertanyaan', 'slug'=>'pertanyaan', 'type'=>'textarea', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan Pertanyaan', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"text"));
-        $fields[] = array('name'=>'Pilihan A', 'slug'=>'pilihan_a', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan A', 'extra'=>array("max_length"=>"50", "default_value"=>""));
-        $fields[] = array('name'=>'Pilihan B', 'slug'=>'pilihan_b', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan B', 'extra'=>array("max_length"=>"50", "default_value"=>""));
-        $fields[] = array('name'=>'Pilihan C', 'slug'=>'pilihan_c', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan C', 'extra'=>array("max_length"=>"50", "default_value"=>""));
-        $fields[] = array('name'=>'Pilihan D', 'slug'=>'pilihan_d', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan D', 'extra'=>array("max_length"=>"50", "default_value"=>""));
+        $fields[] = array('name'=>'Pilihan A', 'slug'=>'pilihan_a', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan A', 'extra'=>array("max_length"=>"255", "default_value"=>""));
+        $fields[] = array('name'=>'Pilihan B', 'slug'=>'pilihan_b', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan B', 'extra'=>array("max_length"=>"255", "default_value"=>""));
+        $fields[] = array('name'=>'Pilihan C', 'slug'=>'pilihan_c', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan C', 'extra'=>array("max_length"=>"255", "default_value"=>""));
+        $fields[] = array('name'=>'Pilihan D', 'slug'=>'pilihan_d', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan D', 'extra'=>array("max_length"=>"255", "default_value"=>""));
         $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan jawaban benar dari pertanyaan', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
         $fields[] = array('name'=>'Pembahasan', 'slug'=>'pembahasan', 'type'=>'textarea', 'required' => false, 'unique' => false, 'instructions' => 'Pembahasan jawaban soal', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"html"));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choose_stream"=>$paket->id, "link_uri"=>null));
@@ -216,7 +218,7 @@ class Module_Tryout extends Module
         $fields   = array();
         $template = array('namespace' => $namespace, 'assign' => 'jawaban');
 
-        $fields[] = array('name'=>'user', 'slug'=>'user_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'Untuk mengetahui siapa yang mengakses tryout online', 'extra'=>array("choose_stream"=>"3", "link_uri"=>null));
+        $fields[] = array('name'=>'user', 'slug'=>'user_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'Untuk mengetahui siapa yang mengakses tryout online', 'extra'=>array("choose_stream"=>$profile->id, "link_uri"=>null));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choose_stream"=>$paket->id, "link_uri"=>null));
         $fields[] = array('name'=>'Soal Id', 'slug'=>'soal_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'Isi Soal ID agar sesuai dengan stream soal', 'extra'=>array("choose_stream"=>$soal->id, "link_uri"=>null));
         $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => false, 'unique' => false, 'instructions' => 'Mengisi jawaban yang diinputkan oleh user', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
@@ -241,7 +243,7 @@ class Module_Tryout extends Module
         $fields   = array();
         $template = array('namespace' => $namespace, 'assign' => 'to_user');
 
-        $fields[] = array('name'=>'user', 'slug'=>'user_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choose_stream"=>"3", "link_uri"=>null));
+        $fields[] = array('name'=>'user', 'slug'=>'user_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choose_stream"=>$profile->id, "link_uri"=>null));
         $fields[] = array('name'=>'Status Pengerjaan', 'slug'=>'status_pengerjaan', 'type'=>'choice', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choice_data"=>"sudah : Sudah dikerjakan\nbelum : Belum dikerjakan\nexpired : Expired", "choice_type"=>"dropdown", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
         $fields[] = array('name'=>'nilai', 'slug'=>'nilai', 'type'=>'decimal', 'required' => false, 'unique' => false, 'instructions' => '', 'extra'=>array("decimal_places"=>"", "default_value"=>"", "min_value"=>"", "max_value"=>""));
         $fields[] = array('name'=>'Paket id', 'slug'=>'paket_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => '', 'extra'=>array("choose_stream"=>$paket->id, "link_uri"=>null));
@@ -308,7 +310,7 @@ class Module_Tryout extends Module
         $this->streams->fields->delete_field('pilihan_c', $namespace);
         $this->streams->fields->delete_field('pilihan_d', $namespace);
         $this->streams->fields->delete_field('jawaban', $namespace);
-        $this->streams->fields->delete_field('pebahasan', $namespace);
+        $this->streams->fields->delete_field('pembahasan', $namespace);
         $this->streams->fields->delete_field('paket_id', $namespace);
 
         // JAWABAN STREAM

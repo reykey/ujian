@@ -23,7 +23,7 @@
                 </tr>
             </tfoot>
             <tbody>
-                <?php $i=1; foreach( $entries['entries'] as $item ): ?>
+                <?php $i=$nomoratas; foreach( $entries['entries'] as $item ): ?>
                 <tr>
                     <td><?php echo $i; ?></td>
                     <td><?php echo $item['judul']; ?></td>                    
@@ -36,6 +36,8 @@
                 <?php $i++; endforeach; ?>
             </tbody>
         </table>
+
+        <?php echo $entries['pagination']; ?>
     <?php else: ?>
         <div class="no_data"><?php echo lang('ujian:no_items'); ?></div>
     <?php endif;?>

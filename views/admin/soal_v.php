@@ -10,8 +10,8 @@
         <table border="0" class="table-list" cellspacing="0">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th><?php echo lang('ujian:namag'); ?></th>
+                    <!-- <th>No</th> -->
+                    <th><?php echo lang('ujian:namas'); ?></th>
                     <th><?php echo lang('ujian:jawaban');?></th>
                     <th></th>
                 </tr>
@@ -27,7 +27,7 @@
                 <!--<?php dump($entries); ?>-->
                 <?php $i=1; foreach( $entries['entries'] as $item ): ?>
                 
-                    <td><?php echo $i; ?></td>
+                    <!-- <td><?php echo $i; ?></td> -->
                     <td><?php echo $item["pertanyaan"]; ?></td>
                     <td><?php echo $item["jawaban"]['value']; ?></td>
 
@@ -40,6 +40,7 @@
                 <?php $i++; endforeach; ?>
             </tbody>
         </table>
+        <?php echo $entries['pagination']; ?>
     <?php else: ?>
         <div class="no_data"><?php echo lang('ujian:no_items'); ?></div>
     <?php endif;?>

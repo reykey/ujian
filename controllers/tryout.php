@@ -12,8 +12,10 @@ class Tryout extends Public_Controller
         $this->lang->load('ujian');
         $this->load->driver('Streams');
         $this->load->model('soal_m');
+        $this->template->append_css('module::tryout.css');
         $this->template->append_js('module::jquery-1.9.1.min.js');
         $this->template->append_js('module::jquery.countdown.js');
+        // $this->template->append_js('module::bootstrap-paginator.min.js');
 
     }
 
@@ -66,12 +68,16 @@ class Tryout extends Public_Controller
 
     public function groupSoal($paket_id = false)
     {
+        $items['perpage'] = $this->settings->records_per_page;
+
         $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
         // dump($items['paketSoal']);
 
         $params = array(
                 'stream'        => 'group_soal',
                 'namespace'     => 'group_soal',
+                'order_by'      => 'ordering_count',
+                'sort'          => 'asc',
                 'where'         => "paket_id = $paket_id"
                 );
         $groups = $this->streams->entries->get_entries($params);
@@ -82,33 +88,30 @@ class Tryout extends Public_Controller
                 $paramsoal = array(
                     'stream'        => 'soal',
                     'namespace'     => 'soal',
-                    'where'         => "default_to_soal.group_id = {$group['id']}"
+                    'order_by'      => 'ordering_count',
+                    'sort'          => 'asc',
+                    'where'         => SITE_REF."_to_soal.group_id = {$group['id']}"
                     );
                 $soal = $this->streams->entries->get_entries($paramsoal);
 
                 $group['soal'] = $soal['entries'];
             }
-
         }
         
         $user_id = $this->current_user->id;
         $params = array('stream' => 'jawaban',
                         'namespace' => 'jawaban',
-                        'where' => "default_to_jawaban.paket_id = $paket_id AND default_to_jawaban.user_id = $user_id");
+                        'where' => SITE_REF."_to_jawaban.paket_id = $paket_id AND ".SITE_REF."_to_jawaban.user_id = $user_id");
 
         
         $items['jawaban'] = $this->streams->entries->get_entries($params);
         //dump($jawaban);
-        
         
         $items['group'] = $groups['entries'];
 
         $this->template
             ->set('id', $paket_id)
             ->build('tryout', $items);
-
-
-
     }
 
     function simpan_jawaban(){
