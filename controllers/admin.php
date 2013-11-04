@@ -256,7 +256,7 @@ class Admin extends Admin_Controller
                 // konversi ke array
                 $array_csv = array();
                 foreach ($csv as $row) {
-                    $array_csv[] = str_getcsv(trim($row));
+                    $array_csv[] = str_getcsv(trim($row), ";");
                 }
 
                 // dump($array_csv);
@@ -267,32 +267,44 @@ class Admin extends Admin_Controller
                     // dump($row);
                     if(trim($row[0]) != ''){ // kalo bukan baris kosong, maka kerjakan
 
-                        // kalo ini baris grup soal, maka kerjakan
+                        // kalo ini baris kategori, maka kerjakan
                         if($row[0] != '#'){
+                            // kalo kategori belum ada
+                            if(! $kategori = $this->soal_m->get_category(array('category' => $row[0]))){
+                                $kategori_id = $this->streams->entries->insert_entry(array('category' => $row[0]), 'categories', 'categories');
+                            } else {
+                                $kategori_id = $kategori['id'];
+                            }
+                        }
+
+                        // kalo ini baris grup soal
+                        else if($row[1] != '##') {
                             // cek apakah grup soal ini sudah ada
                             // kalo belum, isikan
-                            $grup = $this->soal_m->get_group(array('judul'=>trim($row[0])));
+                            $grup = $this->soal_m->get_group(array('judul'=>trim($row[1])));
                             if($grup)
                                 $group_id = $grup['id'];
                             else
                                 $group_id = $this->streams->entries->insert_entry(
-                                    array('judul' => $row[0], 'instruksi' => $row[1], 'paket_id' => $paket_id),
+                                    array('judul' => $row[1], 'instruksi' => $row[2], 'paket_id' => $paket_id, 'category' => $kategori_id),
                                     'group_soal',
                                     'group_soal'
                                 );
                         }
-                        // kalo ini baris soal, kerjakan
+
+                        // berarti ini baris soal
                         else {
                             $this->streams->entries->insert_entry(
                                     array(
                                         'group_id' => $group_id, 
-                                        'pertanyaan' => $row[1], 
-                                        'pilihan_a' => $row[2],
-                                        'pilihan_b' => $row[3],
-                                        'pilihan_c' => $row[4],
-                                        'pilihan_d' => $row[5],
-                                        'jawaban' => strtoupper($row[6]),
-                                        'paket_id' => $paket_id
+                                        'pertanyaan' => $row[2], 
+                                        'pilihan_a' => $row[3],
+                                        'pilihan_b' => $row[4],
+                                        'pilihan_c' => $row[5],
+                                        'pilihan_d' => $row[6],
+                                        'jawaban' => strtoupper($row[7]),
+                                        'paket_id' => $paket_id,
+
                                     ),
                                     'soal',
                                     'soal'
