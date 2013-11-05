@@ -51,7 +51,7 @@
      <!-- <div class="pagination pagination-centered" id="pagination"></div> -->
 
       <div class="action pull-right">
-        <?php echo anchor('tryout/getSelesai/'.$id, lang('ujian:selesai'), array('class'=>'btn btn-success')); ?></td>
+        <?php echo anchor('tryout/selesai/'.$id, lang('ujian:selesai'), array('class'=>'btn btn-success confirm-selesai')); ?></td>
       </div>
 
       </div>
@@ -70,6 +70,7 @@
   }
 
   $(function(){
+    // siapkan countdown
     var waktu = <?php echo $alokasi - $selisih; ?>; // 3 menit
     // var waktu = 30;
     //var sisa_waktu = waktu - 30;
@@ -79,18 +80,22 @@
       onExpiry:waktuHabis,
       onTick: hampirHabis
     }); 
+
+    // pasang konfirmasi untuk button selesai
+    $('.confirm-selesai').click(function(e){
+      return confirm("Setelah Anda menekan tombol selesai sistem akan menghitung hasilnya dan tryout tidak akan dapat diulangi lagi. Anda yakin akan mengakhiri sessi tryout ini?");
+    })
   });
 
   jQuery(function($){
 
-    var jawaban = <?php echo json_encode($jawaban['entries']); ?>;
-    console.log(jawaban);
+    var jawaban = <?php echo json_encode($jawaban); ?>;
+    // console.log(jawaban);
     for(var j = 0; j < jawaban.length; j++){
-      $('#soal_'+jawaban[j].soal_id.id).find('input.'+jawaban[j].jawaban.key).prop('checked', true);
+      $('#soal_'+jawaban[j].soal_id).find('input.'+jawaban[j].jawaban).prop('checked', true);
     }
 
     $('input[type=radio]').click(function(){
-
       $.ajax({
         //Alamat url harap disesuaikan dengan lokasi script pada komputer anda
         url      : "<?php echo site_url('tryout/simpan_jawaban'); ?>",

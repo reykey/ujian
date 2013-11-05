@@ -1,57 +1,34 @@
-<!-- tampilan modul soal mulai dari sini -->
-          <div class="content">
-            <h2>Try Out Online STAN</h2>
-          </div>
-          
-          <div class="content bg-white">
-            <div class="row-fluid">
-              <div class="span12">
+<div class="content">
+  <h2>Try Out Online STAN</h2>
+</div>
 
-                <!-- ini mulai soal ditampilkan -->
-                <ul class="quiz">
-                  <li class="instruction">
-                    
-                    <p>Bacalah dengan seksama</p>
-                  </li>
+<div class="content bg-white">
+  <div class="row-fluid">
+    <div class="span12">
 
-                   
-                  <li>
-                    <span class="number label label-success">1</span>
-                    <div class="question">
-                      Sebelum kamu mulai, pastikan kamu memiliki waktu luang sebanyak 150 menit
-                    </div>
+      <!-- ini mulai soal ditampilkan -->
+      <h4>Bacalah dengan seksama</h4>
+      <ul>
+        <li>
+          Sebelum kamu mulai, pastikan kamu memiliki waktu luang sebanyak 150 menit
+        </li>
+        <li>
+          Dalam mengerjakan tryout ini, usahakan kamu standby selama 150 menit agar simulasi ujian ini berhasil
+        </li>
+        <li>
+          Jika kamu tidak memiliki waktu 150 menit full tanpa jeda, jangan dulu mengerjakan tryout ini.
+        </li>
+        <li>
+          Jangan menyontek dalam bentuk apapun dan jangan pula menggunakan alat bantu hitung.
+        </li>
+        <li>
+          Ingat, keseriusan kamu dalam mengerjakan tryout ini akan sangat berpengaruh terhadap kesuksesan kamu dalam mengerjakan ujian yang sebenarnya nanti.
+        </li>
+      </ul>
 
-                    <span class="number label label-success">2</span>
-                    <div class="question">
-                      Dalam mengerjakan tryout ini, usahakan kamu standby selama 150 menit agar simulasi ujian ini berhasil
-                    </div>
+      <?php echo anchor('tryout/index/', lang('ujian:back'), array('class'=>'btn gray')); ?>
+      <?php echo anchor('tryout/inisiasi/'.$id, lang('ujian:mulai'), array('class'=>'btn blue btn-primary')); ?>
 
-                    <span class="number label label-success">3</span>
-                    <div class="question">
-                      Jika kamu tidak memiliki waktu 150 menit full tanpa jeda, jangan dulu mengerjakan tryout ini.
-                    </div>
-                    
-                    <span class="number label label-success">4</span>
-                    <div class="question">
-                      Jangan menyontek dalam bentuk apapun dan jangan pula menggunakan alat bantu hitung.
-                    </div>
-
-                    <span class="number label label-success">5</span>
-                    <div class="question">
-                      Ingat, keseriusan kamu dalam mengerjakan tryout ini akan sangat berpengaruh terhadap kesuksesan kamu dalam mengerjakan ujian yang sebenarnya nanti.
-                    </div>
-
-                  </li>
-
-                  <li>
-                    <td class="action">
-                          <?php echo anchor('tryout/index/', lang('ujian:back'), array('class'=>'button')); ?></td>
-                    <td class="action">
-                          <?php echo anchor('tryout/getMulai/'.$id, lang('ujian:mulai'), array('class'=>'button')); ?></td>
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- tampilan modul soal berakhir disini -->
+    </div>
+  </div>
+</div>
