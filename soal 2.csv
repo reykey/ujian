@@ -1,13 +1,13 @@
-TES POTENSI AKADEMIK,,,,,,,
+TES POTENSI AKADEMIK,,,,,,,
 #,SINONIM,,,,,,
 #,##,KONDUKTOR,Penghambat,Penyalur,Pembuat,Pesakitan,B
-#,##,RUWAT,Terbebas dari nasib baik,Terbebas dari nasib sial,Terbebas dari penyakit,Terbebas dari nasib buruk,D
+#,##,RUWAT,Terbebas dari nasib baik,Terbebas dari nasib sial,Terbebas dari penyakit,Terbebas dari nasib buruk,D
 #,##,OBSOLET,Merdeka,Usang,Bersih,Baru,D
 #,##,ASTANA,Balai,Istana,Pendopo,Kerajaan,B
 #,##,PANGUS,Pantas,Arang,Beringus,Gejolak,A
-#,##,DEPRESIASI,Penurunan jumlah penjualan,Penyusutan nilai,Pengurangan tenaga kerja,Pemotongan harga standar,B
+#,##,DEPRESIASI,Penurunan jumlah penjualan,Penyusutan nilai,Pengurangan tenaga kerja,Pemotongan harga standar,B
 #,##,BEA,Tagihan,Langganan,Uang,Pajak,D
-#,##,ETIMOLOGI,kalimat,ilmu tentang kalimat,ilmu tentang asal-usul kata,dasar-dasar bahasa,C
+#,##,ETIMOLOGI,kalimat,ilmu tentang kalimat,ilmu tentang asal-usul kata,dasar-dasar bahasa,C
 #,##,ESKALASI,Kenaikan,Kemajuan,Perkembangan,Kemunduran,A
 #,##,ACUAN,pegangan,pedoman,pemacu,rujukan,B
 #,ANTONIM,,,,,,
@@ -15,28 +15,28 @@ TES POTENSI AKADEMIK,,,,,,,
 #,##,SEKULER,Rohaniyah,Duniawi,Agamis,Cendikia,C
 #,##,SANTUNG,buntung,erat,liar,kendur,D
 #,##,KETUL,ambisius,tumpul,licik,tajam,D
-#,##,HIPOKRIT,orang yang malas,orang yang munafik,orang yang banyak akal,orang yang jujur apa adanya,D
+#,##,HIPOKRIT,orang yang malas,orang yang munafik,orang yang banyak akal,orang yang jujur apa adanya,D
 #,##,BANGLAS,sempit,luas,nakal,patuh,A
 #,##,SUMIR,sederhana,ringkas,pendek,panjang,D
 #,##,TAKDIS,penistaan,penyelewengan,pemurnian,pengudusan,A
 #,##,LASUH,lelah,mudah,sulit,duka,C
 #,##,DELUSI,angan-angan,nyata,penyerapan,perekatan,B
 #,ANALOGI,,,,,,
-#,##,Minyak Tanah : Kompor,Gerakan : Senam,Syaraf : Badan,Mobil : Sopir,Tukang Cukur : Pangkas Rambut,B
-#,##,Minum : Haus = Lampu :,Terang,Gelap,Padang,Pijar,B
-#,##,KAKI : SEPATU : KULIT,Mata : Kacamata : Retina,Kepala : Topi : Kain,Penyakit : Rumah sakit : Gedung,Pernafasan : Sapu tangan : Debu,B
-#,##,SEGIEMPAT : KUBUS,Bulatan : Rumah,Bulatan : Tabung,Bulatan : Pulau,Bulatan : Bola,D
-#,##,KAPAL SELAM : IKAN,Bus : Penumpang,Sepeda : Kumbang,Pesawat Terbang : Burung,Apollo : Astronot,C
-#,##,Sepeda :: kayuh = kapal ::,Gas,Setir,Laut,Dayung,D
-#,##,Kartun :: konohakagure :: naruto = kartun:: bikinibottom ::,Spongebob,Minkymomo,Hunter x hunter,prettygure,A
-#,##,PISAU : SAYAT,pistol : tembak,benang : halus,palu : tumpul,jarum : tajam,A
-#,##,KALENDER : TANGGAL,album : foto,buku : baca,tanaman : hias,pensil : tulis,A
-#,##,Cabe :: kepedasan =,Tape :: kemanisan,Minum :: kehausan,Marah :: kejengkelan,Makotadewa :: kepahitan,D
+#,##,Minyak Tanah : Kompor,Gerakan : Senam,Syaraf : Badan,Mobil : Sopir,Tukang Cukur : Pangkas Rambut,B
+#,##,Minum : Haus = Lampu :,Terang,Gelap,Padang,Pijar,B
+#,##,KAKI : SEPATU : KULIT,Mata : Kacamata : Retina,Kepala : Topi : Kain,Penyakit : Rumah sakit : Gedung,Pernafasan : Sapu tangan : Debu,B
+#,##,SEGIEMPAT : KUBUS,Bulatan : Rumah,Bulatan : Tabung,Bulatan : Pulau,Bulatan : Bola,D
+#,##,KAPAL SELAM : IKAN,Bus : Penumpang,Sepeda : Kumbang,Pesawat Terbang : Burung,Apollo : Astronot,C
+#,##,Sepeda :: kayuh = kapal ::,Gas,Setir,Laut,Dayung,D
+#,##,Kartun :: konohakagure :: naruto = kartun:: bikinibottom ::,Spongebob,Minkymomo,Hunter x hunter,prettygure,A
+#,##,PISAU : SAYAT,pistol : tembak,benang : halus,palu : tumpul,jarum : tajam,A
+#,##,KALENDER : TANGGAL,album : foto,buku : baca,tanaman : hias,pensil : tulis,A
+#,##,Cabe :: kepedasan =,Tape :: kemanisan,Minum :: kehausan,Marah :: kejengkelan,Makotadewa :: kepahitan,D
 #,KOSAKATA,,,,,,
-#,##,KONTRAPRESTASI,Lemah,Imbal jasa,Tidak berprestasi,Musuh,B
-#,##,KULMINASI,Kotak pendingin,Tingkatan tertinggi,Keadaan emosi seseorang,Panas terik matahari,B
+#,##,KONTRAPRESTASI,Lemah,Imbal jasa,Tidak berprestasi,Musuh,B
+#,##,KULMINASI,Kotak pendingin,Tingkatan tertinggi,Keadaan emosi seseorang,Panas terik matahari,B
 #,##,DURJA,Kejahatan,Muka,Setan,Tubuh,B
-#,Bacaan Untuk 4 Nomer Selanjutnya,"Tidak ada langit seperti yang kita temui sehari-hari ketika berada di bumi ini. Yang ada di bulan hanya warna hitam pekat di atas kepala kita. Warna hitam itu bercahaya benderang jika ada matahari. Sesuatu tanda kehidupan apa pun tak tampak di bulan. Tempat kami mendarat dikelilingi tiga gunung yang tingginya 5.000 meter. Tidak ada bunyi apa pun di sana, semuanya tampak tegap berdiri, tidak ada benda apa pun yang bergerak. Bintang tak nampak satu pun, tak ada pula sesuatu tumbuh di sana. “Pemandangan yang benar-benar tidak pernah kita temukan di bumi.” kata James. “Kami memang dilatih untuk tidak berubah oleh suasana apa pun, karena itu pula, pemandangan yang kami temukan di bulan sama sekali tidak membuat kami takut atau was-was.” berucap James. Menurut James, seluruh awak Apollo 15 di bulan selalu sibuk. Tidak ada waktu untuk berbicara rileks. Tetapi suatu komentar bersama seluruh awak Apollo 15 yaitu Tuhan telah memimpin kami sehingga kami tiba di bulan.",,,,,
+#,Bacaan Untuk 4 Nomer Selanjutnya,"Tidak ada langit seperti yang kita temui sehari-hari ketika berada di bumi ini. Yang ada di bulan hanya warna hitam pekat di atas kepala kita. Warna hitam itu bercahaya benderang jika ada matahari. Sesuatu tanda kehidupan apa pun tak tampak di bulan. Tempat kami mendarat dikelilingi tiga gunung yang tingginya 5.000 meter. Tidak ada bunyi apa pun di sana, semuanya tampak tegap berdiri, tidak ada benda apa pun yang bergerak. Bintang tak nampak satu pun, tak ada pula sesuatu tumbuh di sana. "Pemandangan yang benar-benar tidak pernah kita temukan di bumi." kata James. "Kami memang dilatih untuk tidak berubah oleh suasana apa pun, karena itu pula, pemandangan yang kami temukan di bulan sama sekali tidak membuat kami takut atau was-was." berucap James. Menurut James, seluruh awak Apollo 15 di bulan selalu sibuk. Tidak ada waktu untuk berbicara rileks. Tetapi suatu komentar bersama seluruh awak Apollo 15 yaitu Tuhan telah memimpin kami sehingga kami tiba di bulan.",,,,,
 #,##,Pokok permasalahan yang diungkapkan dalam bacaan di atas adalah....,Tuhan memimpin umat-Nya untuk terbang ke Apollo 15,Perbedaan antara siang dan malam sangat nyata,Di bulan tidak ada tanda-tanda kehidupan,Langit gelap gulita tanpa matahari dan bintang.,C
 #,##,"Dari bacaan di atas dapat disimpulkan semua hal berikut ini, kecuali....",Para awak pesawat tidak menjumpai tumbuhan apapun di bulan,Pesawat Apollo 15 mendarat di ketinggian 5.000 meter dari permukaan bulan,Para awak dilatih untuk menghadapi keadaan apa pun dan bagaimana pun.,"Selama di bulan, para awak pesawat tidak berkesempatan bersantai-santai.",B
 #,##,Bacaan di atas merupakan suatu deskripsi karena....,Menjelaskan kepekatan dan kegelapan di bulan.,Mengajak pembaca untuk  selalu bersyukur kepada Tuhan yang telah memimpin manusia.,Menceritakan peristiwa pendaratan secara kronologis,Menggambarkan keadaan bulan,D
@@ -45,49 +45,49 @@ TES POTENSI AKADEMIK,,,,,,,
 #,##,Judul yang paling tepat untuk teks di atas adalah,Keberhasilan Indonesia dalam Mencapai Swasembada Beras,Penanggulangan Ketergantungan pada Konsumsi Beras,Masalah Pangan bagi Indonesia Belum Terpecahkan,Peningkatan Mutu Gizi Melalui Penganekaragaman Pangan Pokok,A
 #,##,"Berikut ini merupakan tujuan pemerintah memperbaiki menu makanan rakyat Indonesia, kecuali....",melestarikan swasembada beras,memberagamkan pola konsumsi khas daerah,ingkatkan pendapatan penduduk dari pangan,meningkatkan kesehatan gizi keluarga,C
 #,##,Pertanyaan berikut yang sesuai dengan gagasan pokok paragraf III adalah ....,Faktor-faktor apakah yang mempengaruhi pola konsumsi pangan pokok masyarakat?,Apakah yang dimaksud dengan pola konsumsipangan pokok?,Bagaimana cara menyediakan pola pangan suatu masyarakat?,Mengapa penduduk suatu daerah di pedesaan bertumpu pada pola pangan pokok?,B
-#,KEMAMPUAN KUANTITATIF,,,,,,
+#,KEMAMPUAN KUANTITATIF,,,,,,
 #,##,"Jika sejumlah b buku dapat dibeli dengan harga d rupiah, berapa banyak bukukah yang dapat dibeli dengan m rupiah ?",Bm/d,d/bm,Bdm,(b+m)/d,A
 #,##,Seorang pedagang mencampur a kg kedelai seharga b rupiah per kg dengan c kg kacang seharga d rupiah per kg. Berapakah harga jual kacang campuran jika ia berharap memperoleh laba 1.000 rupiah per kg?,(ab + cd )/( a+c ) +1000,(b+d)/(a+c) + 1000,(b+d+1000)/(a+c),Tidak dapat ditentukan,A
 #,##,"Berapakah bobot maksimum dari 10 telur jika 6 dari 10 telur tersebut berbobot 15 sampai 25 0ns per butir, dan yang lainnya berbobot dari 20 sampai 25 ons per butir?",225 ons,250 ons,210 ons,220 ons,B
 #,##,Sebuah angka dikatakan sempurna apabila sama dengan jumlah seluruh factor positifnya yang kurang dari angka itu sendiri. Manakah dari angka-angka berikut ini yang dapat dikatakan sempurna?,1,4,6,8,C
 #,##,"Jika sebuah tiang setinggi 98 meter membentuk bayangan setinggi 28 meter , berapakah panjang bayangan untuk tiang setinggi 35 meter pada saat yang sama?",20 meter,5 meter,10 meter,15meter,C
-#,Untuk 3 Nomer Selanjutnya,Uang Dina Rp24.000 dan seperempat dari uang Dani. Uang Lisa Rp15.000 lebih sedikit dari tiga kali uang Dina dan Rp20.000 lebih banyak dari setengah uang Sani.,,,,,
+#,Untuk 3 Nomer Selanjutnya,Uang Dina Rp24.000 dan seperempat dari uang Dani. Uang Lisa Rp15.000 lebih sedikit dari tiga kali uang Dina dan Rp20.000 lebih banyak dari setengah uang Sani.,,,,,
 #,##,Siapakah yang paling banyak uangnya?,Dina,Dani,Lisa,Sani,B
 #,##,Siapakah yang paling sedikit uangnya ?,Dina,Dani,Lisa,Sani,A
 #,##,Berapakah jumlah uang mereka?,Rp125.000,Rp251.000,Rp195.500,Rp159.500,B
 #,##,"Untuk menentukan tujuan karyawisata, setiap siswa ditanya tentang Candi Borobudur dan Candi Prambanan. 10% belum pernah pergi ke kedua tempat tersebut, 6% pernah berkunjung ke kedua tempat itu. Berapa persen siswa yang baru berkunjung ke salah satu tempat tersebut?",35,84,49,90,B
-#,##,"Rata – rata nilai dari 35 siswa adalah 6,5. Apabila nilai dari dua orang siswa yang belum ikut ujian dimasukkan, maka rata-ratanya berubah menjadi 6,6. Berapa jumlah nilai anak tersebut ?","14,6","15,3","16,7","17,6",C
+#,##,"Rata - rata nilai dari 35 siswa adalah 6,5. Apabila nilai dari dua orang siswa yang belum ikut ujian dimasukkan, maka rata-ratanya berubah menjadi 6,6. Berapa jumlah nilai anak tersebut ?","14,6","15,3","16,7","17,6",C
 #,##,"Jika sisi sebuah persegi ditambah x%, maka luas persegi meningkat 156%. Berapa angka yang memenuhi x ?","12,4",60,120,160,B
-#,##,"Jika 2m – n adalah 70% dari L dan 40% dari L adalah 1/3m, tentukan berapa persen 2n dari L ?",170%,340%,120%,350%,B
+#,##,"Jika 2m - n adalah 70% dari L dan 40% dari L adalah 1/3m, tentukan berapa persen 2n dari L ?",170%,340%,120%,350%,B
 #,##,Suatu pekerjaan dapat diselesaikan oleh 35 orang dalam 2 minggu. Lebih cepat berapa harikah pekerjaan itu dapat diselesaikan bila dikerjakan oleh 45 orang ?,3 hari,4 hari,5 hari,6 hari,A
 #,##,"Seorang dapat memasak dalam waktu 30 menit dengan menggunakan kompor gas, dan 1,5 jam bila menggunakan kayu bakar. Jika pekerjaan itu dikerjakan dengan kompor gas selesai dalam waktu 6 menit, maka berapa waktu yang dibutuhkan tungku kayu bakar untuk menyelesaikan pekerjaan yang sama ?",66 menit,16 menit,48 menit,18 menit,D
 #,##,"Seseorang menyelesaikan soal membutuhkan waktu 30 menit, dan temannya membutuhkan waktu 1,25 jam. Jika mereka bekerjasama untuk menyelesaikan pekerjaan itu, berapa waktu yang diperlukan ?","23,5 menit","22,8 menit","25,7 menit","21,4 menit",D
 #,Untuk 4 Nomer Selanjutnya,Sebuah persegi panjang memiliki panjang 32cm dan lebar 48 cm. Persegi panjang itu bisa ditutupi dengan sempurna oleh persegi-persegi kecil dengan ukuran 40x40 mm.,,,,,
 #,##,Berapa banyaknya persegi yang digunakan untuk menutupi  persegi panjang tersebut?,100,69,96,198,C
-#,##,"Secara berurutan, luas dan keliling dari persegi panjang tersebut adalah …",1536 dan 160,1600 dan 15360,15630 dan 16,15630 dan 160,A
+#,##,"Secara berurutan, luas dan keliling dari persegi panjang tersebut adalah ...",1536 dan 160,1600 dan 15360,15630 dan 16,15630 dan 160,A
 #,##,"Apabila di setiap sudut persegi panjang ditempatkan sebuah segitiga siku-siku dengan panjang sisi siku-sikunya 14 cm dan 22 cm, maka berapa luas persegi panjang yang tidak tertutupi ?",290,1000,920,1382,C
 #,##,"Apabila di setiap sudut persegi panjang ditempatkan sebuah segitiga siku-siku dengan panjang sisi siku-sikunya 14 cm dan 22 cm, berapa total panjang sisi miring segitiga tersebut?",1040,"104,4","26,1","52,2",B
 #,##,"Sebuah bak mandi berukuran panjang 100 cm, dan lebar 60 cm, serta tingginya 80 cm. Bak itu telah terisi air tiga perlimanya Berapa liter air yang diperlukan untuk memenuhi bak tersebut?",192,200,288,368,A
-#,##,"Umur Susi sekarang dua kali umur adiknya. Tiga tahun yang akan datang, umurnya sama dengan tiga perdua umur adiknya. Umur Susi sekarang adalah …",6 tahun,8 tahun,9 tahun,12 tahun,A
-#,##,"Untuk keperluan tertentu, Amri mengambil 1/3 dari uangnya dan kemudian mengambil lagi 1/5 dari sisanya untuk membeli buku pelajaran. Jika sekarang ia masih mempunyai uang Rp28.000,- maka jumlah uang yang dimiliki Amri mula-mula adalah ….",Rp47.500,Rp50.000,Rp52.500,Rp60.000,C
-#,##,Tuan Eko menyimpan uang di bank sejumlah Rp5.000.000. Setelah 3 bulan uang tuan Eko menjadi Rp5.250.000. Bunga yang diberikan kepada Tuan Eko adalah …,20%,19%,5%,"4,8 %",C
-#,##,"Pak Bimo memesan 15 paket barang kepada Pak Yanto dan minta diantarkan. Bila dalam sekali jalan Pak Yanto dapat mengantar 4 paket barang, berapa kali Pak Yanto harus bolak-balik ke tempat Pak Bimo untuk mengantarkan seluruh pesanannya ?",3,3 ¾,4,5,C
-#,##,Fatimah menjahit pakaian pesanan dalam waktu 3 jam. Satu jam pertama ia dapat menjahit 3 ¼ baju. Satu jam berikutnya ia dapat menjahit 2 5/6 baju. Banyaknya baju yang berhasil ia jahit adalah ….,"6,1","6,0","5,9","5,8",A
+#,##,"Umur Susi sekarang dua kali umur adiknya. Tiga tahun yang akan datang, umurnya sama dengan tiga perdua umur adiknya. Umur Susi sekarang adalah ...",6 tahun,8 tahun,9 tahun,12 tahun,A
+#,##,"Untuk keperluan tertentu, Amri mengambil 1/3 dari uangnya dan kemudian mengambil lagi 1/5 dari sisanya untuk membeli buku pelajaran. Jika sekarang ia masih mempunyai uang Rp28.000,- maka jumlah uang yang dimiliki Amri mula-mula adalah ....",Rp47.500,Rp50.000,Rp52.500,Rp60.000,C
+#,##,Tuan Eko menyimpan uang di bank sejumlah Rp5.000.000. Setelah 3 bulan uang tuan Eko menjadi Rp5.250.000. Bunga yang diberikan kepada Tuan Eko adalah ...,20%,19%,5%,"4,8 %",C
+#,##,"Pak Bimo memesan 15 paket barang kepada Pak Yanto dan minta diantarkan. Bila dalam sekali jalan Pak Yanto dapat mengantar 4 paket barang, berapa kali Pak Yanto harus bolak-balik ke tempat Pak Bimo untuk mengantarkan seluruh pesanannya ?",3,3 3/4,4,5,C
+#,##,Fatimah menjahit pakaian pesanan dalam waktu 3 jam. Satu jam pertama ia dapat menjahit 3 1/4 baju. Satu jam berikutnya ia dapat menjahit 2 5/6 baju. Banyaknya baju yang berhasil ia jahit adalah ....,"6,1","6,0","5,9","5,8",A
 #,##,"Seorang anak mengambil uang dari celengannya sebanyak 15% dari totoal. Apabila ia harus menambah sebanyak Rp75.000,- untuk mengembalikannya ke posisi saldo semula, berapakah uang tabungannya sebelum diambilnya sebanyak 15% tersebut?",Rp 200.000,Rp 300.000,Rp 400.000,Rp 500.000,D
 #,##,"Sebuah silinder mempunyai diameter 8m dan tinggi 10m. Jika silinder tersebut telah terisi air 30%nya, berapa meter kubik lagikah silinder tersebut harus diisi dengan air agar menjadi penuh?",112 ?,115 ?,120 ?,135 ?,A
 #,##,"Sebuah bak mandi yang berbentuk kubus memiliki panjang rusuk 50 cm. Apabila bak tersebut diisi air leding yang mempunyai debit 250 mL per detik, sekitar berapa menitkah waktu yang dibutuhkan agar bak mandi tersebut penuh berisi air leding?",7 1/3 menit,8 1/3 menit,9 1/3 menit,10 1/3 menit,B
 #,##,Sebuah dadu dilempar secara sembarang. Probabilitas (peluang) mata dadu akan menunjukkan bilangan ganjil adalah:,"0,66","0,1","0,5","0,33",C
-#,##,"Dalam suatu kelas, 2/5 murid adalah laki-laki, dan ¾ murid laki-laki berkulit gelap. Jika 7/10 murid berkulit gelap, berapakah murid perempuan yang tidak berkulit gelap ?",5-Jan,8-Jan,¼,¾,A
+#,##,"Dalam suatu kelas, 2/5 murid adalah laki-laki, dan 3/4 murid laki-laki berkulit gelap. Jika 7/10 murid berkulit gelap, berapakah murid perempuan yang tidak berkulit gelap ?",5-Jan,8-Jan,1/4,3/4,A
 #,##,"Seorang anak memiliki 4 orang kakak. Kakak pertama berusia 3x tahun. Kakak yang lainnya berturut-turut berusia 4x-7, x+5 dan x+2 Jika rata-rata usia kelima anak tersebut adalah 10 tahun, berapa usia kakak kedua?",15,13,10,7,B
 #,##,"Dua orang berlari melakukan start pada suatu rute dari suatu titik yang sama dengan selisih waktu 4 jam. Pelari kedua berlari dengan kecepatan 12 km/jam dan memulai perjalanannya 2 jam setelah pelari pertama yang berkecepatan 8km/jam. Berapa waktu yang dibutuhkan pelari kedua untuk menyusul pelari pertama, terhitung dari saat pelari kedua memulai perjalanannya?",3 jam,4 jam,5 jam,6 jam,B
-#,##,(4 x 5) – (4 + 5) = (8 x 7) – (8 + p),7,17,27,37,D
+#,##,(4 x 5) - (4 + 5) = (8 x 7) - (8 + p),7,17,27,37,D
 #,##,"Jika seekor ayam rata-rata  bertelur sebanyak 25 butir per bulan, berapakah jumlah minimal ayam harus dipelihara untuk mendapatkan 180 butir telur setiap bulannya?",7,"7,2",8,"8,2",C
 #,##,"Jika Hamid berjalan 18 km dalam 5 jam, dan Lambok berjalan 18 km dalam 8 jam, berapa persen Hamid berjalan lebih cepat daripada Lambok?",25%,"33,33%","37,5%","40,5%",C
 #,##,rata-rata Rp. 2.000 per buah dan membeli 6 buah buku serupa dengan harga rata-rata Rp.8.000 per buah. Berapakah harga rata-rata untuk keseluruhan buku?,Rp. 4.500,Rp. 5.000,Rp. 6.000,Rp. 7.500,C
 #,##,Sebuah mesin fotokopi dengan kecepatan konstan dapat menghasilkan/memotokopi 250 lembar dalam 6 menit. Berapa lama diperlukan untuk memotokopi 50 lembar?,50/250 = 6/x,50/6 = x/250,250/50 = x/6,50/250 = x/6,D
 #,##,"Seutas tali dipotong menjadi dua bagian sedemikian rupa sehingga panjang bagian pertama adalah tiga kali panjang bagian kedua. Jika bagian yang lebih panjang adalah 12 meter, berapakah panjang tali sebelum dipotong?",12,18,2,24,A
 #,##,Sebuah perusahaan bis antarkota mengarungi jumlah perjalanan (rit) untuk jalur tertentu sebesar 20 persen menjadi 8 kali sehari. Berapakah jumlah rit setiap hari sebelum ada pengurangan?,2,4,10,12,C
-#,##,"Pada perjalanan tertentu, jika suatu kereta melaju dengan kecepatan rata--rata 50 km per jam, maka kereta tersebut akan terlambat 2 jam sampai di tujuan. Jika kereta melaju dengan kecepatan rata-rata 70 km per jam, maka sampai di tujuan 2 jam lebih cepat. Berapakah jarak perjalanan tersebut?",antara 80 km – 100 km,antara 100 km – 120 km,antara 120 km – 140 km,lebih dari 140 km,D
+#,##,"Pada perjalanan tertentu, jika suatu kereta melaju dengan kecepatan rata--rata 50 km per jam, maka kereta tersebut akan terlambat 2 jam sampai di tujuan. Jika kereta melaju dengan kecepatan rata-rata 70 km per jam, maka sampai di tujuan 2 jam lebih cepat. Berapakah jarak perjalanan tersebut?",antara 80 km - 100 km,antara 100 km - 120 km,antara 120 km - 140 km,lebih dari 140 km,D
 #,KEMAMPUAN PENALARAN,,,,,,
 #,##,Semua pengendara mobil harus memakai safety belt. Sebagian pengendara mobil memakai jam tangan. Kesimpulannya?,Sebagian pengendara mobil tidak memakai safety belt dan jam tangan,Sebagian pengendara mobil memakai safety belt dan jam tangan,Semua pengendara mobil tidak memakai safety belt dan jam tangan,Sebagian pengendara mobil tidak memakai jam tangan,B
 #,##,Semua penyelam adalah perenang. Sementara penyelam adalah pelaut. Kesimpulannya?,Sementara penyelam bukan pelaut,Sementara penyelam bukan perenang,Semua pelaut adalah perenang,Sementara pelaut adalah perenang,A
@@ -99,53 +99,42 @@ TES POTENSI AKADEMIK,,,,,,,
 #,##,"X = Volume dari kubus dengan sisi 16 cm Y = Volume dari balok dengan sisi 8 cm, 18 cm, 20 cm.",Bila X lebih besar dari Y,Bila X lebih kecil dari Y,Bila X sama besar Y,Bila X dan Y hubungannya tidak dapat ditentukan,A
 #,##,"X adalah jumlah bulan dalam 4 windu 8 tahun Y adalah jumlah hari dalam 1,5 bulan.",Bila X lebih besar dari Y,Bila X lebih kecil dari Y,Bila X sama besar Y,Bila X dan Y hubungannya tidak dapat ditentukan,A
 #,##,X ialah jumlah titik sudut pada limas segi empat Y ialah huruf A pada kata Afrika Selatan,Bila X lebih besar dari Y,Bila X lebih kecil dari Y,Bila X sama besar Y,Bila X dan Y hubungannya tidak dapat ditentukan,A
-#,##,1 5 5 17 17 …,29,33,37,41,C
-#,##,31 34 28 40 16 64 …,-32,-8,8,32,A
-#,##,5 11 15 21 25 …,31,35,38,40,A
-#,##,1 -1 0 4 11 …,17,18,20,21,D
-#,##,C D F I M …,O,P,Q,R,D
-#,##,4 3 16 9 64 …,81,27,24,15,B
-#,##,K L L M N O O P Q R … …,R S,S T,S R,R R,A
-#,##,10 11 10 10 10 …,11,10,9,8,C
-#,##,12 24 22 11 13 26 24 12 14 … …,28 26,16 32,28 30,16 8,A
+#,##,1 5 5 17 17 ...,29,33,37,41,C
+#,##,31 34 28 40 16 64 ...,-32,-8,8,32,A
+#,##,5 11 15 21 25 ...,31,35,38,40,A
+#,##,1 -1 0 4 11 ...,17,18,20,21,D
+#,##,C D F I M ...,O,P,Q,R,D
+#,##,4 3 16 9 64 ...,81,27,24,15,B
+#,##,K L L M N O O P Q R ...,R S,S T,S R,R R,A
+#,##,10 11 10 10 10 ...,11,10,9,8,C
+#,##,12 24 22 11 13 26 24 12 14 ...,28 26,16 32,28 30,16 8,A
 #,##,Berapakah X dari deretan bilangan 25 15 95 85 71 X ?,51,55,61,65,C
 #,##,Jika 7+10 = 11; 8+5 = 7; dan 4+11 = 11; maka 9+7 =,7,8,9,10,D
-#,##,"F E D A B C L K J G H I R, …, …","M, N","N, O","P, Q","Q, P",D
+#,##,"F E D A B C L K J G H I R, ..., ...","M, N","N, O","P, Q","Q, P",D
 #,Untuk 4 Nomer Selanjutnya,"Enam tim teratas di Liga Italia adalah AC Milan, Fiorentina Inter, Juve, Lazio, dan Roma. Empat tim yang teratas pada saat liga berakhir akan mendapatkan tiket Liga Champions. Kondisi-kondisi yang terjadi pada saat akhir liga adalah sebagai berikut: Posisi Juventus berada di atas Fiorentina Milan akan mendapatkan tiket Liga Champions terakhir atau hanya berada di posisi keenam Posisi Milan berada di bawah Roma Fiorentina ada di belakang Inter dan diantara keduanya ada dua tim lain,",,,,,
-#,##,Urutan yang memenuhi kondisi-kondisi di atas adalah…,"Lazio, Juve, Inter, Roma, Fiorentina, Milan","Roma, Inter, juve, Lazio, Fiorentina, Milan","Inter, Juve, Milan, Fiorentina, Roma, Lazio","Lazio, Juve, Inter, Milan, Roma, Fiorentina",B
-#,##,"Jika Inter menjadi runner-up dan Milan mendapat tiket Liga Champions terakhir, maka pernyataan berikut ini yang pasti benar adalah…",Juve menjuarai Liga Italia,Roma menjuarai Liga Italia,Roma berada di posisi tiga,Lazio berada di posisi enam,D
+#,##,Urutan yang memenuhi kondisi-kondisi di atas adala ...,"Lazio, Juve, Inter, Roma, Fiorentina, Milan","Roma, Inter, juve, Lazio, Fiorentina, Milan","Inter, Juve, Milan, Fiorentina, Roma, Lazio","Lazio, Juve, Inter, Milan, Roma, Fiorentina",B
+#,##,"Jika Inter menjadi runner-up dan Milan mendapat tiket Liga Champions terakhir, maka pernyataan berikut ini yang pasti benar adala ...",Juve menjuarai Liga Italia,Roma menjuarai Liga Italia,Roma berada di posisi tiga,Lazio berada di posisi enam,D
 #,##,"Jika Milan mendapat tiket Liga Champions terakhir, tim mana saja yang mungkin berada di posisi kelima?","Fiorentina, Juve, dan Lazio","Fiorentina, Juve, dan Roma",Juve dan Roma,Fiorentina dan Lazio,A
-#,##,"Jika Roma berada di posisi kelima pada saat liga berakhir, maka pernyataan di bawah ini yang pasti benar adalah…",Inter berada di posisi tiga,Inter menjuarai Liga Italia,Milan berada di posisi empat,Juve menjuarai Liga Italia,B
+#,##,"Jika Roma berada di posisi kelima pada saat liga berakhir, maka pernyataan di bawah ini yang pasti benar adala ...",Inter berada di posisi tiga,Inter menjuarai Liga Italia,Milan berada di posisi empat,Juve menjuarai Liga Italia,B
 #,Untuk 4 Nomer Selanjutnya,"Juki akan mengambil sepatunya di rak sepatu. Ia mempunyai sepatu yang berlainan. Sepatunya tersebut telah diberi huruf A, B, C, D, dan E. Keterangan mengenai sepatu Juki: Terdapat 3 sepatu bermerek Aduhdis dan 2 sepatu bermerek Kanvas, Terdapat 3 sepatu berwarna Putih dan 2 sepatu berwarna hitam, A dan C bermerek sama, D dan E salah satunya adalah Aduhdis, B dan E mempunyai warna yang sama, C dan D salah satunya berwarna adalah Putih",,,,,
 #,##,Pada akhirnya Juki memutuskan untuk mengambil sepatu bermerek Kanvas yang berwarna hitam. sepatu manakah yang dipilih Juki?,A,B,C,D,D
 #,##,Apakah B?,Sepatu berwarna putih dan bermerek Aduhdis,Sepatu berwarna putih dan bermerek Kanvas,Sepatu berwarna hitam dan bermerek Aduhdis,Sepatu berwarna hitam dan bermerek Kanvas,B
 #,##,Yang manakah diantara sepatu Juki yang berwarna hitam dan bermerek Aduhdis?,A,C,D,E,A
 #,##,Manakah diantara pernyataan  di bawah ini yang benar?,A adalah sepatu berwarna putih dan bermerek Aduhdis,B adalah sepatu berwarna hitam dan bermerek Kanvas,C adalah sepatu berwarna putih dan bermerek Aduhdis,D adalah sepatu berwarna putih dan bermerek Kanvas,C
-#,,,,,,,
-#,,,,,,,
-#,,,,,,,
-#,,,,,,,
-#,,,,,,,
-#,,,,,,,
-#,,,,,,,
-#,Carilah gambar yang bukan kelompoknya,,,,,,
-#,,,,,,,
-#,,,,,,,
-#,,,,,,,
-BAHASA INGGRIS,,,,,,,
+BAHASA INGGRIS,,,,,,,
 #,STRUCTURE AND WRITTEN EXPRESSION,Select the correct answer from the four choices given!,,,,,
-#,##,"If Jack’s wife won’t agree to sign the papers, ____",neither won’t be,neither he will,he will either,neither will he,D
+#,##,"If Jack's wife won't agree to sign the papers, ____",neither won't be,neither he will,he will either,neither will he,D
 #,##,Rani seems very mature for a _____.,twenty-year-old girl,girl with twenty years,girl of twenty year,twenty-years-old girl,A
 #,##,"The more I think about philosophy, _____.",The less I understand it,I like it less,better I like it,it likes better,A
-#,##,Azis wishes he … to Ikranegara’s play on the 30th of November last year.,had gone,went,has gone,were going,A
-#,##,Linda is considering … to the Deep Purple’s concert,not going,not go,not to go,not goes,A
-#,##,Could you please tell me …,where is the STAN secretariat?,where the STAN secretariat?,where the STAN secretariat is?,where did the STAN secretariat?,C
-#,##,I’d rather you … anything about it for the time being.,do,didn’t do,don’t,didn’t,B
-#,##,"After listening to his mother’s ... words, the baby stopped crying.",comfort,comforting,comfortably,comfortable,B
+#,##,Azis wishes he ... to Ikranegara's play on the 30th of November last year.,had gone,went,has gone,were going,A
+#,##,Linda is considering ... to the Deep Purple's concert,not going,not go,not to go,not goes,A
+#,##,Could you please tell me ...,where is the STAN secretariat?,where the STAN secretariat?,where the STAN secretariat is?,where did the STAN secretariat?,C
+#,##,I'd rather you ... anything about it for the time being.,do,didn't do,don't,didn't,B
+#,##,"After listening to his mother's ... words, the baby stopped crying.",comfort,comforting,comfortably,comfortable,B
 #,##,He tried to ... the river by swimming.,go about,go through,go over,go after,B
 #,##,"..... , Hinata, is waiting for me.",Right now,Because of time,My girlfriend,Happily,C
 #,##,".... show the relations among neurons, they do not preclude the possibility that other aspects are important.",Neural theories,A neural theories,Although neural theories,However neural theories,C
-#,##,Ferry had his brother … his shoes for him.,to tie,tie,tied,tying,B
+#,##,Ferry had his brother ... his shoes for him.,to tie,tie,tied,tying,B
 #,##,The North Platte River ... from Wyoming into Nebraska.,It flowed,Flows,Flowing,With flowing water,B
 #,##,..... have at least four hours of hazardous materials response training is mandated by federal law.,All police officers,All police officers must,That all police officers,For all police officers,C
 #,##,.... loom high above the north and northeastern boundaries of the expanding city of Tucson.,The Santa Catalina mountains,Because the Santa Catalina mountains,The Santa Catalina mountains are,That the Santa Catalina mountains,A
@@ -159,10 +148,10 @@ BAHASA INGGRIS,,,,,,,
 #,##,".......... Army camps near Washington, D.C., in 1861, Julia Ward Howe wrote ""The Battle Hymn of the Republic.""",She visited,After visiting,When visited,When was she visiting,B
 #,##,"The daughters of Joseph LaFlesche were born into the generation of Omaha forced to abandon tribal traditions, ........ on the reservation, and to adapt to the white man's ways.",they matured,to mature,maturing,to maturity,B
 #,##,Presidential ....... held every four years on the first Tuesday after the first Monday in November.,electing,elections are,is elected,elected and,B
-#,ERROR RECOGNITION,Choose the one word or phrase which would not be appropriate in standard written English!,,,,,
-#,##,The new machine is processes 50 percent more than the previous machine.,new,is processes,than,previous,B
+#,ERROR RECOGNITION,Choose the one word or phrase which would not be appropriate in standard written English!,,,,,
+#,##,The new machine is processes 50 percent more than the previous machine.,new,is processes,than,previous,B
 #,##,"The development of permanent teeth, alike that of deducious teeth, begins before birth.",alike,that,begins,birth,A
-#,##,During the 1960’s the Berkeley campus of the University of California came to national attention as a result its radical political activity.,during,came to,result,political,C
+#,##,During the 1960's the Berkeley campus of the University of California came to national attention as a result its radical political activity.,during,came to,result,political,C
 #,##,The United States has import all carpet wools in recent years because domestic wools are too fine and soft for carpets.,import,all,because,too fine,A
 #,##,Seldom Antarctic icebergs will move far enough north to disturb South Pacific shipping lanes.,antarctic icebergs will,far enough,to disturb,shipping,A
 #,##,People voice theirs opinions first in small groups or among friends and acquaintances.,theirs,groups,among,acquaintances,A
@@ -175,26 +164,26 @@ BAHASA INGGRIS,,,,,,,
 #,##,Edelman stresses the mounting evidence showing that greatly variation on a microscopic scale is likely.,mounting,showing,greatly,likely,C
 #,##,"When filled with a gas more lighter than air, a ballon becomes bouyant and rises.",filled,more,becomes,rises,B
 #,##,"The bear, a meat-eaten land animal, is generally peaceable if it and its young are left undisturbed.",meat-eaten,generally,peaceable,are left,A
-#,READING COMPREHENSION,"Bees are insects that live in almost every part of the world except the northernmost and southernmost sections. There are 10,000 species, or kinds, of bees. One species is the honeybee, which is the only bee that produces honey and wax. Humans use the wax in making candles, lipsticks, and other products. We use the honey they produced as a food. Bees are truly amazing because while they are gathering the nectar and pollen with which they make honey, they are helping to fertilize the flowers on which they land. Many fruits and vegetables would not survive if bees did not carry the pollen from blossom to blossom. The worker bee carries nectar to the hive in a special stomach called a honey stomach. The hive is a nest with storage space for honey. Other workers make some beeswax and shape it into a “honey-comb,” which is a mass of six-sided compartments, or cells, and which is waterproof. The queen lays eggs in completed cells. As the workers build more cells, the queen lays more eggs. All workers, like the queen, are female, but are smaller than the queen. The male honeybees are called drones; they do not work and cannot sting. They are developed from unfertilized eggs, and their only job is to impregnate a queen. The queen must be fertilized in order to lay worker eggs. During the season in which less honey is available, and the drone is of no further use, the workers block the drones from eating the honey so that they will starve to death.",,,,,
-#,##,Which of the following is the best title for this reading?,The Many Species of BeesUseless,The Useless Drone ,The Honeybee – Its Characteristics and Usefulness,Making Honey,C
+#,READING COMPREHENSION,"Bees are insects that live in almost every part of the world except the northernmost and southernmost sections. There are 10,000 species, or kinds, of bees. One species is the honeybee, which is the only bee that produces honey and wax. Humans use the wax in making candles, lipsticks, and other products. We use the honey they produced as a food. Bees are truly amazing because while they are gathering the nectar and pollen with which they make honey, they are helping to fertilize the flowers on which they land. Many fruits and vegetables would not survive if bees did not carry the pollen from blossom to blossom. The worker bee carries nectar to the hive in a special stomach called a honey stomach. The hive is a nest with storage space for honey. Other workers make some beeswax and shape it into a "honey-comb," which is a mass of six-sided compartments, or cells, and which is waterproof. The queen lays eggs in completed cells. As the workers build more cells, the queen lays more eggs. All workers, like the queen, are female, but are smaller than the queen. The male honeybees are called drones; they do not work and cannot sting. They are developed from unfertilized eggs, and their only job is to impregnate a queen. The queen must be fertilized in order to lay worker eggs. During the season in which less honey is available, and the drone is of no further use, the workers block the drones from eating the honey so that they will starve to death.",,,,,
+#,##,Which of the following is the best title for this reading?,The Many Species of BeesUseless,The Useless Drone ,The Honeybee - Its Characteristics and Usefulness,Making Honey,C
 #,##,Which of the following is correct about the drones?,They collect less honey than the workers ,Their only purpose is to mate with the queen ,They come from eggs that have been fertilized by other drones ,They can be male or female,B
 #,##,Which of the following can be inferred from the passage?,The workers need to conserve food for useful members of the colony when food is scarce.,Bees are unnecessary in the food chain.,Drones are completely dispensable.,Bees can drown in their hive in a heavy rain.,A
 #,##,Honey is carried to the hive in a honey stomach by the ,Queens ,Drones ,Males ,Workers,D
 #,##,In what way does the reading imply that bees are useful in nature?,They pollinate fruit and vegetable plants.,They make marvelous creation from wax.,They kill the dangerous drones.,They create storage spaces.,A
 #,##,All of the following are characteristics of a honeycomb EXCEPT,It contains hexagonal sections.,It is made of honey.,It is made of wax,It is impermeable,B
 #,##,It is implied in the reading passage that bees can be found in all of the following areas EXCEPT,Africa ,Europe,China,Antartica,D
-#,Reading for next 7 questios,"CAUTION: Your signature on this legal documents indicates that you have read and understood its contents and agree to abide by its conditions. For apartment number 109 of University Park Apartment located at 600 University Park. 1) Security deposit. The amount of the security deposit is $250, at no time to be applied as rent, and to be refunded upon termination of agreement less any amount retained in payment of damages to the apartment. Should damages to the premises exceed the amount of the deposit, the resident agrees to reimburse the management for such excess. 2) Termination of agreement. This security deposit shall be refunded less any retained amount specified upon the termination of this agreement at the end of the original rental period if notice in writing of termination has been given thirty (30) days in advance of such termination, the keys have been returned to the management,and the premises are found upon inspection to be clean and undamaged.",,,,,
+#,Reading for next 7 questios,"CAUTION: Your signature on this legal documents indicates that you have read and understood its contents and agree to abide by its conditions. For apartment number 109 of University Park Apartment located at 600 University Park. 1) Security deposit. The amount of the security deposit is $250, at no time to be applied as rent, and to be refunded upon termination of agreement less any amount retained in payment of damages to the apartment. Should damages to the premises exceed the amount of the deposit, the resident agrees to reimburse the management for such excess. 2) Termination of agreement. This security deposit shall be refunded less any retained amount specified upon the termination of this agreement at the end of the original rental period if notice in writing of termination has been given thirty (30) days in advance of such termination, the keys have been returned to the management,and the premises are found upon inspection to be clean and undamaged.",,,,,
 #,##,This passage is,A rental agreement,A caution,A termination of agreement,A security deposit,A
 #,##,Under what condition could the manager refuse to return a security deposit?,If the keys were not returned 30 days before the resident planned to move,If the apartment were undamaged,If the resident did not give notice in writing,If the manager could not find another resident to take the apartment,C
 #,##,The author mentions all of the following conditions in the document EXCEPT,Terms for security deposit,Terms for payment of damages,Terms for subleasing the apartement to another person,Terms for returning the keys to the apartment,C
-#,##,The word “premises” in the last sentence most nearly means,Furniture,Floors,Property,Utilities,C
-#,##,The word “its” in the first sentence refers to ,Conditions ,Contents ,Document ,Signature,C
+#,##,The word "premises" in the last sentence most nearly means,Furniture,Floors,Property,Utilities,C
+#,##,The word "its" in the first sentence refers to ,Conditions ,Contents ,Document ,Signature,C
 #,##,"If a resident plans to move from University Park Apartments on June 15, when should he notify the manager?",On May 15,On June 1 ,On July 15,On June 15,A
-#,##,The word “undamaged” in the last sentence most nearly means,Defective,Broken,Well,Depraved,C
-#,Reading for next 6 questios,"General appliance company guarantees the product to be free from manufacturing defects for one year after tha original date of purchase. If the product should become defective within the warranty period, General Appliance will repair or replace it free of charge, provided that damage to the product has not resulted from accident or misuse. Deliver the product to any one of the authorized service facilities whose names and adresses are listed in the accompanying brochures. Direct any questions regarding the warranty to Consumer Service Division, General Applianse Company, 1621 Bergen Street, Newark, Ney Jersey 07102.",,,,,
+#,##,The word "undamaged" in the last sentence most nearly means,Defective,Broken,Well,Depraved,C
+#,Reading for next 6 questios,"General appliance company guarantees the product to be free from manufacturing defects for one year after tha original date of purchase. If the product should become defective within the warranty period, General Appliance will repair or replace it free of charge, provided that damage to the product has not resulted from accident or misuse. Deliver the product to any one of the authorized service facilities whose names and adresses are listed in the accompanying brochures. Direct any questions regarding the warranty to Consumer Service Division, General Applianse Company, 1621 Bergen Street, Newark, Ney Jersey 07102.",,,,,
 #,##,Which sentence below best summerizes this passage? ,General Appliance Company is an honest manufacturer.,"If a General Appliance product is damaged in an accident, the company will replace it.","If you have an accident while using a General Appliance product, the company will pay damages.","If a General Appliance product is defective when purchased, the company will repair or replace it.",D
 #,##,Where should a defective product be taken for repair or replacement?,To the store where it was purchased,To the Consumer Service Division of General Appliance Company ,To an authorized service facility ,To the manufacturer that made the product,C
 #,##,The author mentions all of the following prosedures for customers to receive satisfaction from the company EXCEPT,Take the defective product to an authorized facility,Write to the Customer Service Division,Consult the product brochure for names and addresses of service locations ,Wait for one year from the date of purchase for free replacement,D
-#,##,Another word which is often used in place of “warranty” in the second sentence is,Purchase ,Manufacturing ,Product ,Guarantee,D
-#,##,The word “it” in the second sentence refers to ,Damage ,The product ,Accident or misuse ,The warranty period,B
+#,##,Another word which is often used in place of "warranty" in the second sentence is,Purchase ,Manufacturing ,Product ,Guarantee,D
+#,##,The word "it" in the second sentence refers to ,Damage ,The product ,Accident or misuse ,The warranty period,B
 #,##,We amy assume that General Appliance Company would replace a product under which of the following circumstances?,When the purchase was made fourteen months ago ,When the product was recently purchased on sale,When the product was dropped and damaged after purchase ,When the replacement was paid for by the customer,B

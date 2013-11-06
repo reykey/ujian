@@ -70,7 +70,7 @@ class Admin extends Admin_Controller
         $this->streams->cp->entries_table('paket', 'paket', 5, 'admin/tryout/index', true, $extra);
     }
 
-    public function group($paket_id = false){
+    public function group($paket_id = false, $offset = 0){
 
         $data['paket'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
 
@@ -78,13 +78,15 @@ class Admin extends Admin_Controller
                 'stream'        => 'group_soal',
                 'namespace'     => 'group_soal',
                 'paginate'      => 'yes',
+                'order_by'      => 'ordering_count',
+                'sort'          => 'asc',
                 'limit'         => 10,
-                'page_segment'  => 4,
+                'pag_segment'   => 5,
                 'where'         => "paket_id = $paket_id"
-                );
+            );
 
+        $data['nomoratas'] = $offset+1;
         $data['entries'] = $this->streams->entries->get_entries($params);
-
         $data['paket_id'] = $paket_id;
 
         // $group['datagroup'] = $this->load->view('admin/group_v', array('entries'=>$entries), true);
@@ -93,41 +95,36 @@ class Admin extends Admin_Controller
 
     }
 
-    public function soal($paket_id = false, $group_id = false){
-        
+    public function soal($paket_id = false, $group_id = false)
+    {
         $data['group'] = $this->streams->entries->get_entry($group_id, 'group_soal', 'group_soal');
 
-            $params = array(
-                'stream'        => 'soal',
-                'namespace'     => 'soal',
-                'paginate'      => 'yes',
-                'limit'         => 10,
-                'page_segment'  => 4,
-                'where'         => SITE_REF."_to_soal.group_id = $group_id"
-                );
+        $params = array(
+            'stream'        => 'soal',
+            'namespace'     => 'soal',
+            'paginate'      => 'yes',
+            'order_by'      => 'ordering_count',
+            'sort'          => 'asc',
+            'limit'         => 10,
+            'pag_segment'   => 6,
+            'where'         => SITE_REF."_to_soal.group_id = $group_id"
+            );
 
-            $data['entries'] = $this->streams->entries->get_entries($params);
+        $data['entries'] = $this->streams->entries->get_entries($params);
 
-            $data['paket_id'] = $paket_id;
-            $data['group_id'] = $group_id;
+        $data['paket_id'] = $paket_id;
+        $data['group_id'] = $group_id;
 
-        // $group['datagroup'] = $this->load->view('admin/group_v', array('entries'=>$entries), true);
-
-            $this->template->build('admin/soal_v', $data);
-        //);
-
-        //$this->streams->cp->entry_form('paket', 'streams', 'edit', $id, true, $extra); 
+        $this->template->build('admin/soal_v', $data);
     }    
 
     public function tambah_paket(){
-        $extra = array (
-            'return' => 'admin/tryout',
+        $extra = array(
+            'return' => 'admin/tryout/index',
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:new_paket'),
-         );
-
-        //$this->streams->cp->entry_form('faqs', 'faq', 'new', null, true, $extra);
+        );
 
         $this->streams->cp->entry_form('paket', 'paket', 'new', true, $extra);
     
@@ -256,7 +253,7 @@ class Admin extends Admin_Controller
                 // konversi ke array
                 $array_csv = array();
                 foreach ($csv as $row) {
-                    $array_csv[] = str_getcsv(trim($row), ";");
+                    $array_csv[] = str_getcsv(trim($row));
                 }
 
                 // dump($array_csv);
@@ -279,14 +276,8 @@ class Admin extends Admin_Controller
 
                         // kalo ini baris grup soal
                         else if($row[1] != '##') {
-                            // cek apakah grup soal ini sudah ada
-                            // kalo belum, isikan
-                            $grup = $this->soal_m->get_group(array('judul'=>trim($row[1])));
-                            if($grup)
-                                $group_id = $grup['id'];
-                            else
-                                $group_id = $this->streams->entries->insert_entry(
-                                    array('judul' => $row[1], 'instruksi' => $row[2], 'paket_id' => $paket_id, 'category' => $kategori_id),
+                            $group_id = $this->streams->entries->insert_entry(
+                                array('judul' => $row[1], 'instruksi' => $row[2], 'paket_id' => $paket_id, 'category' => $kategori_id),
                                     'group_soal',
                                     'group_soal'
                                 );

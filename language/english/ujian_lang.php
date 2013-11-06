@@ -15,6 +15,7 @@ $lang['ujian:import']				= 'Import Soal';
 //$lang['ujian:paket']				= 'Group Paket';
 
 $lang['ujian:namag']				= 'Nama Group Soal';
+$lang['ujian:namas']				= 'Soal';
 $lang['ujian:lihatSoal']				= 'Lihat Soal';
 $lang['ujian:jawaban']				= 'Jawaban';
 $lang['ujian:new_group']				= 'Tambah Group';

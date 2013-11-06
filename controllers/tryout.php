@@ -12,8 +12,10 @@ class Tryout extends Public_Controller
         $this->lang->load('ujian');
         $this->load->driver('Streams');
         $this->load->model('soal_m');
+        $this->template->append_css('module::tryout.css');
         $this->template->append_js('module::jquery-1.9.1.min.js');
         $this->template->append_js('module::jquery.countdown.js');
+        // $this->template->append_js('module::bootstrap-paginator.min.js');
 
     }
 
@@ -21,57 +23,60 @@ class Tryout extends Public_Controller
     public function index()
     {
         $params = array(
-                'stream'        => 'to_user',
-                'namespace'     => 'to_user',
-                'paginate'      => 'yes',
-                'limit'         => 10,
-                'page_segment'  => 4
+                'stream'    => 'to_user',
+                'namespace' => 'to_user',
+                'order_by'  => 'paket_id',
+                'sort'      => 'asc',
+                'where'     => SITE_REF.'_so_to_user.user_id = '.$this->current_user->id
                 );
-
         
-        $sama=$this->current_user->id;
-        $data['nilai']=$this->soal_m->cekOrder($sama);
-        //print_r($nilai);
+        $data['paket'] = $this->streams->entries->get_entries($params);
 
-        $data['pengguna'] = $this->streams->entries->get_entries($params);
+        $user_id = $this->current_user->id;
+        $data['paket_user']=$this->soal_m->get_user_paket($user_id);
 
-
-        $this->template->build('index',$data);
-        
-
+        $this->template->build('index', $data);
     }
 
      public function prepare($paket_id = false)
     {
         $items['id'] = $paket_id;
         $this->template->build('prepare_v',$items);
-
     }    
 
-    public function getMulai($paket_id = false){
+    public function inisiasi($paket_id = false)
+    {
+        // cek apakah user benar sudah punya akses ke tryout ini
+
+
+        // cek apakah 
 
         $jam_mulai = new DateTime('now');
  
-        $this->soal_m->getMulai(date("Y-m-d H:i:s", $jam_mulai->getTimestamp()), $this->current_user->id, $paket_id);
+        $this->soal_m->inisiasi(date("Y-m-d H:i:s", $jam_mulai->getTimestamp()), $this->current_user->id, $paket_id);
         $this->session->set_userdata('jam_mulai', $jam_mulai->getTimestamp());
         dump($jam_mulai->getTimestamp());
         dump($this->session->userdata('jam_mulai'));
-        redirect('tryout/groupSoal/'.$paket_id);
+        redirect('tryout/mulai/'.$paket_id);
         
     }
     // public function mulai($paket_id = false){
     //     $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
 
-    // }
+    // }[]
 
-    public function groupSoal($paket_id = false)
+    public function mulai($paket_id = false)
     {
+        $items['perpage'] = $this->settings->records_per_page;
+
         $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
         // dump($items['paketSoal']);
 
         $params = array(
                 'stream'        => 'group_soal',
                 'namespace'     => 'group_soal',
+                'order_by'      => 'ordering_count',
+                'sort'          => 'asc',
                 'where'         => "paket_id = $paket_id"
                 );
         $groups = $this->streams->entries->get_entries($params);
@@ -82,33 +87,25 @@ class Tryout extends Public_Controller
                 $paramsoal = array(
                     'stream'        => 'soal',
                     'namespace'     => 'soal',
-                    'where'         => "default_to_soal.group_id = {$group['id']}"
+                    'order_by'      => 'ordering_count',
+                    'sort'          => 'asc',
+                    'where'         => SITE_REF."_to_soal.group_id = {$group['id']}"
                     );
                 $soal = $this->streams->entries->get_entries($paramsoal);
 
                 $group['soal'] = $soal['entries'];
             }
-
         }
         
         $user_id = $this->current_user->id;
-        $params = array('stream' => 'jawaban',
-                        'namespace' => 'jawaban',
-                        'where' => "default_to_jawaban.paket_id = $paket_id AND default_to_jawaban.user_id = $user_id");
-
-        
-        $items['jawaban'] = $this->streams->entries->get_entries($params);
+        $items['jawaban'] = $this->soal_m->get_jawaban_user($paket_id, $user_id);
         //dump($jawaban);
-        
         
         $items['group'] = $groups['entries'];
 
         $this->template
             ->set('id', $paket_id)
             ->build('tryout', $items);
-
-
-
     }
 
     function simpan_jawaban(){
@@ -137,19 +134,17 @@ class Tryout extends Public_Controller
             
         }
     }
-
-
     
-    public function getSelesai($paket_id = false){
+    public function selesai($paket_id = false){
         //$items['id'] = $paket_id;
 
         $jam_selesai = new DateTime('now');
 
-        $this->soal_m->getSelesai(date("Y-m-d H:i:s", $jam_selesai->getTimestamp()), $this->current_user->id, $paket_id);
+        $this->soal_m->set_selesai(date("Y-m-d H:i:s", $jam_selesai->getTimestamp()), $this->current_user->id, $paket_id);
         $this->session->set_userdata('jam_selesai', $jam_selesai->getTimestamp()); 
 
-        dump($jam_selesai->getTimestamp());
-        dump($this->session->userdata('jam_selesai'));
+        // dump($jam_selesai->getTimestamp());
+        // dump($this->session->userdata('jam_selesai'));
 
         redirect('tryout/hasil/'.$paket_id);
         // $params = array(

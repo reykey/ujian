@@ -24,14 +24,14 @@ class Soal_m extends MY_Model{
 		return $row;
 	}
 
-	function cekOrder($id_user = false){
+	function get_user_paket($id_user = false){
 		return $this->db->select('so_to_user.*')
 		->from('so_to_user')
 		->where('user_id',$id_user and 'status_pengerjaan',"belum")
-		->get()->result();
+		->get()->row();
 	}
 
-	function getMulai($jam_mulai, $user_id, $paket_id){
+	function inisiasi($jam_mulai, $user_id, $paket_id){
 		$data = array(
 			'jam_mulai'=>$jam_mulai
 			); 
@@ -41,7 +41,7 @@ class Soal_m extends MY_Model{
 		return $this->db->affected_rows();
 	}
 
-	function getSelesai($jam_selesai, $user_id, $paket_id){
+	function set_selesai($jam_selesai, $user_id, $paket_id){
 		$data = array(
 			'jam_selesai'=>$jam_selesai
 			);
@@ -89,6 +89,15 @@ class Soal_m extends MY_Model{
 		
 		return $paket;
 
+	}
+
+	public function get_jawaban_user($paket_id, $user_id)
+	{
+		return $this->db->select('soal_id, jawaban')
+				->from('to_jawaban')
+				->where('paket_id', $paket_id)
+				->where('user_id', $user_id)
+				->get()->result_array();
 	}
 }
 
