@@ -20,6 +20,7 @@ class Admin_to_user extends Admin_Controller {
         $this->lang->load('ujian');
 		$this->load->driver('Streams');
 		$this->load->model('soal_m');
+		$this->load->helper('tryout');
 	}
 
 
@@ -40,8 +41,6 @@ class Admin_to_user extends Admin_Controller {
 
 		$this->template->build('admin/to_user', $order);
 	}
-
-
 
 	public function table() {
 
@@ -71,26 +70,20 @@ class Admin_to_user extends Admin_Controller {
 
 	}
 
-	// public function edit($id = 0) {
+	public function detail($id = 0) 
+	{
+        $data['detail'] = $this->soal_m->get_detail_to_user($id);
+        $data['to_user'] = $this->ion_auth->get_user($data['detail']->user_id);
 
-	// 	$extra = array(
- //            'return' => 'so/admin_orderto',
- //            'success_message' => lang('simple_order:success_message'),
- //            'failure_message' => lang('simple_order:failure_message'),
- //            'title' => anchor('so/admin_orderto/edit/'.$id, 'Order').' &raquo; '.lang('simple_order:edit')
- //        );
+        // dump($data);
 
- //        $skips = array('paket_id', 'user_id', 'nilai', 'jam_mulai', 'jam_selesai');
+        $this->template->build('admin/detail_user', $data);
+	}
 
- //        $this->streams->cp->entry_form('to_user', 'streams', 'edit', $id, true, $extra, $skips);
+	function compare(){
+		$date1 = strtotime('2013-11-12 12:00:00');
+		$date2 = strtotime('2013-12-14 15:34:21');
+		dump(diff_times($date2, $date1));
+	}
 
-	// }
-
-	// public function update($id, $update){
-	// 	$entry_data = array(
- //        	'status'    => $update
- //   		);
-		
-	// 	$this->streams->entries->update_entry($id, $entry_data, 'to_user', 'streams');
-	// }
 }

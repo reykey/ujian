@@ -44,10 +44,11 @@
             <?php else: ?>
               <td></td>
             <?php endif; ?>
-          <?php elseif ($tglSekarang <= $dtglBuka): ?>
-            <td style="text-align:right"><label class="label">Belum Dibuka</label></td>
+          <?php elseif ($item['status_pengerjaan']['key'] == 'expired'): ?>
+            <td style="text-align:right"><label class="label">Expired</label></td>
           <?php elseif ($tglSekarang >= $tglTutup): ?>
             <td style="text-align:right"><label class="label">Expired</label></td>
+            <?php set_to_user_expired($item['id']); ?>
           <?php endif; ?>
         </tr>
         <?php $i++; endforeach; ?> 

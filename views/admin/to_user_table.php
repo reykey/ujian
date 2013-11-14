@@ -9,11 +9,12 @@
 					<th><?php echo lang('to:paket'); ?></th>
 					<th><?php echo lang('to:jam_mulai'); ?></th>
 					<th><?php echo lang('to:jam_selesai'); ?></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
-					<td colspan="7">
+					<td colspan="8">
 						<div class="inner"><?php $this->load->view('admin/partials/pagination'); ?></div>
 					</td>
 				</tr>
@@ -29,13 +30,13 @@
 					<td><?php echo $item["paket_id"]["judul"]; ?></td>
 					<td><?php echo ($item["jam_mulai"]) ? date("d F Y H:i:s", $item["jam_mulai"]) : "-"; ?></td>
 					<td><?php echo ($item["jam_selesai"]) ? date("d F Y H:i:s", $item["jam_selesai"]): "-"; ?></td>
-					<!-- <td class="actions">
-						<?php echo anchor('so/admin_orderto/edit/'.$item["id"], lang('simple_order:edit'), array('class'=>'button', 'title'=>lang('simple_order:edit'))); ?>
-					</td> -->
+					<td class="actions">
+						<?php echo anchor('admin/tryout/to_user/detail/'.$item["id"], lang('ujian:detail'), array('class'=>'button', 'title'=>lang('ujian:detail'))); ?>
+					</td>
 				</tr>
-				<?php $i++; endforeach; else: ?> <div class="no_data"><?php echo lang('simple_order:no_items'); ?></div> <?php  endif; ?>
+				<?php $i++; endforeach; else: ?> <div class="no_data"><?php echo lang('ujian:no_items'); ?></div> <?php  endif; ?>
 			</tbody>
 		</table>
 	<?php else: ?>
-		<div class="no_data"><?php echo lang('simple_order:no_items'); ?></div>
+		<div class="no_data"><?php echo lang('ujian:no_items'); ?></div>
 	<?php endif;?>

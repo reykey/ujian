@@ -1,5 +1,5 @@
 <section class="title">
-    <h4><?php echo lang('simple_order:order'); ?></h4>
+    <h4>Tryout User</h4>
 </section>
 
 <section class="item">

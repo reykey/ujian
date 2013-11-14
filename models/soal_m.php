@@ -99,5 +99,14 @@ class Soal_m extends MY_Model{
 				->where('user_id', $user_id)
 				->get()->result_array();
 	}
+
+	function get_detail_to_user($to_id)
+	{
+		return $this->db->from('so_to_user tu')
+				->join('to_paket p', 'p.id = tu.paket_id')
+				->join('so_to_order o', 'o.user_id = tu.user_id')
+				->where('tu.id', $to_id)
+				->get()->row();
+	}
 }
 

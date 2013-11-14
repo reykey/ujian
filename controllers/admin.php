@@ -67,7 +67,7 @@ class Admin extends Admin_Controller
             )
             
         );
-        $this->streams->cp->entries_table('paket', 'paket', 5, 'admin/tryout/index', true, $extra);
+        $this->streams->cp->entries_table('paket', 'paket', 10, 'admin/tryout/index', true, $extra);
     }
 
     public function group($paket_id = false, $offset = 0){

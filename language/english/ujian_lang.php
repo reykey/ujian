@@ -26,6 +26,7 @@ $lang['ujian:back']				= 'Kembali';
 $lang['ujian:mulai']				= 'Mulai';
 $lang['ujian:selesai']				= 'Selesai';
 $lang['ujian:import_success']	= 'Import soal selesai';
+$lang['ujian:detail']	= 'Detail';
 
 $lang['to:name']	= 'Nama';
 $lang['to:status_pengerjaan']	= 'Status Pengerjaan';

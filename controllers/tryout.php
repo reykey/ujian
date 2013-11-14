@@ -12,6 +12,7 @@ class Tryout extends Public_Controller
         $this->lang->load('ujian');
         $this->load->driver('Streams');
         $this->load->model('soal_m');
+        $this->load->helper('tryout');
         $this->template->append_css('module::tryout.css');
         $this->template->append_js('module::jquery-1.9.1.min.js');
         $this->template->append_js('module::jquery.countdown.js');
@@ -22,6 +23,7 @@ class Tryout extends Public_Controller
     
     public function index()
     {
+
         $params = array(
                 'stream'    => 'to_user',
                 'namespace' => 'to_user',
@@ -209,7 +211,5 @@ class Tryout extends Public_Controller
         // $this->template->build('tryout',$dapat);
 
     }
-
-
 
 }
