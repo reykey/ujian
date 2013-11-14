@@ -5,6 +5,7 @@
   $sess = $this->session->userdata('jam_mulai');
   $jam_mulai = $sess;
   $jam_sekarang = new DateTime('now');
+  dump($paketSoal);
   $alokasi = $paketSoal->alokasi_waktu * 60;
   $selisih = $jam_sekarang->getTimestamp() - $jam_mulai;
   // echo $jam_mulai."<br>".$jam_sekarang->getTimestamp()."<br>".$selisih."<br>".$alokasi; 

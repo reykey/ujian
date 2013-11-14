@@ -39,7 +39,7 @@
           <?php if($tglSekarang >= $dtglBuka && $tglSekarang <= $tglTutup): ?>
             <?php if($item['status_pengerjaan']['key'] == 'belum'): ?>
               <td style="text-align:right">
-                <?php echo anchor('tryout/prepare/'.$item['id'], "Kerjakan", array('class'=>'btn green btn-success')); ?>
+                <?php echo anchor('tryout/prepare/'.$item['paket_id']['id'], "Kerjakan", array('class'=>'btn green btn-success')); ?>
               </td>
             <?php else: ?>
               <td></td>
