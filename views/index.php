@@ -48,7 +48,10 @@
             <td style="text-align:right"><label class="label">Expired</label></td>
           <?php elseif ($tglSekarang >= $tglTutup): ?>
             <td style="text-align:right"><label class="label">Expired</label></td>
-            <?php set_to_user_expired($item['id']); ?>
+            <?php 
+              // set user expired
+              set_to_user_expired($item['id']); 
+            ?>
           <?php endif; ?>
         </tr>
         <?php $i++; endforeach; ?> 

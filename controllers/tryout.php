@@ -9,6 +9,8 @@ class Tryout extends Public_Controller
     {
         parent::__construct();
 
+        if(! $this->current_user->id) redirect('users/login');
+
         $this->lang->load('ujian');
         $this->load->driver('Streams');
         $this->load->model('soal_m');
@@ -17,7 +19,6 @@ class Tryout extends Public_Controller
         $this->template->append_js('module::jquery-1.9.1.min.js');
         $this->template->append_js('module::jquery.countdown.js');
         // $this->template->append_js('module::bootstrap-paginator.min.js');
-
     }
 
     

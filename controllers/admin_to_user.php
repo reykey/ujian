@@ -86,4 +86,20 @@ class Admin_to_user extends Admin_Controller {
 		dump(diff_times($date2, $date1));
 	}
 
+	function check_expired()
+    {
+        $data['status_pengerjaan'] = 'expired';
+
+        $paket_ids = $this->soal_m->get_paket_expired();
+        // dump($paket_ids);
+
+        if(! empty($paket_ids)){	
+        	$this->db->where('status_pengerjaan', 'belum')
+        			->where_in('paket_id', $paket_ids);
+        	$this->db->update('so_to_user', $data);
+
+        }
+        redirect(getenv('HTTP_REFERER'));
+    }
+
 }

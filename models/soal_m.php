@@ -108,5 +108,21 @@ class Soal_m extends MY_Model{
 				->where('tu.id', $to_id)
 				->get()->row();
 	}
+
+	function get_paket_expired()
+	{
+		$tgl = $this->db->where('tanggal_tutup <', date("Y-m-d H:i:s"))
+						->get('to_paket')->result();
+
+		if($tgl){
+			$paket_ids = array();	
+			foreach ($tgl as $value) {
+				$paket_ids[] = $value->id;
+			}
+			return $paket_ids;
+		}
+
+		return false;
+	}
 }
 

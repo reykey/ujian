@@ -42,6 +42,12 @@ class Module_Tryout extends Module
                 'to_user' => array(
                     'name' => 'Peserta Tryout',
                     'uri' => 'admin/tryout/to_user',
+                    'shortcuts' => array(
+                        'expired' => array(
+                            'name' => 'ujian:check_expired',
+                            'uri' => 'admin/tryout/to_user/check_expired'
+                        )
+                    )
                 ),
             )
         );
