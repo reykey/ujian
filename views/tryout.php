@@ -5,7 +5,7 @@
   $sess = $this->session->userdata('jam_mulai');
   $jam_mulai = $sess;
   $jam_sekarang = new DateTime('now');
-  dump($paketSoal);
+  // dump($paketSoal);
   $alokasi = $paketSoal->alokasi_waktu * 60;
   $selisih = $jam_sekarang->getTimestamp() - $jam_mulai;
   // echo $jam_mulai."<br>".$jam_sekarang->getTimestamp()."<br>".$selisih."<br>".$alokasi; 
@@ -72,7 +72,7 @@
 
   $(function(){
     // siapkan countdown
-    var waktu = <?php echo $alokasi - $selisih; ?>; // 3 menit
+    var waktu = <?php echo $alokasi - $selisih; ?>;
     // var waktu = 30;
     //var sisa_waktu = waktu - 30;
     $("#timer").countdown({

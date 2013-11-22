@@ -24,6 +24,8 @@ class Tryout extends Public_Controller
     
     public function index()
     {
+        if($this->session->userdata('jam_selesai'))
+            redirect('tryout/mulai/'.$this->session->userdata('paket_id'));
 
         $params = array(
                 'stream'    => 'to_user',
@@ -41,8 +43,11 @@ class Tryout extends Public_Controller
         $this->template->build('index', $data);
     }
 
-     public function prepare($paket_id = false)
+    public function prepare($paket_id = false)
     {
+        if($this->session->userdata('jam_selesai'))
+            redirect('tryout/mulai/'.$this->session->userdata('paket_id'));
+
         $items['id'] = $paket_id;
         $this->template->build('prepare_v',$items);
     }    
@@ -53,13 +58,19 @@ class Tryout extends Public_Controller
 
 
         // cek apakah 
+        $paket = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
+        dump($paket);
 
         $jam_mulai = new DateTime('now');
+        $jam_selesai = new DateTime($jam_mulai->format('Y-m-d H:i:s'));
+        $jam_selesai->add(new DateInterval('P'.$paket->alokasi_waktu.'M'));
  
         $this->soal_m->inisiasi(date("Y-m-d H:i:s", $jam_mulai->getTimestamp()), $this->current_user->id, $paket_id);
         $this->session->set_userdata('jam_mulai', $jam_mulai->getTimestamp());
-        dump($jam_mulai->getTimestamp());
-        dump($this->session->userdata('jam_mulai'));
+        $this->session->set_userdata('jam_selesai', $jam_selesai->getTimestamp());
+        $this->session->set_userdata('paket_id', $paket_id);
+        // dump($jam_mulai->getTimestamp());
+        // dump($this->session->userdata('jam_mulai'));
         redirect('tryout/mulai/'.$paket_id);
         
     }
@@ -120,6 +131,7 @@ class Tryout extends Public_Controller
                 'paket_id' => $this->input->post('paket')
                 );
             //
+            // dump($data);
 
             $exist = $this->streams->entries->get_entries(
                 array('stream' => 'jawaban',
@@ -128,12 +140,12 @@ class Tryout extends Public_Controller
                     )
 
                 );
-            //print_r($data);
+            // dump($exist);
             if($exist['total']>0){
-                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'jawaban','streams');
-                }else{
-                    $this->streams->entries->insert_entry($data,'jawaban','jawaban');
-                }
+                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'jawaban', 'jawaban');
+            }else{
+                $this->streams->entries->insert_entry($data,'jawaban','jawaban');
+            }
             
         }
     }
@@ -194,6 +206,9 @@ class Tryout extends Public_Controller
         $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
         //$nilai['nilai_kosong'] = 
         //dump($nilai_benar);
+
+        $this->reset();
+
         $this->template->build('hasil',$nilai);
 
         
@@ -210,6 +225,14 @@ class Tryout extends Public_Controller
         // $this->template->build('tryout',$dapat);
         // $dapat=$this->soal_m->test();
         // $this->template->build('tryout',$dapat);
+
+    }
+
+    function reset()
+    {
+        $this->session->unset_userdata('jam_mulai');
+        $this->session->unset_userdata('jam_selesai');
+        $this->session->unset_userdata('paket_id');
 
     }
 
