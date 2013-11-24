@@ -1,42 +1,49 @@
 <!-- tampilan modul soal mulai dari sini -->
-          <div class="content">
-            <h2>Hasil Try Out Online</h2>
-          </div>
-          
-          <div class="content bg-white">
-            <div class="row-fluid">
-              <div class="span12">
+<div class="content">
+  <h2>Hasil Try Out Online</h2>
+</div>
 
-                <!-- ini mulai soal ditampilkan -->
-                <ul class="quiz">
-                  <li class="instruction">
-                    
-                    <p>Hasil</p>
-                  </li>
+<div class="content bg-white">
+  <div class="row-fluid">
+    <div class="span12">
 
-                   
-                  <li>
-                    <span class="number label label-success">1</span>
-                    <div class="question">
-                      
-                      <?php //echo $nilai_benar;//echo $soal['stat']; ?>
-                      <?php //echo $nilai_salah;//echo $soal['stat']; ?>
-                      <p>Benar : <?php echo $total_benar;?></p>
-                      <p>Salah : <?php echo $total_salah;?></p>
-                      <p>Kosong : <?php echo $total_kosong;?></p>
-                      <p>Nilai Total : <?php echo $total;?></p>
-                    </div>
+      <?php foreach ($result as $key => $value): ?>
 
+      <h4><?php echo $key; ?></h4>
+      <table class="table table-bordered">
+      <tr>
+        <td>Benar : <?php echo $value['benar'];?> soal</td>
+      </tr>
+      <tr>
+        <td>Salah : <?php echo $value['salah'];?> soal</td>
+      </tr>
+      <tr>
+        <td>Kosong : <?php echo $value['kosong'];?> soal</td>
+      </tr>
+      <tr>
+        <td>Nilai Total : <?php echo ($value['benar']*4) + ($value['salah']*(-1)); ?></td>
+      </tr>
+      </table>
 
-                  </li>
+      <?php endforeach; ?>
 
-                  <li>
-                    <td class="action">
-                          <?php //echo anchor('tryout/selesai/', lang('ujian:back'), array('class'=>'button')); ?></td>
-                  </li>
+      <h4>Nilai Keseluruhan</h4>
+      <table class="table table-bordered">
+      <tr>
+        <td>Benar : <?php echo $total_benar;?> soal</td>
+      </tr>
+      <tr>
+        <td>Salah : <?php echo $total_salah;?> soal</td>
+      </tr>
+      <tr>
+        <td>Kosong : <?php echo $total_kosong;?> soal</td>
+      </tr>
+      <tr>
+        <td>Nilai Total : <?php echo $total; ?></td>
+      </tr>
+      </table>
 
-                </ul>
-              </div>
-            </div>
-          </div>
+    </div>
+  </div>
+</div>
           <!-- tampilan modul soal berakhir disini -->

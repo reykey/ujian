@@ -29,7 +29,7 @@ class Tryout extends Public_Controller
 
         $params = array(
                 'stream'    => 'to_user',
-                'namespace' => 'to_user',
+                'namespace' => 'streams',
                 'order_by'  => 'paket_id',
                 'sort'      => 'asc',
                 'where'     => SITE_REF.'_so_to_user.user_id = '.$this->current_user->id
@@ -58,7 +58,7 @@ class Tryout extends Public_Controller
 
 
         // cek apakah 
-        $paket = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
+        $paket = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
         dump($paket);
 
         $jam_mulai = new DateTime('now');
@@ -83,12 +83,12 @@ class Tryout extends Public_Controller
     {
         $items['perpage'] = $this->settings->records_per_page;
 
-        $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
+        $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
         // dump($items['paketSoal']);
 
         $params = array(
                 'stream'        => 'group_soal',
-                'namespace'     => 'group_soal',
+                'namespace'     => 'streams',
                 'order_by'      => 'ordering_count',
                 'sort'          => 'asc',
                 'where'         => "paket_id = $paket_id"
@@ -100,7 +100,7 @@ class Tryout extends Public_Controller
             foreach ($groups['entries'] as &$group) {
                 $paramsoal = array(
                     'stream'        => 'soal',
-                    'namespace'     => 'soal',
+                    'namespace'     => 'streams',
                     'order_by'      => 'ordering_count',
                     'sort'          => 'asc',
                     'where'         => SITE_REF."_to_soal.group_id = {$group['id']}"
@@ -135,7 +135,7 @@ class Tryout extends Public_Controller
 
             $exist = $this->streams->entries->get_entries(
                 array('stream' => 'jawaban',
-                    'namespace' => 'jawaban',
+                    'namespace' => 'streams',
                     'where' => "`soal_id` = {$data['soal_id']} AND `user_id` = {$data['user_id']}"
                     )
 
@@ -144,7 +144,7 @@ class Tryout extends Public_Controller
             if($exist['total']>0){
                 $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'jawaban', 'jawaban');
             }else{
-                $this->streams->entries->insert_entry($data,'jawaban','jawaban');
+                $this->streams->entries->insert_entry($data,'jawaban','streams');
             }
             
         }
@@ -175,39 +175,61 @@ class Tryout extends Public_Controller
         $total_benar = 0;
         $total_salah = 0;
         $total_kosong = 0;
-        //dump($paket_id);
+
         $userId = $this->current_user->id;
-        //dump($paket_id);
+
         $soalsoal = $this->soal_m->selesai($userId, $paket_id);
-        //dump($soalsoal);
-        // dump($total_benar);
-        foreach ($soalsoal as &$soal) {
+
+        $result = array();
+        foreach ($soalsoal as $soal) {
             if($soal->jawaban_user == $soal->jawaban){
                 $total_benar +=1;
-                //dump($total_benar);
-                //$soal->status_benar = 1;
-                // $data['status_benar'] = $soal->status_benar;
                 $data['total_benar'] = $total_benar;
             }elseif($soal->jawaban_user != $soal->jawaban){
                 $total_salah +=1;
-                //$soal->status_benar = 0;
                 $data['total_salah'] = $total_salah;
             }else{
                 $total_kosong +=1;
                 $data['total_kosong'] = $total_kosong;
             }
+
+            $cat = $soal->category;
+            if (isset($result[$cat])) {
+                if($soal->jawaban_user == $soal->jawaban)
+                    $result[$cat]['benar'] += 1;
+                elseif($soal->jawaban_user != $soal->jawaban)
+                    $result[$cat]['salah'] += 1;
+                else
+                    $result[$cat]['kosong'] += 1;
+
+                $result[$cat]['data'][] = $soal;
+
+            } else {
+                $result[$cat]['benar'] = 0;
+                $result[$cat]['salah'] = 0;
+                $result[$cat]['kosong'] = 0;
+
+                if($soal->jawaban_user == $soal->jawaban)
+                    $result[$cat]['benar'] += 1;
+                elseif($soal->jawaban_user != $soal->jawaban)
+                    $result[$cat]['salah'] += 1;
+                else
+                    $result[$cat]['kosong'] += 1;
+                
+                $result[$cat]['data'] = array($soal);
+            }
         }
         
+        $nilai['result'] = $result;
         $nilai['total_benar'] = $total_benar;
         $nilai['total_salah'] = $total_salah;
         $nilai['total_kosong'] = $total_kosong;
-        // $nilai['nilai_benar'] = $total_benar * 4;
-        // $nilai['nilai_salah'] = $total_salah * (-1);
-        $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
-        //$nilai['nilai_kosong'] = 
-        //dump($nilai_benar);
 
-        $this->reset();
+        $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
+
+        dump($result);
+        
+        $this->reset_session();
 
         $this->template->build('hasil',$nilai);
 
@@ -228,11 +250,11 @@ class Tryout extends Public_Controller
 
     }
 
-    function reset()
+    function reset_session()
     {
-        $this->session->unset_userdata('jam_mulai');
-        $this->session->unset_userdata('jam_selesai');
-        $this->session->unset_userdata('paket_id');
+        if($this->session->userdata('jam_mulai')) $this->session->unset_userdata('jam_mulai');
+        if($this->session->userdata('jam_selesai')) $this->session->unset_userdata('jam_selesai');
+        if($this->session->userdata('paket_id')) $this->session->unset_userdata('paket_id');
 
     }
 

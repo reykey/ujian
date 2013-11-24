@@ -43,7 +43,8 @@ class Soal_m extends MY_Model{
 
 	function set_selesai($jam_selesai, $user_id, $paket_id){
 		$data = array(
-			'jam_selesai'=>$jam_selesai
+			'jam_selesai' => $jam_selesai,
+			'status_pengerjaan' => 'sudah'
 			);
 
 		$this->db->where('user_id',$user_id);
@@ -53,11 +54,14 @@ class Soal_m extends MY_Model{
 
 	function selesai($user_id, $paket_id){
 		
-		return $this->db->select('to_jawaban.jawaban as jawaban_user, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
+		return $this->db->select('to_jawaban.jawaban as jawaban_user, to_categories.category, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
 		->from('to_soal')
-		->join('to_jawaban','to_jawaban.soal_id=to_soal.id')
+		->join('to_jawaban','to_jawaban.soal_id = to_soal.id')
+		->join('to_group_soal','to_group_soal.id = to_soal.group_id')
+		->join('to_categories','to_categories.id = to_group_soal.category_id')
 		->where('to_jawaban.user_id',$user_id)
 		->where('to_jawaban.paket_id',$paket_id)
+		->order_by('to_categories.ordering_count')
 		->get()
 		->result();
 	}
@@ -81,10 +85,10 @@ class Soal_m extends MY_Model{
 	public function get_paket()
 	{
 
-		$data = $this->db->distinct()->select('id, judul')->get('to_paket')->result();
+		$data = $this->db->distinct()->select('id, judul_paket')->get('to_paket')->result();
 		$paket = array();
 		foreach ($data as $value) {
-			$paket[$value->id] = $value->judul;
+			$paket[$value->id] = $value->judul_paket;
 		}
 		
 		return $paket;

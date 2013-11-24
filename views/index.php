@@ -31,7 +31,7 @@
           $tglTutup = date('Y-m-d H:i:s',$item['paket_id']['tanggal_tutup']);
           ?>
 
-          <td><strong><?php echo $item['paket_id']['judul']; ?></strong></td>
+          <td><strong><?php echo $item['paket_id']['judul_paket']; ?></strong></td>
           <td><?php echo date("d F Y, H:i", $item['paket_id']['tanggal_buka']); ?></td>
           <td><?php echo date("d F Y, H:i", $item['paket_id']['tanggal_tutup']); ?></td>
           <td><?php echo $item['nilai']; ?></td>

@@ -29,7 +29,7 @@ class Admin_categories extends Admin_Controller
             )
         );
 
-        $this->streams->cp->entries_table('categories', 'categories', 3, 'admin/tryout/categories/index', true, $extra);
+        $this->streams->cp->entries_table('categories', 'streams', 3, 'admin/tryout/categories/index', true, $extra);
     }
 
     public function create()
@@ -43,7 +43,7 @@ class Admin_categories extends Admin_Controller
             'title' => lang('ujian:categories:new')
         );
 
-        $this->streams->cp->entry_form('categories', 'categories', 'new', null, true, $extra);
+        $this->streams->cp->entry_form('categories', 'streams', 'new', null, true, $extra);
     }
 
     public function edit($id = 0)
@@ -57,7 +57,7 @@ class Admin_categories extends Admin_Controller
             'title' => lang('ujian:edit')
         );
 
-        $this->streams->cp->entry_form('categories', 'categories', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('categories', 'streams', 'edit', $id, true, $extra);
     }
 
     public function delete($id = 0)

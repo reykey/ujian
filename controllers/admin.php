@@ -67,16 +67,16 @@ class Admin extends Admin_Controller
             )
             
         );
-        $this->streams->cp->entries_table('paket', 'paket', 10, 'admin/tryout/index', true, $extra);
+        $this->streams->cp->entries_table('paket', 'streams', 10, 'admin/tryout/index', true, $extra);
     }
 
     public function group($paket_id = false, $offset = 0){
 
-        $data['paket'] = $this->streams->entries->get_entry($paket_id, 'paket', 'paket');
+        $data['paket'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
 
         $params = array(
                 'stream'        => 'group_soal',
-                'namespace'     => 'group_soal',
+                'namespace'     => 'streams',
                 'paginate'      => 'yes',
                 'order_by'      => 'ordering_count',
                 'sort'          => 'asc',
@@ -97,11 +97,11 @@ class Admin extends Admin_Controller
 
     public function soal($paket_id = false, $group_id = false)
     {
-        $data['group'] = $this->streams->entries->get_entry($group_id, 'group_soal', 'group_soal');
+        $data['group'] = $this->streams->entries->get_entry($group_id, 'group_soal', 'streams');
 
         $params = array(
             'stream'        => 'soal',
-            'namespace'     => 'soal',
+            'namespace'     => 'streams',
             'paginate'      => 'yes',
             'order_by'      => 'ordering_count',
             'sort'          => 'asc',
@@ -126,7 +126,7 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:new_paket'),
         );
 
-        $this->streams->cp->entry_form('paket', 'paket', 'new', true, $extra);
+        $this->streams->cp->entry_form('paket', 'streams', 'new', true, $extra);
     
     }
 
@@ -142,7 +142,7 @@ class Admin extends Admin_Controller
 
         $default = array('paket_id' => $paket_id);
 
-        $this->streams->cp->entry_form('group_soal', 'group_soal', 'new', null, true, $extra, array(), false, $hidden, $default);
+        $this->streams->cp->entry_form('group_soal', 'streams', 'new', null, true, $extra, array(), false, $hidden, $default);
     }
 
     public function tambah_soal($paket_id = false, $group_id = false){
@@ -155,7 +155,7 @@ class Admin extends Admin_Controller
         $hidden = array('group_id', 'paket_id');
         $default = array('group_id' => $group_id, 'paket_id' => $paket_id );
 
-        $this->streams->cp->entry_form('soal', 'soal', 'new', null, true, $extra, array(),false, $hidden, $default);
+        $this->streams->cp->entry_form('soal', 'streams', 'new', null, true, $extra, array(),false, $hidden, $default);
 
     }
 
@@ -168,7 +168,7 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('paket', 'paket', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('paket', 'streams', 'edit', $id, true, $extra);
     }
 
     public function edit_group($id = 0)
@@ -180,7 +180,7 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('group_soal', 'group_soal', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('group_soal', 'streams', 'edit', $id, true, $extra);
     }
 
     public function edit_soal($id = 0)
@@ -192,21 +192,21 @@ class Admin extends Admin_Controller
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('soal', 'soal', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('soal', 'streams', 'edit', $id, true, $extra);
     }
 
 
     public function delete($id = 0)
     {
-        $this->streams->entries->delete_entry($id, 'paket', 'paket');
+        $this->streams->entries->delete_entry($id, 'paket', 'streams');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
         
         if($this->uri->segment(3) == $group_id ) {
-            $this->streams->entries->delete_entry($id, 'group_soal', 'group_soal');
+            $this->streams->entries->delete_entry($id, 'group_soal', 'streams');
         }
 
         if($this->uri->segment(4) == $soal_id ) {
-            $this->streams->entries->delete_entry($id, 'soal', 'soal');
+            $this->streams->entries->delete_entry($id, 'soal', 'streams');
         }
 
         redirect('admin/tryout/');
@@ -214,7 +214,7 @@ class Admin extends Admin_Controller
 
     public function delete_group($id = 0)
     {
-        $this->streams->entries->delete_entry($id, 'group_soal', 'group_soal');
+        $this->streams->entries->delete_entry($id, 'group_soal', 'streams');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
  
         redirect(getenv('HTTP_REFERER'));
@@ -222,7 +222,7 @@ class Admin extends Admin_Controller
 
     public function delete_soal($id = 0)
     {
-        $this->streams->entries->delete_entry($id, 'soal', 'soal');
+        $this->streams->entries->delete_entry($id, 'soal', 'streams');
         $this->session->set_flashdata('success', lang('ujian:deleted'));
  
         redirect(getenv('HTTP_REFERER'));
@@ -268,7 +268,7 @@ class Admin extends Admin_Controller
                         if($row[0] != '#'){
                             // kalo kategori belum ada
                             if(! $kategori = $this->soal_m->get_category(array('category' => $row[0]))){
-                                $kategori_id = $this->streams->entries->insert_entry(array('category' => $row[0]), 'categories', 'categories');
+                                $kategori_id = $this->streams->entries->insert_entry(array('category' => $row[0]), 'categories', 'streams');
                             } else {
                                 $kategori_id = $kategori['id'];
                             }
@@ -279,7 +279,7 @@ class Admin extends Admin_Controller
                             $group_id = $this->streams->entries->insert_entry(
                                 array('judul' => $row[1], 'instruksi' => $row[2], 'paket_id' => $paket_id, 'category' => $kategori_id),
                                     'group_soal',
-                                    'group_soal'
+                                    'streams'
                                 );
                         }
 
