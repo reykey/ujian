@@ -1,5 +1,5 @@
 <section class="title">
-    <h4><?php echo anchor('admin/tryout/group/'.$paket_id, lang('ujian:group')); ?> - <?php echo $group->judul ; ?> </h4>
+    <h4><?php echo anchor('admin/tryout/group/'.$paket_id, lang('ujian:group')); ?> - <?php echo $group->judul_grup ; ?> </h4>
 </section>
 
 <section class="item">
@@ -32,7 +32,7 @@
                     <td><?php echo $item["jawaban"]['value']; ?></td>
 
                     <td class="actions">
-                        <?php echo anchor('admin/tryout/edit_soal/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
+                        <?php echo anchor('admin/tryout/edit_soal/'.$item["id"].'/'.$paket_id.'/'.$group_id, lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
                         <?php echo anchor('admin/tryout/delete_soal/'.$item["id"], lang('global:delete'), array('class'=>'button', 'title'=>lang('ujian:deleted'))); ?>
                     </td>
                     

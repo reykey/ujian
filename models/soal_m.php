@@ -54,7 +54,7 @@ class Soal_m extends MY_Model{
 
 	function selesai($user_id, $paket_id){
 		
-		return $this->db->select('to_jawaban.jawaban as jawaban_user, to_categories.category, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
+		return $this->db->select('to_jawaban.jawaban as jawaban_user, to_categories.category, to_group_soal.category_id, to_jawaban.soal_id, to_jawaban.paket_id, to_soal.jawaban, to_soal.id')
 		->from('to_soal')
 		->join('to_jawaban','to_jawaban.soal_id = to_soal.id')
 		->join('to_group_soal','to_group_soal.id = to_soal.group_id')
@@ -64,6 +64,27 @@ class Soal_m extends MY_Model{
 		->order_by('to_categories.ordering_count')
 		->get()
 		->result();
+	}
+
+	function count_soal($paket_id, $category_id = false)
+	{
+		$this->db->from('to_soal s')
+				->join('to_group_soal g', 'g.id = s.group_id')
+				->where('g.paket_id', $paket_id);
+
+		if($category_id)
+			$this->db->where('g.category_id', $category_id);
+
+		return $this->db->count_all_results();
+	}
+
+	function simpan_nilai($paket_id, $uid, $nilai)
+	{
+		$this->db->where('paket_id', $paket_id)
+				->where('user_id', $uid)
+				->update('so_to_user', array('nilai'=>$nilai));
+
+		return $this->db->affected_rows();
 	}
 
 	function get_group($where)
@@ -79,6 +100,16 @@ class Soal_m extends MY_Model{
 		return $this->db->from('to_categories')
 			->where($where)
 			->get()->row_array();
+	}
+
+	function get_used_category($paket_id)
+	{
+		return $this->db->select('c.id, category')
+			->from('to_group_soal g')
+			->join('to_categories c', 'c.id = g.category_id')
+			->where('paket_id', $paket_id)
+			->group_by('category_id')
+			->get()->result_array();
 
 	}
 
@@ -104,12 +135,12 @@ class Soal_m extends MY_Model{
 				->get()->result_array();
 	}
 
-	function get_detail_to_user($to_id)
+	function get_detail_to_user($where)
 	{
-		return $this->db->from('so_to_user tu')
-				->join('to_paket p', 'p.id = tu.paket_id')
-				->join('so_to_order o', 'o.user_id = tu.user_id')
-				->where('tu.id', $to_id)
+		return $this->db->from('so_to_user')
+				->join('to_paket', 'to_paket.id = so_to_user.paket_id')
+				->join('so_to_order', 'so_to_order.user_id = so_to_user.user_id')
+				->where($where)
 				->get()->row();
 	}
 

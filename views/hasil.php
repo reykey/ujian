@@ -5,7 +5,7 @@
 
 <div class="content bg-white">
   <div class="row-fluid">
-    <div class="span12">
+    <div class="span6">
 
       <?php foreach ($result as $key => $value): ?>
 
@@ -21,7 +21,7 @@
         <td>Kosong : <?php echo $value['kosong'];?> soal</td>
       </tr>
       <tr>
-        <td>Nilai Total : <?php echo ($value['benar']*4) + ($value['salah']*(-1)); ?></td>
+        <td>Nilai : <?php echo $value['nilai']; ?></td>
       </tr>
       </table>
 
@@ -43,6 +43,10 @@
       </tr>
       </table>
 
+    </div>
+
+    <div class="span6">
+      
     </div>
   </div>
 </div>

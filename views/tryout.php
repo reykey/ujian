@@ -25,7 +25,7 @@
         
         <?php $i=1; foreach($group as $item): ?>
         <li class="group">
-          <h4><?php echo $item['judul']; ?></h4>
+          <h4><?php echo $item['judul_grup']; ?></h4>
           <p><?php echo nl2br($item['instruksi']); ?></p>
         </li>
 
@@ -34,6 +34,7 @@
             <span class="number"><?php echo $i; ?></span>
             <div class="question">
               <?php echo $soallist['pertanyaan']; ?>
+              <?php echo !empty($soallist['gambar_soal'])? '<br>'.$soallist['gambar_soal']['img']: ''; ?>
             </div>
             <ul class="choice" id="soal_<?php echo $soallist['id']; ?>">
               <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="A" rel="pilihan_a"> <?php echo $soallist['pilihan_a'];?></li>
@@ -62,7 +63,8 @@
 
   <script>
   function waktuHabis(){
-    alert("Waktu pengerjaan habis. Silakan pulang......");
+    alert("Waktu pengerjaan habis. Terima kasih.");
+    window.location = '<?php echo site_url('tryout/selesai/'.$paketSoal->id); ?>';
   }   
   function hampirHabis(periods){
     if($.countdown.periodsToSeconds(periods) == 60){

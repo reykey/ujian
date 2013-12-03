@@ -30,7 +30,7 @@
             <legend>Detail Tryout</legend>
 
             <dt>Paket Tryout</dt>
-            <dd><?php echo $detail->judul; ?></dd>
+            <dd><?php echo $detail->judul_paket; ?></dd>
             <dt>Alokasi Waktu</dt>
             <dd><?php echo $detail->alokasi_waktu; ?> menit</dd>
             <dt>Tanggal Buka</dt>

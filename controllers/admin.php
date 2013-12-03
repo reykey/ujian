@@ -152,7 +152,7 @@ class Admin extends Admin_Controller
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:new_soal'),
         );
-        $hidden = array('group_id', 'paket_id');
+        $hidden = array('group_id', 'paket_id', 'pembahasan');
         $default = array('group_id' => $group_id, 'paket_id' => $paket_id );
 
         $this->streams->cp->entry_form('soal', 'streams', 'new', null, true, $extra, array(),false, $hidden, $default);
@@ -171,28 +171,31 @@ class Admin extends Admin_Controller
         $this->streams->cp->entry_form('paket', 'streams', 'edit', $id, true, $extra);
     }
 
-    public function edit_group($id = 0)
+    public function edit_group($id = 0, $paket_id = false)
     {
         $extra = array(
-            'return' => 'admin/tryout/group',
+            'return' => 'admin/tryout/group/'.$paket_id,
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:edit'),
         );
 
-        $this->streams->cp->entry_form('group_soal', 'streams', 'edit', $id, true, $extra);
+        $skips = array('paket_id');
+
+        $this->streams->cp->entry_form('group_soal', 'streams', 'edit', $id, true, $extra, $skips);
     }
 
-    public function edit_soal($id = 0)
+    public function edit_soal($id = 0, $paket_id = false, $group_id = false)
     {
         $extra = array(
-            'return' => 'admin/tryout/soal',
+            'return' => 'admin/tryout/soal/'.$paket_id.'/'.$group_id,
             'success_message' => lang('ujian:submit_success'),
             'failure_message' => lang('ujian:submit_failure'),
             'title' => lang('ujian:edit'),
         );
+        $skips = array('group_id', 'paket_id', 'pembahasan');
 
-        $this->streams->cp->entry_form('soal', 'streams', 'edit', $id, true, $extra);
+        $this->streams->cp->entry_form('soal', 'streams', 'edit', $id, true, $extra, $skips);
     }
 
 
@@ -245,7 +248,7 @@ class Admin extends Admin_Controller
 
             if ( ! $this->upload->do_upload('file')){
                 $this->session->set_flashdata('error', $this->upload->display_errors());
-                redirect('admin/stream_schema/import');
+                redirect('admin/tryout/import');
             } else {
                 $file =  $this->upload->data();
                 $csv = explode("\n", trim(file_get_contents($file['full_path'])));
@@ -277,7 +280,7 @@ class Admin extends Admin_Controller
                         // kalo ini baris grup soal
                         else if($row[1] != '##') {
                             $group_id = $this->streams->entries->insert_entry(
-                                array('judul' => $row[1], 'instruksi' => $row[2], 'paket_id' => $paket_id, 'category' => $kategori_id),
+                                array('judul_grup' => $row[1], 'instruksi' => $row[2], 'paket_id' => $paket_id, 'category_id' => $kategori_id),
                                     'group_soal',
                                     'streams'
                                 );
@@ -288,17 +291,17 @@ class Admin extends Admin_Controller
                             $this->streams->entries->insert_entry(
                                     array(
                                         'group_id' => $group_id, 
-                                        'pertanyaan' => $row[2], 
-                                        'pilihan_a' => $row[3],
-                                        'pilihan_b' => $row[4],
-                                        'pilihan_c' => $row[5],
-                                        'pilihan_d' => $row[6],
+                                        'pertanyaan' => $row[2],
+                                        'gambar_soal' => '',
+                                        'pilihan_a' => !empty($row[3])? $row[3]: 'A',
+                                        'pilihan_b' => !empty($row[4])? $row[4]: 'B',
+                                        'pilihan_c' => !empty($row[5])? $row[5]: 'C',
+                                        'pilihan_d' => !empty($row[6])? $row[6]: 'D',
                                         'jawaban' => strtoupper($row[7]),
                                         'paket_id' => $paket_id,
-
                                     ),
                                     'soal',
-                                    'soal'
+                                    'streams'
                                 );
                         }
                     }

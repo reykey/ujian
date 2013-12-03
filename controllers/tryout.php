@@ -45,6 +45,9 @@ class Tryout extends Public_Controller
 
     public function prepare($paket_id = false)
     {
+        // cek apakah user benar sudah punya akses ke tryout ini
+        $this->cek_akses_to($paket_id, $this->current_user->id) or die('Maaf Anda tidak punya akses atau sudah menyelesaikan tryout ini.');
+
         if($this->session->userdata('jam_selesai'))
             redirect('tryout/mulai/'.$this->session->userdata('paket_id'));
 
@@ -55,11 +58,14 @@ class Tryout extends Public_Controller
     public function inisiasi($paket_id = false)
     {
         // cek apakah user benar sudah punya akses ke tryout ini
+        $this->cek_akses_to($paket_id, $this->current_user->id) or die('Maaf Anda tidak punya akses atau sudah menyelesaikan tryout ini.');
 
-
+        if($this->session->userdata('jam_selesai'))
+            redirect('tryout/mulai/'.$this->session->userdata('paket_id'));
+        
         // cek apakah 
         $paket = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
-        dump($paket);
+        // dump($paket);
 
         $jam_mulai = new DateTime('now');
         $jam_selesai = new DateTime($jam_mulai->format('Y-m-d H:i:s'));
@@ -74,10 +80,21 @@ class Tryout extends Public_Controller
         redirect('tryout/mulai/'.$paket_id);
         
     }
-    // public function mulai($paket_id = false){
-    //     $items['paketSoal'] = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
 
-    // }[]
+    public function cek_akses_to($paket_id, $user_id){
+        $data = $this->soal_m->get_detail_to_user(array('so_to_user.paket_id' => $paket_id, 'so_to_user.user_id' => $user_id));
+
+        // kalo waktu sekarang lebih dari tanggal buka
+        $sudah_buka = diff_times(date("Y-m-d H:i:s"), $data->tanggal_buka);
+
+        // kalo waktu sekarang kurang dari tanggal tutup
+        $sudah_tutup = diff_times(date("Y-m-d H:i:s"), $data->tanggal_tutup);
+
+        if($data->status_pengerjaan == 'belum' && $sudah_buka['mark'] == 'positive' && $sudah_tutup['mark'] == 'negative')
+            return true;
+
+        return false;
+    }
 
     public function mulai($paket_id = false)
     {
@@ -185,39 +202,45 @@ class Tryout extends Public_Controller
             if($soal->jawaban_user == $soal->jawaban){
                 $total_benar +=1;
                 $data['total_benar'] = $total_benar;
-            }elseif($soal->jawaban_user != $soal->jawaban){
+            }else{
                 $total_salah +=1;
                 $data['total_salah'] = $total_salah;
-            }else{
-                $total_kosong +=1;
-                $data['total_kosong'] = $total_kosong;
             }
 
             $cat = $soal->category;
             if (isset($result[$cat])) {
-                if($soal->jawaban_user == $soal->jawaban)
+                if($soal->jawaban_user == $soal->jawaban){
                     $result[$cat]['benar'] += 1;
-                elseif($soal->jawaban_user != $soal->jawaban)
+                    $result[$cat]['nilai'] += 4;
+                }else{
                     $result[$cat]['salah'] += 1;
-                else
-                    $result[$cat]['kosong'] += 1;
+                    $result[$cat]['nilai'] -= 1;
+                }
 
                 $result[$cat]['data'][] = $soal;
 
             } else {
                 $result[$cat]['benar'] = 0;
                 $result[$cat]['salah'] = 0;
-                $result[$cat]['kosong'] = 0;
+                $result[$cat]['nilai'] = 0;
 
-                if($soal->jawaban_user == $soal->jawaban)
+                if($soal->jawaban_user == $soal->jawaban){
                     $result[$cat]['benar'] += 1;
-                elseif($soal->jawaban_user != $soal->jawaban)
+                    $result[$cat]['nilai'] += 4;
+                }else{
                     $result[$cat]['salah'] += 1;
-                else
-                    $result[$cat]['kosong'] += 1;
+                    $result[$cat]['nilai'] -= 1;
+                }
                 
                 $result[$cat]['data'] = array($soal);
             }
+
+            $result[$cat]['kosong'] = $this->hitung_jumlah_soal($paket_id, $soal->category_id) - $result[$cat]['benar'] - $result[$cat]['salah'];
+            // echo $this->hitung_jumlah_soal($paket_id, $soal->category_id);
+        }
+
+        foreach ($result as $kategori) {
+            $total_kosong += $kategori['kosong'];
         }
         
         $nilai['result'] = $result;
@@ -227,19 +250,15 @@ class Tryout extends Public_Controller
 
         $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
 
-        dump($result);
+        // dump($result);
         
         $this->reset_session();
 
+        $this->soal_m->simpan_nilai($paket_id, $userId, $nilai['total']);
+
         $this->template->build('hasil',$nilai);
 
-        
-        
-
-
-
         //$this->soal_m->selesai($this->current_user->id, $paket_id);
-
     }
 
     public function soal(){
@@ -256,6 +275,23 @@ class Tryout extends Public_Controller
         if($this->session->userdata('jam_selesai')) $this->session->unset_userdata('jam_selesai');
         if($this->session->userdata('paket_id')) $this->session->unset_userdata('paket_id');
 
+    }
+
+    function hitung_jumlah_soal($paket_id, $cat_id = false)
+    {
+        if(! $cat_id){
+            $cat = $this->soal_m->get_used_category($paket_id);
+
+            $jml = array();
+            foreach ($cat as $value) {
+                $jml[] = $value + array('count' => $this->soal_m->count_soal($paket_id, $value['id']));
+            }
+        } else {
+            $jml = $this->soal_m->count_soal($paket_id, $cat_id);
+        }
+
+
+        return $jml;
     }
 
 }

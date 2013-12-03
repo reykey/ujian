@@ -182,6 +182,10 @@ class Module_Tryout extends Module
 
 
         // SOAL STREAM
+        // Create file folder for soal
+        $this->load->library('files/files');
+        $folder_id = Files::create_folder(0, 'soal');
+
         $namespace = 'streams';
         // Create stream
         $extra = array('title_column' => 'pertanyaan', 'view_options' => array("pertanyaan","jawaban"), 'sorting' => 'custom', 'menu_path' => '', 'is_hidden' => 'no');
@@ -196,6 +200,7 @@ class Module_Tryout extends Module
 
         $fields[] = array('name'=>'Group Id', 'slug'=>'group_id', 'type'=>'relationship', 'required' => true, 'unique' => false, 'instructions' => 'Diambil dari tabel group soal', 'extra'=>array("choose_stream" => $group_soal->id, "link_uri"=>null));
         $fields[] = array('name'=>'Pertanyaan', 'slug'=>'pertanyaan', 'type'=>'textarea', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan Pertanyaan', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"text"));
+        $fields[] = array('name'=>'Gambar Soal', 'slug'=>'gambar_soal', 'type'=>'image', 'required' => false, 'unique' => false, 'instructions' => 'Gambar untuk soal', 'extra'=>array("folder"=>$folder_id, "resize_width"=>"", "resize_height"=>"", "keep_ratio"=>"yes", "allowed_types"=>"jpg|jpeg|png"));
         $fields[] = array('name'=>'Pilihan A', 'slug'=>'pilihan_a', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan A', 'extra'=>array("max_length"=>"255", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan B', 'slug'=>'pilihan_b', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan B', 'extra'=>array("max_length"=>"255", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan C', 'slug'=>'pilihan_c', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan C', 'extra'=>array("max_length"=>"255", "default_value"=>""));
@@ -317,6 +322,7 @@ class Module_Tryout extends Module
 
         $this->streams->fields->delete_field('group_id', $namespace);
         $this->streams->fields->delete_field('pertanyaan', $namespace);
+        $this->streams->fields->delete_field('gambar_soal', $namespace);
         $this->streams->fields->delete_field('pilihan_a', $namespace);
         $this->streams->fields->delete_field('pilihan_b', $namespace);
         $this->streams->fields->delete_field('pilihan_c', $namespace);

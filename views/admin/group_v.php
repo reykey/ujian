@@ -1,5 +1,5 @@
 <section class="title">
-    <h4><?php echo anchor('admin/tryout', lang('ujian:paket')); ?> - <?php echo $paket->judul ; ?> </h4>
+    <h4><?php echo anchor('admin/tryout', lang('ujian:paket')); ?> - <?php echo $paket->judul_paket; ?> </h4>
 </section>
 
 <section class="item">
@@ -26,10 +26,10 @@
                 <?php $i=$nomoratas; foreach( $entries['entries'] as $item ): ?>
                 <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $item['judul']; ?></td>                    
+                    <td><?php echo $item['judul_grup']; ?></td>                    
                     <td class="actions">
                         <?php echo anchor('admin/tryout/soal/'.$item["paket_id"]["id"].'/'.$item["id"], lang('ujian:atur_soal'), array('class'=>'button', 'title'=>lang('ujian:lihatSoal'))); ?>
-                        <?php echo anchor('admin/tryout/edit_group/'.$item["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
+                        <?php echo anchor('admin/tryout/edit_group/'.$item["id"].'/'.$item["paket_id"]["id"], lang('ujian:edit'), array('class'=>'button', 'title'=>lang('ujian:edit'))); ?>
                         <?php echo anchor('admin/tryout/delete_group/'.$item["id"], lang('global:delete'), array('class'=>'button confirm', 'title'=>lang('ujian:deleted'))); ?>
                     </td>
                 </tr>

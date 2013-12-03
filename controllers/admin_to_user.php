@@ -72,7 +72,7 @@ class Admin_to_user extends Admin_Controller {
 
 	public function detail($id = 0) 
 	{
-        $data['detail'] = $this->soal_m->get_detail_to_user($id);
+        $data['detail'] = $this->soal_m->get_detail_to_user(array('so_to_user.id' => $id));
         $data['to_user'] = $this->ion_auth->get_user($data['detail']->user_id);
 
         // dump($data);

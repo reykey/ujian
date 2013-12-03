@@ -27,7 +27,7 @@
 					<td><?php echo $item["user_id"]['first_name'].' '.$item["user_id"]['last_name']; ?></td>
 					<td><?php echo $item["status_pengerjaan"]["value"]; ?></td>
 					<td><?php echo $item["nilai"]; ?></td>
-					<td><?php echo $item["paket_id"]["judul"]; ?></td>
+					<td><?php echo $item["paket_id"]["judul_paket"]; ?></td>
 					<td><?php echo ($item["jam_mulai"]) ? date("d F Y H:i:s", $item["jam_mulai"]) : "-"; ?></td>
 					<td><?php echo ($item["jam_selesai"]) ? date("d F Y H:i:s", $item["jam_selesai"]): "-"; ?></td>
 					<td class="actions">

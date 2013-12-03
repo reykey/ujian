@@ -27,7 +27,7 @@
         <tr>
           <?php
           $tglSekarang = date('Y-m-d H:i:s');
-          $dtglBuka = date('Y-m-d H:i:s', $item['paket_id']['tanggal_buka']);
+          $tglBuka = date('Y-m-d H:i:s', $item['paket_id']['tanggal_buka']);
           $tglTutup = date('Y-m-d H:i:s',$item['paket_id']['tanggal_tutup']);
           ?>
 
@@ -36,7 +36,7 @@
           <td><?php echo date("d F Y, H:i", $item['paket_id']['tanggal_tutup']); ?></td>
           <td><?php echo $item['nilai']; ?></td>
 
-          <?php if($tglSekarang >= $dtglBuka && $tglSekarang <= $tglTutup): ?>
+          <?php if($tglSekarang >= $tglBuka && $tglSekarang <= $tglTutup): ?>
             <?php if($item['status_pengerjaan']['key'] == 'belum'): ?>
               <td style="text-align:right">
                 <?php echo anchor('tryout/prepare/'.$item['paket_id']['id'], "Kerjakan", array('class'=>'btn green btn-success')); ?>
@@ -52,6 +52,8 @@
               // set user expired
               set_to_user_expired($item['id']); 
             ?>
+          <?php else: ?>
+            <td><span class="label">belum dibuka</span></td>
           <?php endif; ?>
         </tr>
         <?php $i++; endforeach; ?> 
