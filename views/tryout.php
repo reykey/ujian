@@ -41,6 +41,9 @@
               <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="B" rel="pilihan_b"> <?php echo $soallist['pilihan_b'];?></li>
               <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="C" rel="pilihan_c"> <?php echo $soallist['pilihan_c'];?></li>
               <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="D" rel="pilihan_d"> <?php echo $soallist['pilihan_d'];?></li>
+              <?php if(trim($soallist['pilihan_e']) != ''): ?>
+              <li><input type="radio" name="jawaban_<?php echo $soallist['id'];?>" class="E" rel="pilihan_e"> <?php echo $soallist['pilihan_e'];?></li>
+            <?php endif; ?>
             </ul>
         </li>
         <?php $i++; endforeach; ?>

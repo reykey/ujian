@@ -159,7 +159,7 @@ class Tryout extends Public_Controller
                 );
             // dump($exist);
             if($exist['total']>0){
-                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'jawaban', 'jawaban');
+                $this->streams->entries->update_entry($exist['entries'][0]['id'], array('jawaban' => $data['jawaban'] ), 'jawaban', 'streams');
             }else{
                 $this->streams->entries->insert_entry($data,'jawaban','streams');
             }
@@ -195,7 +195,14 @@ class Tryout extends Public_Controller
 
         $userId = $this->current_user->id;
 
+        $paket = $this->streams->entries->get_entry($paket_id, 'paket', 'streams');
         $soalsoal = $this->soal_m->selesai($userId, $paket_id);
+
+        if(strpos($paket->judul_paket, 'STIS')){
+            $pengali = 3;
+        } else {
+            $pengali = 4;
+        }
 
         $result = array();
         foreach ($soalsoal as $soal) {
@@ -211,7 +218,7 @@ class Tryout extends Public_Controller
             if (isset($result[$cat])) {
                 if($soal->jawaban_user == $soal->jawaban){
                     $result[$cat]['benar'] += 1;
-                    $result[$cat]['nilai'] += 4;
+                    $result[$cat]['nilai'] += $pengali;
                 }else{
                     $result[$cat]['salah'] += 1;
                     $result[$cat]['nilai'] -= 1;
@@ -226,7 +233,7 @@ class Tryout extends Public_Controller
 
                 if($soal->jawaban_user == $soal->jawaban){
                     $result[$cat]['benar'] += 1;
-                    $result[$cat]['nilai'] += 4;
+                    $result[$cat]['nilai'] += $pengali;
                 }else{
                     $result[$cat]['salah'] += 1;
                     $result[$cat]['nilai'] -= 1;
@@ -239,22 +246,41 @@ class Tryout extends Public_Controller
             // echo $this->hitung_jumlah_soal($paket_id, $soal->category_id);
         }
 
-        foreach ($result as $kategori) {
+        $status_ujian = 'lulus';
+
+        foreach ($result as $namakategori => $kategori) {
             $total_kosong += $kategori['kosong'];
+
+            // cek nilai mati pada tryout stan
+            if(strpos($paket->judul_paket, 'STAN')){
+                // mati jika soal benar TPA < 40
+                if(stripos($namakategori, 'AKADEMIK')){
+                    if($kategori['benar'] < 40)
+                        $status_ujian = 'mati'; // dead
+                }
+                // mati jika soal benar B Inggris < 20
+                if(stripos($namakategori, 'INGGRIS')){
+                    if($kategori['benar'] < 20)
+                        $status_ujian = 'mati'; // dead
+                }
+            }
         }
         
         $nilai['result'] = $result;
         $nilai['total_benar'] = $total_benar;
         $nilai['total_salah'] = $total_salah;
         $nilai['total_kosong'] = $total_kosong;
+        $nilai['status_ujian'] =$status_ujian;
 
-        $nilai['total'] = ($total_benar*4) + ($total_salah*(-1));
+        $nilai['paket'] = $paket;
+
+        $nilai['total'] = ($total_benar*$pengali) + ($total_salah*(-1));
 
         // dump($result);
         
         $this->reset_session();
 
-        $this->soal_m->simpan_nilai($paket_id, $userId, $nilai['total']);
+        $this->soal_m->simpan_nilai($paket_id, $userId, $nilai['total'], $nilai['status_ujian']);
 
         $this->template->build('hasil',$nilai);
 

@@ -78,11 +78,11 @@ class Soal_m extends MY_Model{
 		return $this->db->count_all_results();
 	}
 
-	function simpan_nilai($paket_id, $uid, $nilai)
+	function simpan_nilai($paket_id, $uid, $nilai, $status)
 	{
 		$this->db->where('paket_id', $paket_id)
 				->where('user_id', $uid)
-				->update('so_to_user', array('nilai'=>$nilai));
+				->update('so_to_user', array('nilai'=>$nilai, 'status_ujian'=>$status));
 
 		return $this->db->affected_rows();
 	}
@@ -158,6 +158,17 @@ class Soal_m extends MY_Model{
 		}
 
 		return false;
+	}
+
+	public function search_name($name){
+
+		$data = $this->db->select('user_id')->from('profiles')->like('display_name', $name, 'both')->get()->result();
+		$result = '';
+		foreach ($data as $hasil){
+			$result .= $hasil->user_id.',';
+		}
+		return substr($result, 0, strlen($result) - 1);
+
 	}
 }
 

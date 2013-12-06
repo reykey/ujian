@@ -205,7 +205,8 @@ class Module_Tryout extends Module
         $fields[] = array('name'=>'Pilihan B', 'slug'=>'pilihan_b', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan B', 'extra'=>array("max_length"=>"255", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan C', 'slug'=>'pilihan_c', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan C', 'extra'=>array("max_length"=>"255", "default_value"=>""));
         $fields[] = array('name'=>'Pilihan D', 'slug'=>'pilihan_d', 'type'=>'text', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan pilihan D', 'extra'=>array("max_length"=>"255", "default_value"=>""));
-        $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan jawaban benar dari pertanyaan', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
+        $fields[] = array('name'=>'Pilihan E', 'slug'=>'pilihan_e', 'type'=>'text', 'required' => false, 'unique' => false, 'instructions' => 'Inputkan Pilihan E (opsional)', 'extra'=>array("max_length"=>"255", "default_value"=>""));
+        $fields[] = array('name'=>'Jawaban', 'slug'=>'jawaban', 'type'=>'choice', 'required' => true, 'unique' => false, 'instructions' => 'Inputkan jawaban benar dari pertanyaan', 'extra'=>array("choice_data"=>"A : A\nB : B\nC : C\nD : D\nE : E", "choice_type"=>"radio", "default_value"=>"", "min_choices"=>"", "max_choices"=>""));
         $fields[] = array('name'=>'Pembahasan', 'slug'=>'pembahasan', 'type'=>'textarea', 'required' => false, 'unique' => false, 'instructions' => 'Pembahasan jawaban soal', 'extra'=>array("default_text"=>"", "allow_tags"=>"y", "content_type"=>"html"));
 
         // Combine
@@ -262,6 +263,7 @@ class Module_Tryout extends Module
         $fields[] = array('name'=>'nilai', 'slug'=>'nilai', 'type'=>'decimal', 'required' => false, 'unique' => false, 'instructions' => '', 'extra'=>array("decimal_places"=>"", "default_value"=>"", "min_value"=>"", "max_value"=>""));
         $fields[] = array('name'=>'Jam Mulai', 'slug'=>'jam_mulai', 'type'=>'datetime', 'required' => false, 'unique' => false, 'instructions' => '', 'extra'=>array("use_time"=>"yes", "start_date"=>"", "end_date"=>"", "storage"=>"datetime", "input_type"=>"datepicker"));
         $fields[] = array('name'=>'Jam Selesai', 'slug'=>'jam_selesai', 'type'=>'datetime', 'required' => false, 'unique' => false, 'instructions' => '', 'extra'=>array("use_time"=>"yes", "start_date"=>"", "end_date"=>"", "storage"=>"datetime", "input_type"=>"datepicker"));
+        $fields[] = array('name'=>'Status Ujian', 'slug'=>'status_ujian', 'type'=>'choice', 'required' => false, 'unique' => false, 'instructions' => 'Status kelulusan tes', 'extra'=>array("choice_data"=>"belum => Belum\nlulus => Lulus\nmati => Nilai Mati", "choice_type"=>"dropdown", "default_value"=>"belum", "min_choices"=>"", "max_choices"=>""));
 
         // Combine
         foreach ($fields AS &$field) { $field = array_merge($template, $field); }
@@ -327,6 +329,7 @@ class Module_Tryout extends Module
         $this->streams->fields->delete_field('pilihan_b', $namespace);
         $this->streams->fields->delete_field('pilihan_c', $namespace);
         $this->streams->fields->delete_field('pilihan_d', $namespace);
+        $this->streams->fields->delete_field('pilihan_e', $namespace);
         $this->streams->fields->delete_field('jawaban', $namespace);
         $this->streams->fields->delete_field('pembahasan', $namespace);
 
@@ -344,6 +347,7 @@ class Module_Tryout extends Module
         $this->streams->fields->delete_field('nilai', $namespace);
         $this->streams->fields->delete_field('jam_mulai', $namespace);
         $this->streams->fields->delete_field('jam_selesai', $namespace);
+        $this->streams->fields->delete_field('status_ujian', $namespace);
 
         return true;
     }

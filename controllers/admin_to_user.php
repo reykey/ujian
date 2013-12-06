@@ -54,6 +54,12 @@ class Admin_to_user extends Admin_Controller {
 			$where .= "AND ".SITE_REF."_so_to_user.paket_id= ".$this->input->post('paket')." ";
 		}
 
+		if($this->input->post('nama') && trim($this->input->post('nama')) != ''){
+			$name = $this->soal_m->search_name($this->input->post('nama'));
+			if($name == '') $name = '0';
+			$where .= "AND ".SITE_REF."_so_to_user.user_id IN (".$name.") ";
+		}
+
 		// print_r($this->input->post('status'));
 		$params = array(
 				'stream'		=> 'to_user',
@@ -78,6 +84,13 @@ class Admin_to_user extends Admin_Controller {
         // dump($data);
 
         $this->template->build('admin/detail_user', $data);
+	}
+
+	public function delete($id = 0)
+	{
+		$this->db->delete('so_to_user', array('id' => $id));
+
+		redirect(getenv('HTTP_REFERER'));
 	}
 
 	function compare(){
